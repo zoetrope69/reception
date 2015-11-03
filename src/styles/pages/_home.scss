@@ -1,0 +1,21 @@
+// _home.scss
+
+.page--home{}
+
+.page--home .button{
+  margin-top: 1em;
+  padding: 1em;
+
+  font-size: 3em;
+}
+
+.page--home .button-group{
+  margin: 2em 0;
+  float: right;
+  width: 75%;
+}
+
+.page--home .button-group .button{
+  margin: 0;
+  font-size: 1.5em;
+}

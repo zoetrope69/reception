@@ -1,0 +1,45 @@
+// _front.scss
+
+.page--front{
+  background-image: radial-gradient(farthest-corner at 100% 100%, rgba($colour-bg, .95) 50%, rgba(adjust-hue($colour-bg, 20), .95) 100%);
+
+  animation: animateBackground 60s linear infinite alternate;
+}
+
+@keyframes animateBackground{
+    to{
+        background-position: 0 0, 90% 50%;
+    }
+}
+
+.page--front img{
+  display: block;
+  margin: 3em auto 0;
+}
+
+.page--front h1{
+  padding: 2em;
+
+  color: white;
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 300;
+}
+
+.page--front em{
+  display: block;
+}
+
+.page--front .button{
+  max-width: 60%;
+  padding: .75em 1em;
+  margin: 0 auto;
+
+  font-size: 2em;
+  color: $colour-brand;
+  background: rgba(white, .95);
+}
+
+.page--front .button .icon{
+    vertical-align: -5px;
+}

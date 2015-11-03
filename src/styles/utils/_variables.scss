@@ -1,0 +1,18 @@
+// _utils.scss
+
+// -- colours
+
+$colour-brand--innovation-space: #E26A46; // innovation space
+$colour-brand--cell-block: #467FE2; // cell block
+
+$colour-brand: $colour-brand--innovation-space;
+
+$colour-back-bg: darken(white, 2.5%);
+$colour-bg: white;
+$colour-warning: #BB573C;
+$colour-success: #6DBB3C;
+$colour-error: #D62A2A;
+
+$break-small: 700px;
+$break-medium: 1000px;
+$break-large: 1300px;

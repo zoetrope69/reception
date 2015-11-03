@@ -1,0 +1,6 @@
+// _cellblock.scss - Cell Block styles
+
+.app--cell-block .page--front{
+  background-image: radial-gradient(farthest-corner at 100% 100%, rgba($colour-brand, .95) 50%, rgba(adjust-hue($colour-brand, 20), .95) 100%),
+                    url('/images/cellblock.jpg');
+}

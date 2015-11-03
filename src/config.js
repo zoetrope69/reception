@@ -13,22 +13,22 @@ module.exports = Object.assign({
   port: process.env.PORT,
   apiPort: process.env.APIPORT,
   app: {
-    title: 'React Redux Example',
-    description: 'All the modern best practices in one example.',
+    title: 'Innovation Space Reception App',
+    description: 'A reception app for the Innovation Space',
     meta: {
       charSet: 'utf-8',
       property: {
-        'og:site_name': 'React Redux Example',
-        'og:image': 'https://react-redux.herokuapp.com/logo.jpg',
+        'og:site_name': 'Innovation Space Reception App',
+        'og:image': '',
         'og:locale': 'en_US',
-        'og:title': 'React Redux Example',
-        'og:description': 'All the modern best practices in one example.',
+        'og:title': 'Innovation Space Reception App',
+        'og:description': 'A reception app for the Innovation Space',
         'twitter:card': 'summary',
-        'twitter:site': '@erikras',
-        'twitter:creator': '@erikras',
-        'twitter:title': 'React Redux Example',
-        'twitter:description': 'All the modern best practices in one example.',
-        'twitter:image': 'https://react-redux.herokuapp.com/logo.jpg',
+        'twitter:site': '@innovatepompey',
+        'twitter:creator': '@innovatepompey',
+        'twitter:title': 'Innovation Space Reception App',
+        'twitter:description': 'A reception app for the Innovation Space',
+        'twitter:image': '',
         'twitter:image:width': '200',
         'twitter:image:height': '200'
       }

@@ -1,0 +1,238 @@
+// _forms.scss
+
+@import '../vendor/wtf-forms';
+
+form{
+  overflow: hidden; /* clearfix */
+}
+
+form a{
+  color: $colour-brand;
+  font-weight: bolder;
+}
+
+.preview{
+  padding: 1em;
+  margin: 1em 0;
+
+  border: 1px solid #F5F5F5;
+  border-radius: 5px;
+  box-shadow: 0 0 50px rgba(black, .1);
+  background: white;
+
+  animation: previewIn .25s ease-in forwards;
+  transition: opacity .25s, box-shadow .25s;
+}
+
+.preview--hidden{
+  opacity: .5;
+  box-shadow: 0 0 50px rgba(black, 0);
+}
+
+@keyframes previewIn{
+  from{
+    box-shadow: 0 0 50px rgba(black, 0);
+    transform: scale(.98);
+  }
+}
+
+.preview > span{
+  display: block;
+  padding: 0 0 .75em;
+
+  color: #C5C5C5;
+  text-align: center;
+  text-transform: uppercase;
+
+  border-bottom: 1px solid rgba(black, .05);
+}
+
+.preview button{
+  display: none;
+}
+
+.input-header{
+  padding: 1.25em 0;
+
+  color: #6F6F6F;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.input-notifications{
+  padding-left: 1em;
+  margin-bottom: 2em;
+}
+
+.input-wrapper{
+  position: relative;
+  padding: 2px;
+  margin-bottom: 1.5em;
+}
+
+.input-wrapper .button{
+  margin-bottom: .5em;
+
+  border-radius: 5px;
+}
+
+.input-wrapper .button--small{
+  font-size: 1.1em;
+}
+
+.input-wrapper label,
+.input-wrapper input,
+.input-wrapper select,
+.input-wrapper textarea{
+  display: block;
+  width: 100%;
+  margin-bottom: .5em;
+
+  font-size: 1.25em;
+}
+
+.input-wrapper label{
+  color: lighten(black, 40%);
+  font-weight: 400;
+
+  padding: 0 .25em;
+}
+
+.input-wrapper input,
+.input-wrapper select,
+.input-wrapper textarea{
+  padding: .75em 1.25em;
+
+  font-weight: 300;
+
+  border: 1px solid darken($colour-bg, 10%);
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 0 2px transparent;
+
+  transition: box-shadow .25s, border-color .25s;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus,
+.input-wrapper textarea:focus{
+  outline: none;
+
+  border-color: $colour-bg;
+  box-shadow: 0 0 0 2px rgba(black, .5);
+}
+
+.input-wrapper .help-block{
+  position: absolute;
+  right: 1em; top: -.5em;
+  padding: .75em 1em;
+
+  font-size: .85em;
+  color: white;
+
+  background: #3E3E3E;
+  border-radius: 5px;
+
+  transition: opacity .30s ease-out, transform .30s ease-out;
+}
+
+.input-wrapper .help-block--hidden{
+  visibility: hidden;
+
+  opacity: 0;
+  transform: translateY(-20%);
+}
+
+.input-wrapper input + .help-block::after{
+  position: absolute;
+  bottom: -24px; right: 1em;
+  content: '';
+  display: block;
+
+  border: 12px solid transparent;
+  border-top-color: #3E3E3E;
+}
+
+.input-wrapper.has-error input,
+.input-wrapper.has-error select,
+.input-wrapper.has-error textarea{
+  border-color: lighten($colour-error, 25%);
+}
+
+.input-wrapper.has-error select:focus,
+.input-wrapper.has-error textarea:focus,
+.input-wrapper.has-error input:focus{
+  border-color: $colour-bg;
+  box-shadow: 0 0 0 2px rgba(lighten($colour-error, 25%), .85);
+}
+
+.input-wrapper.has-error .help-block{ background: $colour-error; }
+.input-wrapper.has-error .help-block::after{ border-top-color: $colour-error; }
+
+.input-wrapper.is-valid input,
+.input-wrapper.is-valid select,
+.input-wrapper.is-valid textarea{
+  border-color: $colour-success;
+}
+
+.input-wrapper.is-valid select:focus,
+.input-wrapper.is-valid textarea:focus,
+.input-wrapper.is-valid input:focus{
+  border-color: $colour-bg;
+  box-shadow: 0 0 0 2px rgba(lighten($colour-success, 25%), .75);
+}
+
+.input-wrapper.is-valid .help-block{ background: $colour-success; }
+.input-wrapper.is-valid .help-block::after{ border-top-color: $colour-success; }
+
+.input-wrapper .photo-upload{
+  overflow: hidden; /* clearfix */
+  width: 75%;
+}
+
+.input-wrapper .photo-upload .button{
+  margin-top: 2em;
+  padding: .5em;
+  color: white;
+  font-weight: 300;
+}
+
+.input-wrapper .photo-upload .photo{
+  float: left;
+  width: 25%;
+  padding-right: 1em;
+
+  overflow: hidden;
+}
+
+.input-wrapper .photo-upload .photo img{
+  max-width: 100%;
+
+  border-radius: 50%;
+}
+
+.input-wrapper .photo-upload .button--photo-pick{
+  float: right;
+  width: 75%;
+}
+
+.input-wrapper .photo-upload .button--photo-upload{
+  float: right;
+  width: 45%;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-wrapper .photo-upload .button--photo-cancel{
+  float: right;
+  width: 30%;
+
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+// hide the normal input
+.input-wrapper .photo-upload .file-upload{
+  display: none;
+}

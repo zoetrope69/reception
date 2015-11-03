@@ -1,0 +1,52 @@
+// _company.scss
+
+.company{
+  display: block;
+  overflow: hidden; /* clearfix */
+  padding: 1em .5em;
+
+  border-bottom: 1px solid darken(white, 10%);
+}
+
+.company--admin{
+  padding: .5em;
+}
+
+.company:last-of-type{
+  border-bottom: none;
+}
+
+.company__name{
+  float: left;
+  width: 65%;
+
+  font-size: 2em;
+  font-weight: 400;
+  color: #282828;
+}
+
+.company--admin .company__name{
+  font-size: 1.5em;
+}
+
+.company__logo{
+  float: left;
+  width: 35%;
+  padding-right: 2em;
+}
+
+.company__logo img{
+  height: 2.5em;
+  float: right;
+}
+
+.company--admin .company__logo img{
+  height: 1.5em;
+}
+
+.person--admin .person__name .icon,
+.company--admin .company__name .icon{
+  opacity: .5;
+  font-size: .75em;
+  margin-left: .25em;
+}

@@ -1,0 +1,29 @@
+// _instruction.scss
+
+.instruction-message{
+  padding: 1em;
+
+  font-size: 3.25em;
+  text-align: center;
+}
+
+.instruction-message .icon{
+  color: #66F15F;
+  width: 80px;
+  height: 80px;
+
+  animation: rainbowFill 10s infinite;
+}
+
+.instruction-message p{
+  margin: .25em 0;
+}
+
+.instruction-message em{
+  font-size: .9em;
+  color: darken($colour-bg, 50%);
+}
+
+.instruction-message strong{
+  font-weight: 400;
+}

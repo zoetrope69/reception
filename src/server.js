@@ -13,10 +13,10 @@ import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
 
-import {ReduxRouter} from 'redux-router';
+import { ReduxRouter } from 'redux-router';
 import createHistory from 'history/lib/createMemoryHistory';
-import {reduxReactRouter, match} from 'redux-router/server';
-import {Provider} from 'react-redux';
+import { reduxReactRouter, match } from 'redux-router/server';
+import { Provider } from 'react-redux';
 import qs from 'query-string';
 import getRoutes from './routes';
 import getStatusFromRoutes from './helpers/getStatusFromRoutes';

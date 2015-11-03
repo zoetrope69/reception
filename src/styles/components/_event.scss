@@ -1,0 +1,145 @@
+// _company.scss
+
+$colour-event--visit: #46E2B8;
+$colour-event--delivery: #5446E2;
+$colour-event--admin: #E24646;
+
+.events{
+  float: right;
+  width: 35%;
+  padding: 2em 0;
+  margin: 2em 0;
+
+  background: white;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+
+  @media (max-width: $break-small){
+    width: 100%;
+  }
+
+}
+
+.events__title{
+  text-align: center;
+  font-weight: 400;
+  color: $colour-brand;
+}
+
+.event{
+  position: relative;
+  overflow: hidden; /* clearfix */
+  padding: .5em 1em;
+  margin-top: .25em;
+  height: 80px;
+
+  background: white;
+  border-top: 1px solid transparent;
+}
+
+.event--admin{ border-color: desaturate(lighten($colour-event--admin, 30%), 50%); }
+.event--visit{ border-color: desaturate(lighten($colour-event--visit, 30%), 50%); }
+.event--delivery{ border-color: desaturate(lighten($colour-event--delivery, 30%), 50%); }
+
+.event__icon{
+  position: relative;
+  float: left;
+  width: 10%;
+  padding-right: 2em;
+}
+
+.event__icon span{
+  display: block;
+  width: 2em;
+  height: 2em;
+  margin: .25em 0;
+
+  font-size: 1.5em;
+  line-height: 1.75em;
+  text-align: center;
+  color: white;
+
+  background-color: #ccc;
+  background-size: 100%;
+  border-radius: 50%;
+}
+
+.event--admin .event__icon span{
+  border: 1px solid lighten($colour-event--admin, 10%);
+  background-color: $colour-event--admin;
+  background-image: linear-gradient(to top right, $colour-event--admin, adjust-hue($colour-event--admin, 20));
+}
+
+.event--visit .event__icon span{
+  border: 1px solid lighten($colour-event--visit, 10%);
+  background-color: $colour-event--visit;
+  background-image: linear-gradient(to top right, $colour-event--visit, adjust-hue($colour-event--visit, 20));
+}
+
+.event--delivery .event__icon span{
+  border: 1px solid lighten($colour-event--delivery, 10%);
+  background-color: $colour-event--delivery;
+  background-image: linear-gradient(to top right, $colour-event--delivery, adjust-hue($colour-event--delivery, 20));
+}
+
+.event__details{
+  float: left;
+  width: 90%;
+  padding: .5em 1em;
+
+  color: #282828;
+}
+
+.event__details__action{
+  overflow: hidden; /* clearfix */
+}
+
+.event__details__action .member,
+.event__details__action .message{
+  float: left;
+  width: 50%;
+}
+
+.event__details__action .member{
+  font-size: 1.25em;
+  font-weight: 400;
+}
+
+.event__details__action .message{
+  font-size: 1em;
+  font-weight: 400;
+
+  text-align: right;
+}
+
+.event--admin .event__details__action .message{
+  color: darken($colour-event--admin, 30%);
+}
+
+.event--visit .event__details__action .message{
+  color: darken($colour-event--visit, 30%);
+}
+
+.event--delivery .event__details__action .message{
+  color: darken($colour-event--delivery, 30%);
+}
+
+.event__details__time{
+  overflow: hidden; /* clearfix */
+  color: lighten(#313131, 20%);
+}
+
+.event__details__time p{
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+
+.event__details__time time{
+  float: left;
+  width: 50%;
+  padding: .5em 0;
+  font-size: .75em;
+
+  color: lighten(#313131, 50%);
+}

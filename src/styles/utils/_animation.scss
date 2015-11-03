@@ -1,0 +1,17 @@
+// _animation.scss
+
+@keyframes rainbowText{
+    0%{ color: adjust-hue(#66F15F,   0); }
+   25%{ color: adjust-hue(#66F15F,  90); }
+   50%{ color: adjust-hue(#66F15F, 180); }
+   75%{ color: adjust-hue(#66F15F, 270); }
+  100%{ color: adjust-hue(#66F15F, 360); }
+}
+
+@keyframes rainbowFill{
+    0%{ fill: adjust-hue(#66F15F,   0); }
+   25%{ fill: adjust-hue(#66F15F,  90); }
+   50%{ fill: adjust-hue(#66F15F, 180); }
+   75%{ fill: adjust-hue(#66F15F, 270); }
+  100%{ fill: adjust-hue(#66F15F, 360); }
+}

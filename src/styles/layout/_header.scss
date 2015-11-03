@@ -1,0 +1,92 @@
+// _header.scss
+
+.debug-nav{
+  overflow: hidden; /* clearfix */
+  padding: .75em;
+
+  background: rgba(#232323, .85);
+  color: white;
+
+  border-bottom-right-radius: 5px;
+}
+
+.debug-nav-wrap{
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.debug-nav-wrap .debug-nav{
+  transform: translateY(-100%);
+
+  transition: transform .15s ease-out;
+}
+
+.debug-nav-wrap:hover .debug-nav{
+  transform: translateY(0%);
+}
+
+.debug-nav a{
+  font-size: .9em;
+  padding: 0 1em;
+}
+
+.debug-nav a:hover{
+  opacity: .8;
+}
+
+.admin header{
+  overflow: hidden; /* clearfix */
+  background: linear-gradient(to right, grey, adjust-hue(grey, 20));
+}
+
+.app--innovation-space .admin header{
+  background: linear-gradient(to right, $colour-brand--innovation-space, adjust-hue($colour-brand--innovation-space, 20));
+}
+
+.app--cell-block .admin header{
+  background: linear-gradient(to right, $colour-brand--cell-block, adjust-hue($colour-brand--cell-block, 20));
+}
+
+.admin header .logo{
+  float: left;
+  width: 25%;
+}
+
+.admin header .logo img{
+  display: block;
+  max-height: 2em;
+  margin: 1em;
+}
+
+.admin header nav{
+  overflow: hidden; /* clearfix */
+  float: left;
+  width: 75%;
+}
+
+.admin header nav .nav-link{
+  float: right;
+  width: (100%/5);
+  padding: 1.5em 1em;
+
+  text-align: center;
+  color: white;
+  background: rgba($colour-bg, 0);
+
+  transition: background .25s;
+}
+
+.admin header nav .nav-link--active{
+  color: $colour-brand;
+  font-weight: 400;
+
+  background: white;
+}
+
+.admin header nav .nav-link:hover{
+  color: rgba(white, .75);
+}
+
+.admin header nav .nav-link--active:hover{
+  color: rgba($colour-brand, .75);
+}

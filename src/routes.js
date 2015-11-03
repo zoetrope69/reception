@@ -1,27 +1,43 @@
 import React from 'react';
-import {IndexRoute, Route} from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
+
 import {
-    App,
-    Chat,
-    Home,
-    Widgets,
-    About,
-    Login,
-    LoginSuccess,
-    Survey,
-    NotFound,
-  } from 'containers';
+  App,
+
+  Home,
+
+  Admin,
+  AdminSettings,
+
+  Front,
+  FrontHome,
+  FrontMenu,
+  FrontPeople,
+  FrontPerson,
+  FrontCompanies,
+
+  InstructionDelivery,
+  InstructionHelp,
+  InstructionReception,
+
+  Login,
+  LoginSuccess,
+  PasswordReset,
+
+  NotFound
+
+} from 'containers';
 
 export default (store) => {
-  const requireLogin = (nextState, replaceState, cb) => {
+  const requireLogin = (nextState, replaceState, callback) => {
     function checkAuth() {
-      const { auth: { user }} = store.getState();
+      const { auth: { user } } = store.getState();
       if (!user) {
         // oops, not logged in, so can't be here!
-        replaceState(null, '/');
+        replaceState(null, '/login');
       }
-      cb();
+      callback();
     }
 
     if (!isAuthLoaded(store.getState())) {
@@ -37,19 +53,32 @@ export default (store) => {
   return (
     <Route path="/" component={App}>
       { /* Home (main) route */ }
-      <IndexRoute component={Home}/>
+      <IndexRoute component={Home} />
 
       { /* Routes requiring login */ }
-      <Route onEnter={requireLogin}>
-        <Route path="chat" component={Chat}/>
-        <Route path="loginSuccess" component={LoginSuccess}/>
+      <Route path="admin" component={Admin} > // onEnter={requireLogin}
+        <Route path="loginSuccess" component={LoginSuccess} />
+        <Route path="settings" component={AdminSettings} />
+      </Route>
+
+      <Route path="front" component={Front}>
+        <IndexRoute component={FrontHome} />
+
+        <Route path="menu" component={FrontMenu} />
+        <Route path="people" component={FrontPeople} />
+        <Route path="people/:personId" component={FrontPerson} />
+        <Route path="companies" component={FrontCompanies} />
+        <Route path="companies/:companyName" component={FrontPeople} />
+
+        <Route path="instruction/help" component={InstructionHelp} />
+        <Route path="instruction/delivery" component={InstructionDelivery} />
+        <Route path="instruction/reception" component={InstructionReception} />
+
       </Route>
 
       { /* Routes */ }
-      <Route path="about" component={About}/>
-      <Route path="login" component={Login}/>
-      <Route path="survey" component={Survey}/>
-      <Route path="widgets" component={Widgets}/>
+      <Route path="login" component={Login} />
+      <Route path="passwordReset" component={PasswordReset} />
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

@@ -1,0 +1,180 @@
+// _person.scss
+
+.person{
+  display: block;
+  overflow: hidden; /* clearfix */
+  padding: 1em .5em;
+
+  border-bottom: 1px solid darken(white, 10%);
+}
+
+.person--admin{
+  padding: .5em;
+}
+
+.person:last-of-type{
+  border-bottom: none;
+}
+
+.person__image{
+  float: left;
+  width: 10%;
+
+  padding-right: 1em;
+}
+
+.person--admin .person__image{
+  width: 7.5%;
+}
+
+.person__image img{
+  display: block;
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.person--page{
+  width: 100%;
+}
+
+.person--admin .person__image img{
+  height: 2em;
+}
+
+.person__details{
+  float: left;
+  width: 90%;
+  padding: 0;
+}
+
+.person--admin .person__details{
+  width: 92.5%;
+}
+
+.person__name{
+  float: left;
+  width: 50%;
+  padding: .25em;
+
+  font-size: 2.5em;
+  font-weight: 400;
+}
+
+.person--admin .person__name{
+  font-size: 1.5em;
+  padding: 0;
+}
+
+.person__company{
+  float: left;
+  width: 40%;
+}
+
+.person--page .person__image{
+  width: 25%;
+}
+
+.person--page .person__details{
+  width: 75%;
+}
+
+.person--page .person__name{
+  width: 100%;
+  padding: .75em .25em;
+
+  font-size: 3.5em;
+  text-align: right;
+}
+
+.person--page .person__company{
+  display: none;
+}
+
+.person__right-arrow{
+  float: left;
+  width: 10%;
+}
+
+.person__right-arrow .icon{
+  margin: 1em 1.25em;
+
+  fill: darken(white, 25%);
+}
+
+.person__position{
+  display: block;
+  margin: 1em 0 .25em;
+
+  font-size: 1em;
+  color: lighten(black, 15%);
+}
+
+.person--admin .person__position{
+  font-size: 1em;
+  float: right;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.person__name .label{
+  display: inline-block;
+  padding: 0.33333rem 0.5rem;
+
+  font-size: .4em;
+  color: #fff;
+
+  border-radius: 2px;
+  background: linear-gradient(to right, #8C5A96, #7155A0);
+
+  transform: translateY(-.45em);
+}
+
+.person__company-logo{
+  display: block;
+  margin: .5em 0;
+}
+
+.person__company-logo img{
+  height: 1em;
+  display: block;
+}
+
+.person__company-name{
+  padding: .5em 0;
+
+  font-size: 1em;
+  text-align: right;
+}
+
+.person__actions{
+}
+
+.person__email,
+.person__phone{
+  float: left;
+  width: 100%;
+  margin: .5em 0;
+
+  font-size: 3em;
+  color: lighten(black, 40%);
+  text-align: center;
+}
+
+.person__email i,
+.person__phone i{
+  display: inline-block;
+  width: 1em;
+}
+
+.person__notify{
+  font-size: 1.5em;
+}
+
+.button--notify{
+  float: none;
+  display: block;
+  font-size: 3em;
+  margin: 4em auto 0.5em;
+  border-radius: 5px;
+}

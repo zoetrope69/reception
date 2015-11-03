@@ -8,8 +8,8 @@ import createHistory from 'history/lib/createBrowserHistory';
 import createStore from './redux/create';
 import ApiClient from './helpers/ApiClient';
 import io from 'socket.io-client';
-import {Provider} from 'react-redux';
-import {reduxReactRouter, ReduxRouter} from 'redux-router';
+import { Provider } from 'react-redux';
+import { reduxReactRouter, ReduxRouter } from 'redux-router';
 
 import getRoutes from './routes';
 import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';

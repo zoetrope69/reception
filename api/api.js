@@ -8,6 +8,10 @@ import * as actions from './actions/index';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
+import bcrypt from 'bcrypt';
+import db from './db';
 
 const pretty = new PrettyError();
 const app = express();
@@ -18,13 +22,137 @@ const io = new SocketIo(server);
 io.path('/ws');
 
 app.use(session({
-  secret: 'react and redux rule!!!!',
+  secret: 'ireallywanttobeainnospaceman',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }));
 app.use(bodyParser.json());
 
+// -- error handling
+
+function logErrors(err, req, res, next) {
+  console.error(err.stack);
+  next(err);
+}
+
+function clientErrorHandler(err, req, res, next) {
+  if (req.xhr) {
+    return Promise.reject(err.message);
+  }
+  return next(err);
+}
+
+function errorHandler(err, req, res, next) {
+  if (res.headersSent) {
+    return next(err);
+  }
+
+  res.status(500);
+  return Promise.reject(err.message);
+}
+
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
+
+const comparePassword = (password, userPassword, callback) => {
+  bcrypt.compare(password, userPassword, (err, isPasswordMatch) => {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, isPasswordMatch);
+  });
+};
+
+function findById(id, callback) {
+
+  db.view('people/all', { key: id }, (err, data) => {
+
+    if (err) {
+      return callback(err);
+    }
+
+    if (data.length > 0) {
+      const user = data[0].value;
+
+      return callback(null, user);
+    }
+
+    return callback(null, false);
+
+  });
+
+}
+
+function findByEmail(email, callback) {
+
+  db.view('people/byEmail', { key: email }, (err, data) => {
+
+    if (err) {
+      return callback(err);
+    }
+
+    if (data.length > 0) {
+      const user = data[0].value;
+
+      return callback(null, user);
+    }
+
+    return callback(null, false);
+
+  });
+
+}
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+passport.use(new LocalStrategy((username, password, done) => {
+  // asynchronous verification, for effect...
+  process.nextTick(() => {
+
+  // find the user by username
+    findByEmail(username, (err, user) => {
+
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false, { message: `Sorry! Couldn't find any user with that email (${username}).` });
+      }
+
+      comparePassword(password, user.password, (passwordErr, isPasswordMatch) => {
+
+        if (passwordErr) {
+          return done(passwordErr);
+        }
+
+        if (!isPasswordMatch) {
+          return done(null, false, { message: `Sorry! That password isn't right.` });
+        }
+
+        return done(null, user);
+
+      });
+
+    });
+
+  });
+}));
+
+// initialize passport
+app.use(passport.initialize());
+// use passport.session() middleware, to support persistent login sessions
+app.use(passport.session());
 
 app.use((req, res) => {
 
@@ -76,8 +204,8 @@ if (config.apiPort) {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> 🌎  API is running on port %s', config.apiPort);
-    console.info('==> 💻  Send requests to http://localhost:%s', config.apiPort);
+    console.info('----\n==> 🌎  API is running on port ' + config.apiPort);
+    console.info('==> 💻  Send requests to http://localhost:' + config.apiPort);
   });
 
   io.on('connection', (socket) => {

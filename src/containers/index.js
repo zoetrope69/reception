@@ -1,9 +1,23 @@
 export App from './App/App';
-export Chat from './Chat/Chat';
+
 export Home from './Home/Home';
-export Widgets from './Widgets/Widgets';
-export About from './About/About';
+
+export Admin from './Admin/Admin';
+export AdminSettings from './AdminSettings/AdminSettings';
+
+export Front from './Front/Front';
+export FrontHome from './FrontHome/FrontHome';
+export FrontMenu from './FrontMenu/FrontMenu';
+export FrontPeople from './FrontPeople/FrontPeople';
+export FrontCompanies from './FrontCompanies/FrontCompanies';
+export FrontPerson from './FrontPerson/FrontPerson';
+
+export InstructionDelivery from './InstructionDelivery/InstructionDelivery';
+export InstructionHelp from './InstructionHelp/InstructionHelp';
+export InstructionReception from './InstructionReception/InstructionReception';
+
 export Login from './Login/Login';
 export LoginSuccess from './LoginSuccess/LoginSuccess';
-export Survey from './Survey/Survey';
+export PasswordReset from './PasswordReset/PasswordReset';
+
 export NotFound from './NotFound/NotFound';

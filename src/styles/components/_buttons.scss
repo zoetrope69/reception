@@ -1,0 +1,122 @@
+// _buttons.scss
+
+.button{
+  display: block;
+  padding: .25em .75em;
+
+  color: white;
+  font-size: 1.25em;
+  font-weight: 300;
+  text-align: center;
+
+  border: 0;
+  border-radius: 15px;
+
+  background: linear-gradient(to right, $colour-brand, lighten($colour-brand, 10%));
+
+  cursor: pointer;
+
+  transition: opacity .25s, transform .25s, background .25s;
+}
+
+.button .icon{
+  vertical-align: -2.5px;
+}
+
+.button--small{
+  padding: .5em 1em;
+
+  font-size: .85em;
+  border-radius: 5px;
+}
+
+.button--expanded{
+  width: 100%;
+}
+
+.button--success{
+  background: linear-gradient(to right, $colour-success, adjust-hue($colour-success, 20));
+}
+
+.input-wrapper .button--warning{
+  background: linear-gradient(to right, $colour-warning, lighten($colour-warning, 10%));
+}
+
+.button.active{
+  color: white;
+  background: linear-gradient(to right, $colour-brand, lighten($colour-brand, 10%));
+}
+
+.button:active{}
+
+.button:hover{
+  transform: scale(1.001);
+  opacity: .95;
+}
+
+.button[disabled],
+.button.disabled{
+  cursor: default;
+  background: grey;
+}
+
+.button-group{
+  overflow: hidden;
+  margin: 1em;
+  display: flex;
+
+  font-size: 1.25em;
+  color: $colour-brand;
+
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.button-group > .button{
+  flex: 1;
+
+  color: inherit;
+  background: none;
+  border-radius: 0;
+}
+
+.page--home .button-group > .button{
+  padding: .75em .5em;
+}
+
+.button-group > .button:first-child{
+  border-right: 1px solid;
+}
+
+.top-nav{
+  overflow: hidden; /* clearfix */
+}
+
+.back-button{
+  margin: 1em 0 0;
+  float: left;
+  width: 20%;
+
+  font-size: 2em;
+  color: #656565;
+
+  background: none;
+
+  transform-origin: 0% 50%;
+
+  transition: transform .15s;
+}
+
+.back-button:active{
+  transform: scale(0.9);
+}
+
+.instruction{
+  float: left;
+  width: 80%;
+  padding: .75em .75em 1em;
+
+  font-size: 2.25em;
+  font-style: italic;
+  text-align: right;
+}

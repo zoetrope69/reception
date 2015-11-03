@@ -30,11 +30,23 @@ export default class Html extends Component {
 
           <link rel="shortcut icon" href="/favicon.ico" />
 
+          <meta name="viewport" content="width=device-width" />
+
+          {/* TODO: build font based on usage */}
+          <link rel="stylesheet" type="text/css"
+                  href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" />
+          <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+
+          {/* TODO: replace with built */}
+          {/* TODO: bower bundle this */}
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+
           {/* styles (will be present only in production with webpack extract text plugin) */}
           {Object.keys(assets.styles).map((style, key) =>
             <link href={assets.styles[style]} key={key} media="screen, projection"
                   rel="stylesheet" type="text/css" charSet="UTF-8"/>
           )}
+
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
