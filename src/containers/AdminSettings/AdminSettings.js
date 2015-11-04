@@ -2,47 +2,52 @@ import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import * as settingActions from 'redux/modules/settings';
-import { isLoaded, load as loadSettings } from 'redux/modules/settings';
+import { load as loadSettings } from 'redux/modules/settings';
 import { initializeWithKey } from 'redux-form';
 import { Icon, SettingForm } from 'components';
 
 @connect(
   state => ({
+    user: state.auth.user,
     settings: state.settings.data,
     editing: state.settings.editing,
     error: state.settings.error,
-    loading: state.settings.loading
   }),
   {...settingActions, initializeWithKey })
 export default class AdminSettings extends Component {
   static propTypes = {
     settings: PropTypes.array,
+    editStop: PropTypes.func.isRequired,
     error: PropTypes.string,
-    loading: PropTypes.bool,
     initializeWithKey: PropTypes.func.isRequired,
     editing: PropTypes.object.isRequired,
-    load: PropTypes.func.isRequired,
-    editStart: PropTypes.func.isRequired
+    editStart: PropTypes.func.isRequired,
+    params: PropTypes.object,
+    user: PropTypes.object
   }
 
   static fetchDataDeferred(getState, dispatch) {
-    if (!isLoaded(getState())) {
-      return dispatch(loadSettings());
-    }
+    return dispatch(loadSettings());
   }
 
   handleEdit(setting) {
-    const {editStart} = this.props; // eslint-disable-line no-shadow
+    const { editStart } = this.props; // eslint-disable-line no-shadow
     return () => {
-      editStart(String(setting.id));
+      editStart(String(setting._id));
     };
   }
 
   render() {
 
-    const { settings, error, editing, loading, load } = this.props;
+    const { editStop, user, settings, error, editing, params } = this.props;
 
-    const setting = settings[0];
+    let setting = null;
+
+    if (params && typeof params.personId !== 'undefined') { // url param use that
+      setting = settings.find(settingsItem => settingsItem._id === params.personId);
+    }else if (user && typeof user.username !== 'undefined') { // otherwise check the session
+      setting = settings.find(settingsItem => settingsItem.email === user.username);
+    }
 
     return (
       <main className="page page--settings">
@@ -50,17 +55,27 @@ export default class AdminSettings extends Component {
 
       <DocumentMeta title="Settings" />
 
-      <h1>Settings</h1>
+      {settings && (
 
-      <button className="button button--success" onClick={load}>
-        <Icon name={loading ? 'cog' : 'user'} /> Reload Settings
-      </button>
+        editing[setting._id] ? (
+          <button key={'edit' + setting._id}
+                  style={{ float: 'right' }}
+                  className="button"
+                  onClick={() => editStop(setting._id)}>
+            <Icon name="trash" /> Cancel
+          </button>
+        ) : (
+          <button key={'edit' + setting._id}
+                  style={{ float: 'right' }}
+                  className="button"
+                  onClick={::this.handleEdit(setting)}>
+            <Icon name="pencil" /> Edit
+          </button>
+        )
 
-      {setting && !editing[setting.id] && (
-        <button key={setting.id} className="button" onClick={::this.handleEdit(setting)}>
-          <Icon name="pencil" /> Edit
-        </button>
       )}
+
+      <h1>Settings</h1>
 
       {error && (
       <div className="alert alert--danger" role="alert">
@@ -68,8 +83,8 @@ export default class AdminSettings extends Component {
       </div>
       )}
 
-      {setting && editing[setting.id] && (
-        <SettingForm formKey={String(setting.id)} key={String(setting.id)} initialValues={setting}/>
+      {setting && (
+        <SettingForm formKey={String(setting._id)} key={String(setting._id)} initialValues={setting} editing={!editing[setting._id]} />
       )}
 
     </div>

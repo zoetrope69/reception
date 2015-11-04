@@ -22,7 +22,7 @@ const NavbarLink = ({to, className, component, children}) => {
 )
 export default class Admin extends Component {
   static propTypes = {
-    children: PropTypes.object.isRequired,
+    children: PropTypes.object,
     user: PropTypes.object,
     logout: PropTypes.func.isRequired
   };
@@ -34,7 +34,7 @@ export default class Admin extends Component {
 
   render() {
 
-    const {user} = this.props;
+    const { user } = this.props;
     const logoImage = require('./logo.png');
 
     return (
@@ -55,6 +55,7 @@ export default class Admin extends Component {
                       <Link to="/admin/settings" className="nav-link" activeClassName="nav-link--active">
                           <Icon name="cog" /> Settings
                       </Link>
+                      {user.type === 'Staff' && (
                       <div>
                           <Link to="/admin/companies" className="nav-link" activeClassName="nav-link--active">
                               <Icon name="briefcase" /> Companies
@@ -63,6 +64,7 @@ export default class Admin extends Component {
                               <Icon name="users" /> People
                           </Link>
                       </div>
+                      )}
                   </div>
               ) : (
                   <Link to="/login" className="nav-link" activeClassName="nav-link--active">
@@ -74,7 +76,24 @@ export default class Admin extends Component {
       </header>
 
       <div className="admin__content">
-        {this.props.children}
+        {this.props.children ? this.props.children : (
+            <main className="page page--welcome">
+            <div className="container">
+
+              {user && typeof user.firstName !== 'undefined' && (
+                <h1>Hey, {user.firstName}!</h1>
+              )}
+
+              <p>We're just starting with this app, for now you can <Link to="/admin/settings">update your profile over on the settings page</Link>.</p>
+              <p>This app is an work in progress, please do send us your feedback.</p>
+
+              <button className="button" onClick={::this.handleLogout}>
+                <Icon name="exit" /> Sign Out
+              </button>
+
+            </div>
+            </main>
+        )}
       </div>
 
     </div>

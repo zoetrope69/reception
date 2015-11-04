@@ -1,30 +1,37 @@
-const initialSettings = [
-  {
-    id: 1,
-    visibility: true,
-    type: 'Staff',
-    firstName: 'John',
-    lastName: 'Smith',
-    email: 'john@example.com',
-    phone: '3801208321'
-  }
-];
-
-export function getSettings(req) {
-  let settings = req.session.settings;
-  if (!settings) {
-    settings = initialSettings;
-    req.session.settings = settings;
-  }
-  return settings;
-}
+import db from '../../db';
 
 export default function load(req) {
-  return new Promise((resolve) => {
-    // make async call to database
+  return new Promise((resolve, reject) => {
 
-    // reject();
+    db.view('people/all', (err, data) => {
+      if (err) {
+        reject(err);
+      }
 
-    resolve(getSettings(req));
+      let json = JSON.parse(data);
+
+      // if this is an array of objects map the data out
+      if (json instanceof Array) {
+
+        json = json.map((dataItem) => {
+          const item = dataItem.value;
+
+          // remove passwords
+          if (typeof item.password !== 'undefined') {
+            delete item.password;
+          }
+
+          // remove tokens
+          if (typeof item.token !== 'undefined') {
+            delete item.token;
+          }
+
+          return item;
+        });
+
+      }
+
+      resolve(json);
+    });
   });
 }

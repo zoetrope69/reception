@@ -1,14 +1,13 @@
 import React from 'react';
-import { IndexRoute, Route } from 'react-router';
+import { IndexRoute, IndexRedirect, Route } from 'react-router';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 
 import {
   App,
 
-  Home,
-
   Admin,
   AdminSettings,
+  AdminPeople,
 
   Front,
   FrontHome,
@@ -22,7 +21,6 @@ import {
   InstructionReception,
 
   Login,
-  LoginSuccess,
   PasswordReset,
 
   NotFound
@@ -47,18 +45,42 @@ export default (store) => {
     }
   };
 
+  const requireStaff = (nextState, replaceState, callback) => {
+    function checkPermissions() {
+      const { auth: { user } } = store.getState();
+      if (!user || user.type !== 'Staff') {
+        // oops, don't have permissions, so can't be here!
+        replaceState(null, '/admin');
+      }
+      callback();
+    }
+
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth()).then(checkPermissions);
+    } else {
+      checkPermissions();
+    }
+  };
+
   /**
    * Please keep routes in alphabetical order
    */
   return (
     <Route path="/" component={App}>
       { /* Home (main) route */ }
-      <IndexRoute component={Home} />
+      <IndexRedirect to="admin" />
 
       { /* Routes requiring login */ }
-      <Route path="admin" component={Admin} > // onEnter={requireLogin}
-        <Route path="loginSuccess" component={LoginSuccess} />
+      <Route path="admin" component={Admin} onEnter={requireLogin}>
+
+        <Route onEnter={requireStaff}>
+          <Route path="people" component={AdminPeople} />
+          <Route path="people/:personId" component={AdminSettings} />
+        </Route>
+
         <Route path="settings" component={AdminSettings} />
+
+        <Route path="*" component={NotFound} status={404} />
       </Route>
 
       <Route path="front" component={Front}>

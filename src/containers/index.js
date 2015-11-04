@@ -4,6 +4,7 @@ export Home from './Home/Home';
 
 export Admin from './Admin/Admin';
 export AdminSettings from './AdminSettings/AdminSettings';
+export AdminPeople from './AdminPeople/AdminPeople';
 
 export Front from './Front/Front';
 export FrontHome from './FrontHome/FrontHome';
@@ -17,7 +18,6 @@ export InstructionHelp from './InstructionHelp/InstructionHelp';
 export InstructionReception from './InstructionReception/InstructionReception';
 
 export Login from './Login/Login';
-export LoginSuccess from './LoginSuccess/LoginSuccess';
 export PasswordReset from './PasswordReset/PasswordReset';
 
 export NotFound from './NotFound/NotFound';

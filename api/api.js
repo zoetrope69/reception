@@ -21,12 +21,25 @@ const server = new http.Server(app);
 const io = new SocketIo(server);
 io.path('/ws');
 
-app.use(session({
+const timeToExpire = 3600000; // an hour
+const appSession = session({
   secret: 'ireallywanttobeainnospaceman',
-  resave: false,
+  resave: true,
   saveUninitialized: false,
-  cookie: { maxAge: 60000 }
-}));
+  cookie: {
+    expires: new Date(Date.now() + timeToExpire),
+    maxAge: timeToExpire
+  }
+});
+
+// enable https on the production server
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1); // trust first proxy
+  appSession.cookie.secure = true; // serve secure cookies
+}
+
+app.use(appSession);
+
 app.use(bodyParser.json());
 
 // -- error handling

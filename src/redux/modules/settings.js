@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case LOAD_SUCCESS:
       return {
@@ -56,7 +56,7 @@ export default function reducer(state = initialState, action = {}) {
       return state; // 'saving' flag handled by redux-form
     case SAVE_SUCCESS:
       const data = [...state.data];
-      data[action.result.id - 1] = action.result;
+      data[data.findIndex(dataItem => dataItem._id === action.id)] = action.result;
       return {
         ...state,
         data: data,
@@ -96,7 +96,7 @@ export function load() {
 export function save(setting) {
   return {
     types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
-    id: setting.id,
+    id: setting._id,
     promise: (client) => client.post('/setting/update', {
       data: setting
     })

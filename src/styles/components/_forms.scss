@@ -185,6 +185,15 @@ form a{
 .input-wrapper.is-valid .help-block{ background: $colour-success; }
 .input-wrapper.is-valid .help-block::after{ border-top-color: $colour-success; }
 
+.input-wrapper input:disabled,
+.input-wrapper input.disabled,
+.input-wrapper select:disabled,
+.input-wrapper select.disabled,
+.input-wrapper textarea:disabled,
+.input-wrapper textarea.disabled{
+  border-color: transparent;
+}
+
 .input-wrapper .photo-upload{
   overflow: hidden; /* clearfix */
   width: 75%;

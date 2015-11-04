@@ -33,9 +33,9 @@
   }
 }
 
-.admin .page--sign-in,
-.admin .page--sign-out,
-.admin .page--password{
+.page--sign-in,
+.page--sign-out,
+.page--password{
   float: none;
   width: 100%;
   margin: 5em auto 0;
@@ -44,7 +44,7 @@
 
   @media (min-width: $break-small){ width: 80%; }
   @media (min-width: $break-medium){ width: 60%; }
-  @media (min-width: $break-large){ width: 40%; }
+  @media (min-width: $break-large){ width: 50%; }
 }
 
 @keyframes animateBackground{

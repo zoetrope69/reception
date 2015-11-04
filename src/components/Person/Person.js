@@ -5,7 +5,8 @@ import { Icon } from 'components';
 export default class Person extends Component {
   static propTypes = {
     person: PropTypes.object.isRequired,
-    personPage: PropTypes.bool
+    personPage: PropTypes.bool,
+    preview: PropTypes.bool
   }
 
   notifyPerson() {
@@ -14,13 +15,13 @@ export default class Person extends Component {
 
   render() {
 
-    const { person, personPage } = this.props;
+    const { preview, person, personPage } = this.props;
 
     let companyNode;
     let image = 'default.png';
     let labelNode;
 
-    if (typeof person.company !== 'undefined') {
+    if (person && typeof person.company !== 'undefined') {
 
       companyNode = (
         <div className="person__company">
@@ -47,57 +48,67 @@ export default class Person extends Component {
       labelNode = (<span className="label">Staff</span>);
     }
 
-    return (
-      <Link to={`/front/people/${person._id}`} className={`person ${ personPage ? 'person--page' : '' }`}>
+    const contentsNode = (
+    <div>
+      <div className="person__image">
+        <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
+      </div>
 
-        <div className="person__image">
-          <img src={`/images/person/${image}`} alt={`Picture of ${person.name.first} ${person.name.last}`} />
+      <div className="person__details">
+
+        <div className="person__name">
+          {person.firstName} {person.lastName} {labelNode}
         </div>
 
-        <div className="person__details">
+        {companyNode}
 
-          <div className="person__name">
-            {person.name.first} {person.name.last} {labelNode}
+        {!personPage && (
+          <div className="person__right-arrow">
+            <Icon name="chevron-right" large />
           </div>
+        )}
 
-          {companyNode}
+      </div>
 
-          {!personPage && (
-            <div className="person__right-arrow">
-              <Icon name="chevron-right" large />
-            </div>
-          )}
+      {personPage && (
+      <div className="person__actions">
 
-        </div>
-
-        {personPage && (
-        <div className="person__actions">
-
-          { (person.notifications.sms || person.notifications.email || person.notifications.phone) && (
-          <div style={{ float: 'left', width: '100%' }}>
-              <button className="button button--notify" onClick={this.notifyPerson}>
-                  <svg className="icon icon--big icon--alarm"><use xlinkHref="#lnr-alarm"></use></svg> Notify
-              </button>
-              <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
-          </div>
-          )}
-
-          {person.email && (
-          <span className="person__email" href={`mailto:${person.email}`}>
-            <Icon name="envelope" large /> {person.email}
-          </span>
-          )}
-
-          {person.phone && (
-          <span className="person__phone" href={`tel:${person.phone}`}>
-            <Icon name="phone-handset" large /> {person.phone}
-          </span>
-          )}
-
+        { (person.notifications.sms || person.notifications.email || person.notifications.phone) && (
+        <div style={{ float: 'left', width: '100%' }}>
+            <button className="button button--notify" onClick={this.notifyPerson}>
+                <svg className="icon icon--big icon--alarm"><use xlinkHref="#lnr-alarm"></use></svg> Notify
+            </button>
+            <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
         </div>
         )}
 
-      </Link>
+        {person.email && (
+        <span className="person__email" href={`mailto:${person.email}`}>
+          <Icon name="envelope" large /> {person.email}
+        </span>
+        )}
+
+        {person.phone && (
+        <span className="person__phone" href={`tel:${person.phone}`}>
+          <Icon name="phone-handset" large /> {person.phone}
+        </span>
+        )}
+
+      </div>
+      )}
+    </div>
+    );
+
+    return (
+      preview ? (
+        <div className={`person ${ personPage ? 'person--page' : '' }`}>
+          {contentsNode}
+        </div>
+      ) : (
+        <Link to={`/front/people/${person._id}`} className={`person ${ personPage ? 'person--page' : '' }`}>
+          {contentsNode}
+        </Link>
+      )
     );
   }
 

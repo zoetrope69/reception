@@ -11,7 +11,18 @@ body{
   text-rendering: optimizeLegibility;
 }
 
-h1{
+.page h1{
   color: #3E3E3E;
+  font-weight: 400;
+}
+
+.page p{
+  max-width: 40em;
+  margin-bottom: 1em;
+  color: #494949;
+}
+
+.page p a{
+  color: $colour-brand;
   font-weight: 400;
 }
