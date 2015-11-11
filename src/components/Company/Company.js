@@ -10,8 +10,10 @@ export default class Company extends Component {
 
     const { company } = this.props;
 
+    console.log(company);
+
     return (
-      <Link to={`/front/companies/${company.name}`} className="company">
+      <Link to={`/front/companies/${company._id}`} className="company">
         <span className="company__name">{company.name}</span>
         {company.image && (
         <div className="company__logo">

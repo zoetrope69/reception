@@ -57,9 +57,11 @@ export default class Admin extends Component {
                       </Link>
                       {user.type === 'Staff' && (
                       <div>
+                          {/*
                           <Link to="/admin/companies" className="nav-link" activeClassName="nav-link--active">
                               <Icon name="briefcase" /> Companies
                           </Link>
+                          */}
                           <Link to="/admin/people" className="nav-link" activeClassName="nav-link--active">
                               <Icon name="users" /> People
                           </Link>

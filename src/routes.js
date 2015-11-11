@@ -15,6 +15,7 @@ import {
   FrontPeople,
   FrontPerson,
   FrontCompanies,
+  FrontCompany,
 
   InstructionDelivery,
   InstructionHelp,
@@ -22,6 +23,7 @@ import {
 
   Login,
   PasswordReset,
+  PasswordForgot,
 
   NotFound
 
@@ -88,9 +90,9 @@ export default (store) => {
 
         <Route path="menu" component={FrontMenu} />
         <Route path="people" component={FrontPeople} />
-        <Route path="people/:personId" component={FrontPerson} />
+        <Route path="people/:person" component={FrontPerson} />
         <Route path="companies" component={FrontCompanies} />
-        <Route path="companies/:companyName" component={FrontPeople} />
+        <Route path="companies/:company" component={FrontCompany} />
 
         <Route path="instruction/help" component={InstructionHelp} />
         <Route path="instruction/delivery" component={InstructionDelivery} />
@@ -100,7 +102,8 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="login" component={Login} />
-      <Route path="passwordReset" component={PasswordReset} />
+      <Route path="password/forgot" component={PasswordForgot} />
+      <Route path="password/reset" component={PasswordReset} />
 
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />

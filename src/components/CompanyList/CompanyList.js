@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { Company } from 'components';
 
-@connect(state => ({ companies: state.companies.data }))
 export default class CompanyList extends Component {
   static propTypes = {
     companies: PropTypes.array.isRequired
@@ -12,8 +10,8 @@ export default class CompanyList extends Component {
     const { companies } = this.props;
 
     companies.sort((aItem, bItem) => {
-      if (aItem.name.first < bItem.name.first) return -1;
-      if (aItem.name.first > bItem.name.first) return 1;
+      if (aItem.name < bItem.name) return -1;
+      if (aItem.name > bItem.name) return 1;
       return 0;
     });
 

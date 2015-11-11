@@ -22,6 +22,4 @@ export default function sendSMS(text, number, callback) {
 
   });
 
-};
-
-module.exports = sendSMS;
+}

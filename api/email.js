@@ -1,22 +1,23 @@
-const mandrill = require('node-mandrill')(process.env.MANDRILL_API);
+import config from '../src/config';
+const mandrill = require('node-mandrill')(config.env.mandrill.key);
 
-const sendEmail = (subject, message, email, name, callback) => {
+export default function sendEmail(subject, text, email, name, callback) {
+
   mandrill('/messages/send', {
     message: {
-      to: [{ email: email, name: name }],
+      to: [{ email, name }],
       from_email: 'reception@innovationspace.org.uk',
-      subject: subject,
-      text: message
+      subject,
+      text
     }
-  }, (error, processedMessage) => {
+  }, (err, response) => {
 
-    if (error) {
-      callback(JSON.stringify(error), null);
-    } else {
-      callback(null, processedMessage);
+    if (err) {
+      callback(JSON.stringify(err), null);
     }
+
+    callback(null, response);
 
   });
-};
 
-module.exports = sendEmail;
+}

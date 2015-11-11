@@ -47,10 +47,10 @@ export default class Login extends Component {
         <img style={{ margin: '0 auto', display: 'block', width: '50%' }} src={logoImage} alt="Logo" />
 
         <h1>Sign-in</h1>
+
         {!user &&
           <div>
             <form className="form" onSubmit={::this.handleSubmit}>
-
 
               <div style={{ paddingBottom: '1em' }} className={'input-wrapper' + (error ? ' has-error' : '')}>
                 {error && (
@@ -85,7 +85,7 @@ export default class Login extends Component {
               </div>
 
               <div className="input-wrapper">
-                <Link to="/passwordReset">Forgot your password?</Link>
+                <Link to="/password/forgot">Forgot your password?</Link>
               </div>
 
             </form>

@@ -5,7 +5,6 @@ import { Icon } from 'components';
 export default class Person extends Component {
   static propTypes = {
     person: PropTypes.object.isRequired,
-    personPage: PropTypes.bool,
     preview: PropTypes.bool
   }
 
@@ -15,7 +14,7 @@ export default class Person extends Component {
 
   render() {
 
-    const { preview, person, personPage } = this.props;
+    const { preview, person } = this.props;
 
     let companyNode;
     let image = 'default.png';
@@ -51,61 +50,33 @@ export default class Person extends Component {
     const contentsNode = (
     <div>
       <div className="person__image">
-        <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
+        <img src={`/images/person/${image}`} alt={`Picture of ${person.name.first} ${person.name.last}`} />
       </div>
 
       <div className="person__details">
 
         <div className="person__name">
-          {person.firstName} {person.lastName} {labelNode}
+          {person.name.first} {person.name.last} {labelNode}
         </div>
 
         {companyNode}
 
-        {!personPage && (
-          <div className="person__right-arrow">
-            <Icon name="chevron-right" large />
-          </div>
-        )}
-
-      </div>
-
-      {personPage && (
-      <div className="person__actions">
-
-        { (person.notifications.sms || person.notifications.email || person.notifications.phone) && (
-        <div style={{ float: 'left', width: '100%' }}>
-            <button className="button button--notify" onClick={this.notifyPerson}>
-                <svg className="icon icon--big icon--alarm"><use xlinkHref="#lnr-alarm"></use></svg> Notify
-            </button>
-            <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
+        <div className="person__right-arrow">
+          <Icon name="chevron-right" large />
         </div>
-        )}
-
-        {person.email && (
-        <span className="person__email" href={`mailto:${person.email}`}>
-          <Icon name="envelope" large /> {person.email}
-        </span>
-        )}
-
-        {person.phone && (
-        <span className="person__phone" href={`tel:${person.phone}`}>
-          <Icon name="phone-handset" large /> {person.phone}
-        </span>
-        )}
 
       </div>
-      )}
+
     </div>
     );
 
     return (
       preview ? (
-        <div className={`person ${ personPage ? 'person--page' : '' }`}>
+        <div className="person">
           {contentsNode}
         </div>
       ) : (
-        <Link to={`/front/people/${person._id}`} className={`person ${ personPage ? 'person--page' : '' }`}>
+        <Link to={`/front/people/${person.email[0].address}`} className="person">
           {contentsNode}
         </Link>
       )

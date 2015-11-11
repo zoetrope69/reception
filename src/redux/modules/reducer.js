@@ -6,6 +6,7 @@ import auth from './auth';
 import companies from './companies';
 import counter from './counter';
 import { reducer as form } from 'redux-form';
+import passwords from './passwords';
 import people from './people';
 import settings from './settings';
 
@@ -19,6 +20,7 @@ export default combineReducers({
     counter2: counter,
     counter3: counter
   }),
+  passwords,
   people,
   settings
 });

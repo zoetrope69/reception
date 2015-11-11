@@ -1,95 +1,81 @@
-const LOAD = 'redux-example/passwords/LOAD';
-const LOAD_SUCCESS = 'redux-example/passwords/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/passwords/LOAD_FAIL';
-const LOGIN = 'redux-example/passwords/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/passwords/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/passwords/LOGIN_FAIL';
-const LOGOUT = 'redux-example/passwords/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/passwords/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/passwords/LOGOUT_FAIL';
+const CHECK_TOKEN = 'redux-example/passwords/CHECK_TOKEN';
+const CHECK_TOKEN_SUCCESS = 'redux-example/passwords/CHECK_TOKEN_SUCCESS';
+const CHECK_TOKEN_FAIL = 'redux-example/passwords/CHECK_TOKEN_FAIL';
+const GENERATE_TOKEN = 'redux-example/passwords/GENERATE_TOKEN';
+const GENERATE_TOKEN_SUCCESS = 'redux-example/passwords/GENERATE_TOKEN_SUCCESS';
+const GENERATE_TOKEN_FAIL = 'redux-example/passwords/GENERATE_TOKEN_FAIL';
 
 const initialState = {
-  loaded: false
+  checked: false,
+  generating: false,
+  isValidToken: false
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD:
+    case CHECK_TOKEN:
       return {
         ...state,
-        loading: true
+        checking: true
       };
-    case LOAD_SUCCESS:
+    case CHECK_TOKEN_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        user: action.result
+        checking: false,
+        isValidToken: true,
+        result: action.result
       };
-    case LOAD_FAIL:
+    case CHECK_TOKEN_FAIL:
       return {
         ...state,
-        loading: false,
-        loaded: false,
+        checking: false,
+        isValidToken: false,
         error: action.error
       };
-    case LOGIN:
+    case GENERATE_TOKEN:
       return {
         ...state,
-        loggingIn: true
+        generating: true
       };
-    case LOGIN_SUCCESS:
+    case GENERATE_TOKEN_SUCCESS:
       return {
         ...state,
-        loggingIn: false,
-        user: action.result
+        generating: false,
+        message: action.result
       };
-    case LOGIN_FAIL:
+    case GENERATE_TOKEN_FAIL:
       return {
         ...state,
-        loggingIn: false,
-        user: null,
-        loginError: action.error
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        loggingOut: true
-      };
-    case LOGOUT_SUCCESS:
-      return {
-        ...state,
-        loggingOut: false,
-        user: null
-      };
-    case LOGOUT_FAIL:
-      return {
-        ...state,
-        loggingOut: false,
-        logoutError: action.error
+        generating: false,
+        message: null,
+        generateError: action.error
       };
     default:
       return state;
   }
 }
 
-export function generatePasswordToken(token, invite) {
+export function isLoaded(globalState) {
+  return globalState.passwords && globalState.passwords.loaded;
+}
+
+export function checkPasswordToken(token) {
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/generatePasswordToken', {
+    types: [CHECK_TOKEN, CHECK_TOKEN_SUCCESS, CHECK_TOKEN_FAIL],
+    promise: (client) => client.post('/checkPasswordToken', {
       data: {
-        token, invite
+        token
       }
     })
   };
 }
 
-export function checkPasswordToken(token) {
+export function generatePasswordToken(email, invite) {
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
-    promise: (client) => client.post('/checkPasswordToken', {
+    types: [GENERATE_TOKEN, GENERATE_TOKEN_SUCCESS, GENERATE_TOKEN_FAIL],
+    promise: (client) => client.post('/generatePasswordToken', {
       data: {
-        token
+        email, invite
       }
     })
   };

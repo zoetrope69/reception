@@ -1,5 +1,6 @@
 import db from '../db';
 import sendEmail from '../email';
+import crypto from 'crypto';
 
 const getRandomToken = (callback) => {
   // generate a random token
@@ -20,11 +21,16 @@ export default function generatePasswordToken(req) {
         return reject(err);
       }
 
+      if (data.length < 1) {
+        return reject('Not a valid email');
+      }
+
       const person = data[0].value;
 
       // create token
       getRandomToken((token) => {
       // token is unique number, with a timeout date stored along side
+
 
         // TODO: add timeout
         // assign token to person
@@ -35,6 +41,7 @@ export default function generatePasswordToken(req) {
           if (dbErr) {
             return reject(dbErr);
           }
+
 
           // send token to person via email
           let subject = 'Reset your password!';
@@ -51,7 +58,7 @@ export default function generatePasswordToken(req) {
           }
 
           // add url
-          message += '\n\r\nhttp://reception.rosedigital.co.uk/password?token=' + token;
+          message += '\n\r\nhttps://reception.innovationspace.org.co.uk/password/reset?token=' + token;
 
           const emailToSend = person.email;
           const name = person.name.first;
@@ -60,6 +67,7 @@ export default function generatePasswordToken(req) {
             if (emailErr) {
               return reject(err);
             }
+            console.log('message', emailMessage);
 
             return resolve('Sent email message: ', emailMessage);
           });
