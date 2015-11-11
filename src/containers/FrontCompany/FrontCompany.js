@@ -3,19 +3,33 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Icon, PersonList } from 'components';
 
-@connect(state => ({ companies: state.companies.data }))
+@connect(state => ({
+  people: state.people.data,
+  companies: state.companies.data
+}))
 export default class FrontCompany extends Component {
   static propTypes = {
+    people: PropTypes.array.isRequired,
     companies: PropTypes.array.isRequired,
-    params: PropTypes.obj
+    params: PropTypes.object
   }
 
   render() {
 
     const { companies, params } = this.props;
+    let { people } = this.props;
 
-    const company = companies.find(companyItem => companyItem._id === params.company);
-    const people = company.people;
+    const company = companies.find(companiesItem => companiesItem._id === params.company);
+
+    people = people.filter(newPerson => {
+      for (let count = 0; count < company.people.length; count++) {
+        const personId = company.people[count];
+        if (personId === newPerson._id) {
+          return newPerson;
+        }
+      }
+    });
+
 
     return (
       <main className="page page--people">
