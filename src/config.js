@@ -9,7 +9,7 @@ const environment = {
   }
 }[process.env.NODE_ENV || 'development'];
 
-module.exports = Object.assign({
+const configOptions = {
   port: process.env.PORT,
   apiPort: process.env.APIPORT,
   app: {
@@ -34,4 +34,8 @@ module.exports = Object.assign({
       }
     }
   }
-}, environment);
+};
+
+configOptions.env = require('../env');
+
+module.exports = Object.assign(configOptions, environment);

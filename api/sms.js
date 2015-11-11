@@ -1,14 +1,15 @@
+import config from '../src/config';
 import twilio from 'twilio';
 
-const client = new twilio.RestClient(process.env.TWILIO_ID,
-                                     process.env.TWILIO_TOKEN);
+const client = new twilio.RestClient(config.env.twilio.id,
+                                     config.env.twilio.token);
 
-const sendSMS = (text, number, callback) => {
+export default function sendSMS(text, number, callback) {
 
   client.messages.create({
 
     to: number,
-    from: process.env.TWILIO_NUMBER,
+    from: config.env.twilio.number,
     body: text
 
   }, (error, message) => {
