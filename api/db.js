@@ -35,9 +35,10 @@ db.exists((err, exists) => {
 
     console.log('==> 📦  Database: http://localhost:5984/_utils', '');
 
-    // destroy the database while testing
-    // console.log('   ... Destroying database');
-    // db.destroy();
+    /* destroy the database while testing
+    console.log('   ... Destroying database');
+    db.destroy();
+    */
 
   } else {
 
