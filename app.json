@@ -1,8 +1,7 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "repository": "https://github.com/erikras/react-redux-universal-hot-example",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "name": "university-of-portsmouth-reception-app",
+  "description": "A reception app for the University of Portsmouth's shared offices",
+  "repository": "https://bitbucket.org/rosedigital/reception",
   "keywords": [
     "react",
     "isomorphic",

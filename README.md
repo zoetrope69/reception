@@ -1,5 +1,7 @@
 # University of Portsmouth Reception App
 
+A reception app for the University of Portsmouth's shared offices
+
 ---
 
 ## About
