@@ -10,6 +10,11 @@ export default class PersonList extends Component {
   render() {
     const { admin, people } = this.props;
 
+    // if there is no people
+    if (people.length <= 0) {
+      return (<p>No people</p>);
+    }
+
     // sort by alphabetical
     people.sort((aItem, bItem) => {
       if (aItem.name.first < bItem.name.first) return -1;
