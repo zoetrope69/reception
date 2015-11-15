@@ -46,7 +46,7 @@ export default class AdminSettings extends Component {
     if (params && typeof params.personId !== 'undefined') { // url param use that
       setting = settings.find(settingsItem => settingsItem._id === params.personId);
     }else if (user && typeof user.username !== 'undefined') { // otherwise check the session
-      setting = settings.find(settingsItem => settingsItem.email === user.username);
+      setting = settings.find(settingsItem => settingsItem.email[0].address === user.username);
     }
 
     return (
@@ -55,7 +55,7 @@ export default class AdminSettings extends Component {
 
       <DocumentMeta title="Settings" />
 
-      {settings && (
+      {setting && (
 
         editing[setting._id] ? (
           <button key={'edit' + setting._id}
