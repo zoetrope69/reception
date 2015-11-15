@@ -30,6 +30,7 @@ import {
 } from 'containers';
 
 export default (store) => {
+
   const requireLogin = (nextState, replaceState, callback) => {
     function checkAuth() {
       const { auth: { user } } = store.getState();

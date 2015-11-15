@@ -1,19 +1,24 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class Icon extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
     large: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    spin: PropTypes.bool
   }
 
   render() {
 
-    const {name, large} = this.props; // eslint-disable-line no-shadow
+    const { large, name, spin } = this.props;
 
     let className = ` icon icon--${name} `;
 
     if (large) {
       className += ' icon--large ';
+    }
+
+    if (spin) {
+      className += ' icon--spin ';
     }
 
     return (

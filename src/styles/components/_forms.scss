@@ -11,6 +11,15 @@ form a{
   font-weight: bolder;
 }
 
+form ul,
+form ol{
+  padding-left: 2em;
+}
+
+form li{
+  margin-bottom: .25em;
+}
+
 .preview{
   padding: 1em;
   margin: 1em 0;

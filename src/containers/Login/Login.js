@@ -30,7 +30,7 @@ export default class Login extends Component {
 
   renderHelpText(message) {
     return (
-      <span className={`help-block ${ message.length > 0 ? '' : 'help-block--hidden' }`}>{message}</span>
+      <span className="help-block">{message}</span>
     );
   }
 

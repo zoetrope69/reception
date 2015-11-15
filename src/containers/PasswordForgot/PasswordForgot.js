@@ -6,12 +6,17 @@ import * as passwordActions from 'redux/modules/passwords';
 import { Icon } from 'components';
 
 @connect(
-  state => ({ isValidEmail: state.passwords.isValidEmail, sent: state.passwords.sentEmail }),
+  state => ({
+    isValidEmail: state.passwords.isValidEmail,
+    sent: state.passwords.sentEmail,
+    generating: state.passwords.generating
+  }),
   passwordActions)
 export default class PasswordForgot extends Component {
   static propTypes = {
     isValidEmail: PropTypes.bool,
     generatePasswordToken: PropTypes.func.isRequired,
+    generating: PropTypes.bool,
     sent: PropTypes.bool,
     location: PropTypes.object
   }
@@ -28,9 +33,15 @@ export default class PasswordForgot extends Component {
     input.value = '';
   }
 
+  renderHelpText(message) {
+    return (
+      <span className={`help-block ${ message.length > 0 ? '' : 'help-block--hidden' }`}>{message}</span>
+    );
+  }
+
   render() {
 
-    const { sent } = this.props;
+    const { generating, sent } = this.props;
 
     return (
       <main className="page page--password">
@@ -58,8 +69,8 @@ export default class PasswordForgot extends Component {
             <div className="input-wrapper">
               <button className="button button--small"
                       onClick={::this.handleSubmit}
-                      disabled={false}>
-                <Icon name="envelope" /> Begin reset
+                      disabled={generating}>
+                <Icon name={(generating) ? 'sync' : 'envelope'} spin={generating} /> {(generating) ? 'Sending email' : 'Begin reset'}
               </button>
             </div>
 
@@ -72,17 +83,15 @@ export default class PasswordForgot extends Component {
             {/* display this if password email sent */}
 
             <div className="input-wrapper">
-              <Icon name="envelope" large />
+              <div className="icon--password">
+                <Icon name="envelope" large />
+              </div>
 
-            <p>A reset link has been sent!</p>
-            </div>
+              <p>A reset link has been sent!</p>
 
-            <div className="input-wrapper">
-              <Link to="/login">Sign in</Link>
-            </div>
-
-            <div className="input-wrapper">
-              <a href="#" >Resend email</a>
+              <ol>
+                <li>Go check for an email</li>
+              </ol>
             </div>
 
           </div>

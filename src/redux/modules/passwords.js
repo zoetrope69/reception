@@ -9,9 +9,13 @@ const RESET_SUCCESS = 'reception/passwords/RESET_SUCCESS';
 const RESET_FAIL = 'reception/passwords/RESET_FAIL';
 
 const initialState = {
+  error: '',
+  generateError: '',
   checked: false,
   generating: false,
-  isValidToken: false
+  isValidToken: false,
+  successful: false,
+  resetting: false
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -26,7 +30,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         checking: false,
         isValidToken: true,
-        result: action.result
+        token: action.result
       };
     case CHECK_TOKEN_FAIL:
       return {
@@ -44,12 +48,34 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         generating: false,
+        sentEmail: true,
         message: action.result
       };
     case GENERATE_TOKEN_FAIL:
       return {
         ...state,
         generating: false,
+        sentEmail: false,
+        message: null,
+        generateError: action.error
+      };
+    case RESET:
+      return {
+        ...state,
+        resetting: true
+      };
+    case RESET_SUCCESS:
+      return {
+        ...state,
+        resetting: false,
+        successful: true,
+        message: action.result
+      };
+    case RESET_FAIL:
+      return {
+        ...state,
+        resetting: false,
+        successful: false,
         message: null,
         generateError: action.error
       };
@@ -65,7 +91,7 @@ export function isLoaded(globalState) {
 export function checkPasswordToken(token) {
   return {
     types: [CHECK_TOKEN, CHECK_TOKEN_SUCCESS, CHECK_TOKEN_FAIL],
-    promise: (client) => client.post('/checkPasswordToken', {
+    promise: (client) => client.post('/password/checkToken', {
       data: {
         token
       }
@@ -76,9 +102,20 @@ export function checkPasswordToken(token) {
 export function generatePasswordToken(email, invite) {
   return {
     types: [GENERATE_TOKEN, GENERATE_TOKEN_SUCCESS, GENERATE_TOKEN_FAIL],
-    promise: (client) => client.post('/generatePasswordToken', {
+    promise: (client) => client.post('/password/generateToken', {
       data: {
         email, invite
+      }
+    })
+  };
+}
+
+export function resetPassword(token, password, passwordConfirm) {
+  return {
+    types: [RESET, RESET_SUCCESS, RESET_FAIL],
+    promise: (client) => client.post('/password/reset', {
+      data: {
+        token, password, passwordConfirm
       }
     })
   };

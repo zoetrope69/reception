@@ -1,44 +1,60 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import DocumentMeta from 'react-document-meta';
 import * as passwordActions from 'redux/modules/passwords';
+import { checkPasswordToken } from 'redux/modules/passwords';
+import { Icon } from 'components';
 
 @connect(
-  state => ({ isValidToken: state.passwords.isValidToken }),
+  state => ({
+    error: state.passwords.error,
+    generateError: state.passwords.generateError,
+    isValidToken: state.passwords.isValidToken,
+    token: state.passwords.token,
+    resetting: state.passwords.resetting,
+    successful: state.passwords.successful
+  }),
   passwordActions)
 export default class PasswordReset extends Component {
   static propTypes = {
+    error: PropTypes.string,
+    generateError: PropTypes.string,
+    location: PropTypes.object,
     isValidToken: PropTypes.bool,
-    checkPasswordToken: PropTypes.func,
-    token: PropTypes.string,
-    location: PropTypes.object
+    resetPassword: PropTypes.func,
+    resetting: PropTypes.bool,
+    successful: PropTypes.bool,
+    token: PropTypes.string
   }
 
-  componentDidMount() {
-
-    const { checkPasswordToken, location } = this.props;
-
-    let { token } = this.props;
-
-    // TODO: check if this is the best way to get the token
-    token = location.query.token;
-
-    console.log(token);
-
-    // if there isnt a token sent then redirect straight away
-    if (token && typeof token !== 'undefined' && token.length > 0) {
-      checkPasswordToken(token);
-    }
-
+  static fetchDataDeferred(getState, dispatch) {
+    // check the token before we render this component
+    const token = getState().router.location.query.token;
+    return dispatch(checkPasswordToken(token));
   }
 
   handleSubmit(event) {
     event.preventDefault();
+
+    const { resetPassword, token } = this.props;
+
+    const password = this.refs.password.value;
+    const passwordConfirm = this.refs.passwordConfirm.value;
+
+    resetPassword(token, password, passwordConfirm);
+
+  }
+
+  renderHelpText(message) {
+    return (
+      <span className="help-block">{message}</span>
+    );
   }
 
   render() {
 
-    const { isValidToken } = this.props;
+    const { isValidToken, error, generateError, resetting, successful } = this.props;
 
     return (
       <main className="page page--password">
@@ -46,21 +62,78 @@ export default class PasswordReset extends Component {
 
         <DocumentMeta title="Reset Password | Innovation Space"/>
 
-        {isValidToken ? (
+        {successful && (
+        <form>
+          <h1>Password reset successful</h1>
+
+          <div className="input-wrapper">
+            <div className="icon--password">
+              <Icon name="thumbs-up" large />
+            </div>
+            <p>Your password has been changed, you can log back in now.</p>
+          </div>
+
+          <div className="input-wrapper">
+            <Link to="/login">Log in!</Link>
+          </div>
+        </form>
+        )}
+
+        {(!isValidToken && !successful) && (
+        <form>
+
+          <h1>Sorry! This link is wrong...</h1>
+          <p>You can't reset your password with this link...</p>
+          <p>It's either timed out or something went wrong.</p>
+          <ol>
+            <li>Try clicking the link from your email again.</li>
+            <li>Still not working? <Link to="/password/forgot">Reset your password again.</Link></li>
+            <li>Let us know the issue with an email to <a href="mailto:reception@rosedigital.co.uk">reception@rosedigital.co.uk</a>.</li>
+          </ol>
+
+        </form>
+        )}
+
+        {(isValidToken && !successful) && (
         <div>
 
         <h1>Change password</h1>
 
         <form className="form" onSubmit={::this.handleSubmit}>
 
-          Password Reset
+          <div className="input-wrapper">
+            <label htmlFor="password">New password</label>
+            <input
+              ref="password"
+              name="password"
+              type="password"
+              />
+          </div>
+
+          <div className="input-wrapper">
+            <label htmlFor="passwordConfirm">Confirm new password</label>
+            <input
+              ref="passwordConfirm"
+              name="passwordConfirm"
+              type="password"
+              />
+          </div>
+
+          <div className={'input-wrapper' + ((error || generateError) ? ' has-error' : '')}>
+            <button className="button button--small"
+                    onClick={::this.handleSubmit}
+                    disabled={resetting}>
+              <Icon name={(resetting) ? 'sync' : 'envelope'} spin={resetting} /> {(resetting) ? 'Changing' : 'Change'} password
+            </button>
+
+            {error && this.renderHelpText(error)}
+            {generateError && this.renderHelpText(generateError)}
+          </div>
 
         </form>
 
-      </div>
-      ) : (
-        <h1>Invalid password token</h1>
-      )}
+        </div>
+        )}
 
       </div>
       </main>

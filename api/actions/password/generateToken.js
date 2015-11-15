@@ -1,5 +1,5 @@
-import db from '../db';
-import sendEmail from '../email';
+import db from '../../db';
+import sendEmail from '../../email';
 import crypto from 'crypto';
 
 const getRandomToken = (callback) => {
@@ -10,7 +10,7 @@ const getRandomToken = (callback) => {
   });
 };
 
-export default function generatePasswordToken(req) {
+export default function generateToken(req) {
   return new Promise((resolve, reject) => {
 
     const email = req.body.email;
@@ -42,7 +42,6 @@ export default function generatePasswordToken(req) {
             return reject(dbErr);
           }
 
-
           // send token to person via email
           let subject = 'Reset your password!';
           let message = `Hey ${person.name.first}!`;
@@ -58,18 +57,23 @@ export default function generatePasswordToken(req) {
           }
 
           // add url
-          message += '\n\r\nhttps://reception.innovationspace.org.co.uk/password/reset?token=' + token;
+          if (process.env.NODE_ENV === 'production') {
+            message += '\n\r\nhttps://localhost:' + process.env.PORT + '/password/reset?token=' + token;
+          } else {
+            message += '\n\r\nhttps://reception.innovationspace.org.co.uk/password/reset?token=' + token;
+          }
 
-          const emailToSend = person.email;
+          const emailToSend = person.email[0].address;
           const name = person.name.first;
 
           sendEmail(subject, message, emailToSend, name, (emailErr, emailMessage) => {
             if (emailErr) {
               return reject(err);
             }
-            console.log('message', emailMessage);
 
-            return resolve('Sent email message: ', emailMessage);
+            console.log('emailMessage', emailMessage);
+
+            return resolve(emailToSend);
           });
 
         });

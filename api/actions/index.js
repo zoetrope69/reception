@@ -6,7 +6,5 @@ export loadAuth from './loadAuth';
 export login from './login';
 export logout from './logout';
 
-export generatePasswordToken from './generatePasswordToken';
-export checkPasswordToken from './checkPasswordToken';
-
+export * as password from './password/index';
 export * as setting from './setting/index';

@@ -8,6 +8,30 @@ export function email(value) {
   }
 }
 
+export function aUppercaseChar(value) {
+  if (!isEmpty(value) && !/^((?=.*[A-Z]).*)$/i.test(value)) {
+    return 'Needs at least one uppercase (A) character';
+  }
+}
+
+export function aLowercaseChar(value) {
+  if (!isEmpty(value) && !/^((?=.*[a-z]).*)$/i.test(value)) {
+    return 'Needs at least one lowercase (a) character';
+  }
+}
+
+export function aNumberChar(value) {
+  if (!isEmpty(value) && !/^((?=.*\d).*)$/i.test(value)) {
+    return 'Needs at least one number character';
+  }
+}
+
+export function aSpecialChar(value) {
+  if (!isEmpty(value) && !/^((?=.*[\W_]).*)$/i.test(value)) {
+    return 'Needs at least one special character (!%^&)';
+  }
+}
+
 export function required(value) {
   if (isEmpty(value)) {
     return 'Required';

@@ -1,6 +1,6 @@
-import db from '../db';
+import db from '../../db';
 
-export default function checkPasswordToken(req) {
+export default function checkToken(req) {
   return new Promise((resolve, reject) => {
 
     const token = req.body.token;
@@ -14,11 +14,11 @@ export default function checkPasswordToken(req) {
         return reject(err);
       }
 
-      if (data.length > 0) {
-        return resolve('Password reset token is valid');
+      if (data.length <= 0) {
+        return reject('Password reset token is invalid');
       }
 
-      return reject('Password reset token is invalid');
+      return resolve(token);
 
     });
 

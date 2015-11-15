@@ -1,6 +1,6 @@
 // _icons.scss
 
-.icon{
+.icon {
   display: inline-block;
   fill: currentColor;
 
@@ -10,9 +10,20 @@
   vertical-align: -5px;
 }
 
-.icon--large{
+.icon--large {
   height: 40px;
   width: 40px;
 
   vertical-align: -10px;
+}
+
+.icon--spin {
+  transform-origin: center;
+  animation: iconSpin 1s infinite linear;
+}
+
+@keyframes iconSpin {
+  to{
+    transform: rotate(360deg);
+  }
 }
