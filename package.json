@@ -1,14 +1,14 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "name": "university-of-portsmouth-reception-app",
+  "description": "A reception app for the University of Portsmouth's shared offices",
+  "author": "Zac Colley <hi@zaccolley.com> (http://github.com/zaccolley)",
   "license": "MIT",
   "version": "0.0.5",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikras/react-redux-universal-hot-example"
+    "url": "https://bitbucket.org/rosedigital/reception"
   },
-  "homepage": "https://github.com/erikras/react-redux-universal-hot-example",
+  "homepage": "https://reception.innovationspace.org.uk",
   "keywords": [
     "react",
     "isomorphic",
