@@ -80,7 +80,7 @@ const comparePassword = (password, userPassword, callback) => {
 
 function findById(id, callback) {
 
-  db.view('people/all', { key: id }, (err, data) => {
+  db.view('people/byId', { key: id }, (err, data) => {
 
     if (err) {
       return callback(err);

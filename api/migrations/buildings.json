@@ -1,24 +1,24 @@
 [
-    {
-        "_id": "innovation-space",
-        "resource": "buildings",
-        "name": "Innovation Space",
-        "address": "...",
-        "locations": [
-            { "name": "Reception" },
-            { "name": "Floor 1" },
-            { "name": "Floor 2" },
-            { "name": "Floor 3" }
-        ]
-    },
-    {
-        "_id": "cell-block",
-        "resource": "buildings",
-        "name": "Cell Block",
-        "address": "...",
-        "locations": [
-            { "name": "Ground Floor" },
-            { "name": "Floor 1" }
-        ]
-    }
+  {
+    "_id": "innovation-space",
+    "resource": "building",
+    "name": "Innovation Space",
+    "address": "...",
+    "locations": [
+      { "name": "Reception" },
+      { "name": "Floor 1" },
+      { "name": "Floor 2" },
+      { "name": "Floor 3" }
+    ]
+  },
+  {
+    "_id": "cell-block",
+    "resource": "building",
+    "name": "Cell Block",
+    "address": "...",
+    "locations": [
+      { "name": "Ground Floor" },
+      { "name": "Floor 1" }
+    ]
+  }
 ]

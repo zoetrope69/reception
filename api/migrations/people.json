@@ -1,0 +1,247 @@
+[
+  {
+    "_id": "zac-colley",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "token": "testtoken",
+    "name": {
+      "first": "Zac",
+      "last": "Colley"
+    },
+    "title": "Webmaster",
+    "email": [
+      {
+        "address": "zac@rosedigital.co.uk",
+        "default": true
+      },
+      {
+        "address": "zaccolley@gmail.com"
+      }
+    ],
+    "phone": [
+      {
+        "number": "07534317671",
+        "default": true
+      },
+      {
+        "number": "0123456789"
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "email": false
+    },
+    "image": "zac.jpeg"
+  },
+  {
+    "_id": "peter-jones",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "Peter",
+      "last": "Jones"
+    },
+    "title": "Lad",
+    "email": [
+      {
+        "address": "peter@rosedigital.co.uk",
+        "default": true
+      },
+      {
+        "address": "hi@peterjones.io"
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "email": false
+    },
+    "image": "peter.jpeg"
+  },
+  {
+    "_id": "chris-cooper",
+    "resource": "person",
+    "deleted": true,
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "Chris",
+      "last": "Cooper"
+    },
+    "title": "Founder Director",
+    "email": [
+      {
+        "address": "chris@example.com",
+        "default": true
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "phone": false,
+      "email": false
+    },
+    "image": "chris.png"
+  },
+  {
+    "_id": "david-patterson",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "David",
+      "last": "Patterson"
+    },
+    "title": "Founder Director",
+    "email": [
+      {
+        "address": "david@example.com",
+        "default": true
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "phone": false,
+      "email": false
+    },
+    "image": "dave.png"
+  },
+  {
+    "_id": "john-wheal",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+        "first": "John",
+        "last": "Wheal"
+    },
+    "title": "Director",
+    "email": [
+        {
+            "address": "john@example.com",
+            "default": true
+        }
+    ],
+    "phone": [
+        {
+            "number": "0123456789",
+            "default": true
+        }
+    ],
+    "notifications": {
+        "sms": false,
+        "email": false
+    },
+    "image": "john.jpeg"
+  },
+  {
+    "_id": "stella-adagiri",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "Stella",
+      "last": "Adagiri"
+    },
+    "title": "Director",
+    "email": [
+      {
+        "address": "john@example.com",
+        "default": true
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "email": false
+    },
+    "image": "stella.jpeg"
+  },
+  {
+    "_id": "lizz-clarke",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "Lizz",
+      "last": "Clarke"
+    },
+    "title": "Director",
+    "email": [
+      {
+        "address": "lizz@example.com",
+        "default": true
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "email": false
+    },
+    "image": "lizz.jpeg"
+  },
+  {
+    "_id": "andy-mew",
+    "resource": "person",
+    "visibility": true,
+    "type": "full",
+    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "name": {
+      "first": "Andy",
+      "last": "Mew"
+    },
+    "title": "Building Manager",
+    "email": [
+      {
+        "address": "andy@example.com",
+        "default": true
+      }
+    ],
+    "phone": [
+      {
+        "number": "0123456789",
+        "default": true
+      }
+    ],
+    "notifications": {
+      "sms": false,
+      "email": false
+    },
+    "image": "andy.jpeg"
+  }
+]

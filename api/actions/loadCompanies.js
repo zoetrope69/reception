@@ -2,7 +2,7 @@ import db from '../db';
 
 export default function loadCompanies() {
   return new Promise((resolve, reject) => {
-    db.view('companies/all', (err, data) => {
+    db.view('companies/byId', (err, data) => {
       if (err) {
         reject(err);
       }

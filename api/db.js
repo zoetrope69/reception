@@ -1,6 +1,9 @@
+import config from '../src/config';
+
 import buildings from 'migrations/buildings';
 import events from 'migrations/events';
 import companies from 'migrations/companies';
+import people from 'migrations/people';
 
 import cradle from 'cradle';
 
@@ -11,12 +14,12 @@ const dbOptions = {
 };
 
 // if theres a username and password for the server add this to the database options
-if (typeof process.env.DB_USERNAME !== 'undefined' &&
-    typeof process.env.DB_PASSWORD !== 'undefined') {
+if (typeof config.env.db.admin.username !== 'undefined' &&
+    typeof config.env.db.admin.password !== 'undefined') {
 
   dbOptions.auth = {
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD
+    username: config.env.db.admin.username,
+    password: config.env.db.admin.password
   };
 }
 
@@ -30,7 +33,7 @@ db.exists((err, exists) => {
 
   } else if (exists) {
 
-    console.log('==> 📦  Database: http://localhost:5984/_utils');
+    console.log('==> 📦  Database: http://localhost:5984/_utils', '');
 
     // destroy the database while testing
     // console.log('   ... Destroying database');
@@ -60,7 +63,7 @@ db.exists((err, exists) => {
 
       byId: {
         map: `function(doc) {
-          if (doc.resource === 'buildings' && doc.name) {
+          if (!doc.deleted && doc.resource === 'building' && doc.name) {
             emit(doc._id, doc);
           }
         }`
@@ -82,7 +85,7 @@ db.exists((err, exists) => {
 
     db.save('_design/companies', {
 
-      all: {
+      byId: {
         map: `function(doc) {
           if (!doc.deleted && doc.resource === 'company' && doc.name) {
             emit(doc._id, doc);
@@ -92,38 +95,51 @@ db.exists((err, exists) => {
 
     });
 
+    db.save(people, (peopleErr, res) => {
+
+      if (peopleErr) {
+        console.log('   ... Error saving people: ', peopleErr);
+      }
+
+      if (res) {
+        console.log('   ... Saved people');
+      }
+
+    });
+
     db.save('_design/people', {
 
-      all: {
+      byId: {
         map: `function(doc) {
-          if (!doc.deleted && doc.resource === 'company' && doc.name && doc.people) {
-            for (var count = 0; count < doc.people.length; count++) {
-              var person = doc.people[count];
-              emit(doc._id + '_' + count, person);
-            }
+          if (!doc.deleted && doc.resource === 'person') {
+            emit(doc._id, doc);
           }
         }`
       },
 
       byEmail: {
         map: `function(doc) {
-          if (!doc.deleted && doc.resource === 'company' && doc.name && doc.people) {
-            for (var count = 0; count < doc.people.length; count++) {
-              var person = doc.people[count];
-              emit(person.email[0].address, person);
-            }
+          if (!doc.deleted && doc.resource === 'person') {
+            emit(doc.email[0].address, doc);
           }
         }`
       },
 
       byToken: {
         map: `function(doc) {
-          if (!doc.deleted && doc.resource === 'company' && doc.name && doc.people) {
-            for (var count = 0; count < doc.people.length; count++) {
-              var person = doc.people[count];
-              if (!person.deleted && person.token) {
-                emit(person.token, person);
-              }
+          if (!doc.deleted && doc.resource === 'person' && doc.token) {
+            emit(doc.token, doc);
+          }
+        }`
+      },
+
+      byCompany: {
+        map: `function(doc) {
+          if (!doc.deleted && doc.resource === 'company' && doc.people) {
+            emit(doc._id, doc);
+            for (var i in doc.people) {
+              var person = doc.people[i];
+              emit([doc._id, i], { _id: person });
             }
           }
         }`
@@ -131,11 +147,8 @@ db.exists((err, exists) => {
 
       isDeleted: {
         map: `function(doc) {
-          if (!doc.deleted && doc.resource === 'company' && doc.name && doc.people) {
-            for (var count = 0; count < doc.people.length; count++) {
-              var person = doc.people[count];
-              emit(person.email[0].address, person);
-            }
+          if (doc.deleted && doc.resource === 'person') {
+            emit(doc._id, doc);
           }
         }`
       }
@@ -156,9 +169,9 @@ db.exists((err, exists) => {
 
     db.save('_design/events', {
 
-      all: {
+      byId: {
         map: `function(doc) {
-          if (doc.resource === 'events' && doc.time) {
+          if (!doc.deleted && doc.resource === 'event' && doc.time) {
             emit(doc._id, doc);
           }
         }`

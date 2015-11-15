@@ -2,7 +2,7 @@ import db from '../db';
 
 export default function loadPeople() {
   return new Promise((resolve, reject) => {
-    db.view('people/all', (err, data) => {
+    db.view('people/byId', (err, data) => {
       if (err) {
         reject(err);
       }

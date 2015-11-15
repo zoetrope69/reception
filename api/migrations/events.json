@@ -1,15 +1,10 @@
 [
-    {
-        "resource": "events",
-        "time": "Wed Oct 07 2015 06:06:15 GMT+0100 (BST)",
-        "member": {
-            "name": {
-                "first": "Zac",
-                "last": "Colley"
-            },
-            "image": "zac.jpeg"
-        },
-        "action": "server reboot",
-        "type": "admin"
-    }
+  {
+    "_id": "event-1",
+    "resource": "event",
+    "time": "Wed Oct 07 2015 06:06:15 GMT+0100 (BST)",
+    "member": "zac-colley",
+    "action": "server reboot",
+    "type": "admin"
+  }
 ]
