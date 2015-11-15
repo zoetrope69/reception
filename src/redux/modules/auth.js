@@ -1,12 +1,12 @@
-const LOAD = 'redux-example/auth/LOAD';
-const LOAD_SUCCESS = 'redux-example/auth/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-const LOGOUT = 'redux-example/auth/LOGOUT';
-const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+const LOAD = 'reception/auth/LOAD';
+const LOAD_SUCCESS = 'reception/auth/LOAD_SUCCESS';
+const LOAD_FAIL = 'reception/auth/LOAD_FAIL';
+const LOGIN = 'reception/auth/LOGIN';
+const LOGIN_SUCCESS = 'reception/auth/LOGIN_SUCCESS';
+const LOGIN_FAIL = 'reception/auth/LOGIN_FAIL';
+const LOGOUT = 'reception/auth/LOGOUT';
+const LOGOUT_SUCCESS = 'reception/auth/LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'reception/auth/LOGOUT_FAIL';
 
 const initialState = {
   loaded: false

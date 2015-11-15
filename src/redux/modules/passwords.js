@@ -1,9 +1,12 @@
-const CHECK_TOKEN = 'redux-example/passwords/CHECK_TOKEN';
-const CHECK_TOKEN_SUCCESS = 'redux-example/passwords/CHECK_TOKEN_SUCCESS';
-const CHECK_TOKEN_FAIL = 'redux-example/passwords/CHECK_TOKEN_FAIL';
-const GENERATE_TOKEN = 'redux-example/passwords/GENERATE_TOKEN';
-const GENERATE_TOKEN_SUCCESS = 'redux-example/passwords/GENERATE_TOKEN_SUCCESS';
-const GENERATE_TOKEN_FAIL = 'redux-example/passwords/GENERATE_TOKEN_FAIL';
+const CHECK_TOKEN = 'reception/passwords/CHECK_TOKEN';
+const CHECK_TOKEN_SUCCESS = 'reception/passwords/CHECK_TOKEN_SUCCESS';
+const CHECK_TOKEN_FAIL = 'reception/passwords/CHECK_TOKEN_FAIL';
+const GENERATE_TOKEN = 'reception/passwords/GENERATE_TOKEN';
+const GENERATE_TOKEN_SUCCESS = 'reception/passwords/GENERATE_TOKEN_SUCCESS';
+const GENERATE_TOKEN_FAIL = 'reception/passwords/GENERATE_TOKEN_FAIL';
+const RESET = 'reception/passwords/RESET';
+const RESET_SUCCESS = 'reception/passwords/RESET_SUCCESS';
+const RESET_FAIL = 'reception/passwords/RESET_FAIL';
 
 const initialState = {
   checked: false,

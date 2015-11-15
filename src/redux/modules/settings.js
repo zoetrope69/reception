@@ -1,11 +1,11 @@
-const LOAD = 'redux-example/settings/LOAD';
-const LOAD_SUCCESS = 'redux-example/settings/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/settings/LOAD_FAIL';
-const EDIT_START = 'redux-example/settings/EDIT_START';
-const EDIT_STOP = 'redux-example/settings/EDIT_STOP';
-const SAVE = 'redux-example/settings/SAVE';
-const SAVE_SUCCESS = 'redux-example/settings/SAVE_SUCCESS';
-const SAVE_FAIL = 'redux-example/settings/SAVE_FAIL';
+const LOAD = 'reception/settings/LOAD';
+const LOAD_SUCCESS = 'reception/settings/LOAD_SUCCESS';
+const LOAD_FAIL = 'reception/settings/LOAD_FAIL';
+const EDIT_START = 'reception/settings/EDIT_START';
+const EDIT_STOP = 'reception/settings/EDIT_STOP';
+const SAVE = 'reception/settings/SAVE';
+const SAVE_SUCCESS = 'reception/settings/SAVE_SUCCESS';
+const SAVE_FAIL = 'reception/settings/SAVE_FAIL';
 
 const initialState = {
   loaded: false,
