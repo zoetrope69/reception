@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class Admin extends Component {
+export default class Front extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
   };
