@@ -4,22 +4,9 @@ import { IndexLink, Link } from 'react-router';
 import { Icon } from 'components';
 import { logout } from 'redux/modules/auth';
 
-const NavbarLink = ({to, className, component, children}) => {
-  const Comp = component || Link;
-
-  return (
-    <Comp to={to} className={className} activeStyle={{
-      color: '#33e0ff'
-    }}>
-      {children}
-    </Comp>
-  );
-};
-
 @connect(
   state => ({ user: state.auth.user }),
-  { logout }
-)
+  { logout })
 export default class Admin extends Component {
   static propTypes = {
     children: PropTypes.object,
@@ -42,9 +29,9 @@ export default class Admin extends Component {
 
       <header>
 
-          <NavbarLink to="/" className="logo" component={IndexLink}>
+          <IndexLink to="/" className="logo">
               <img src={logoImage} alt="Logo" />
-          </NavbarLink>
+          </IndexLink>
 
           <nav>
               {user ? (
