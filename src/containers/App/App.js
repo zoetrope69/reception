@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import { isLoaded as isPeopleLoaded, load as loadPeople } from 'redux/modules/people';
-import { isLoaded as isCompaniesLoaded, load as loadCompanies } from 'redux/modules/companies';
+import { isLoaded as isPeopleLoaded, front as loadPeople } from 'redux/modules/people';
+import { isLoaded as isCompaniesLoaded, front as loadCompanies } from 'redux/modules/companies';
 import config from '../../config';
 import { pushState } from 'redux-router';
 

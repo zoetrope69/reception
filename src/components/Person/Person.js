@@ -8,10 +8,6 @@ export default class Person extends Component {
     preview: PropTypes.bool
   }
 
-  notifyPerson() {
-    // do something here
-  }
-
   render() {
 
     const { preview, person } = this.props;
@@ -50,13 +46,13 @@ export default class Person extends Component {
     const contentsNode = (
     <div>
       <div className="person__image">
-        <img src={`/images/person/${image}`} alt={`Picture of ${person.name.first} ${person.name.last}`} />
+        <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
       </div>
 
       <div className="person__details">
 
         <div className="person__name">
-          {person.name.first} {person.name.last} {labelNode}
+          {person.firstName} {person.lastName} {labelNode}
         </div>
 
         {companyNode}
@@ -76,7 +72,7 @@ export default class Person extends Component {
           {contentsNode}
         </div>
       ) : (
-        <Link to={`/front/people/${person.email[0].address}`} className="person">
+        <Link to={`/front/people/${person.email}`} className="person">
           {contentsNode}
         </Link>
       )

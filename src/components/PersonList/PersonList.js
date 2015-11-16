@@ -17,22 +17,22 @@ export default class PersonList extends Component {
 
     // sort by alphabetical
     people.sort((aItem, bItem) => {
-      if (aItem.name.first < bItem.name.first) return -1;
-      if (aItem.name.first > bItem.name.first) return 1;
+      if (aItem.firstName < bItem.firstName) return -1;
+      if (aItem.firstName > bItem.firstName) return 1;
       return 0;
     });
 
     return (
       <ul className="personList">
-      {people.map(person => {
-        if (JSON.parse(person.visibility)) {
-          return (admin ? (
-              <AdminPerson person={person} key={person.email[0].address} />
-            ) : (
-              <Person person={person} key={person.email[0].address} />
+      {people.map((person, key) => {
+        return (admin ? (
+            <AdminPerson person={person} key={person._id + key} />
+          ) : (
+            JSON.parse(person.visibility) && (
+              <Person person={person} key={person._id + key} />
             )
-          );
-        }
+          )
+        );
       })}
       </ul>
     );

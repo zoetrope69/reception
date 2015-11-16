@@ -132,7 +132,7 @@ passport.use(new LocalStrategy((username, password, done) => {
   // asynchronous verification, for effect...
   process.nextTick(() => {
 
-  // find the user by username
+    // find the user by username
     findByEmail(username, (err, user) => {
 
       if (err) {
@@ -206,7 +206,6 @@ app.use((req, res) => {
     res.status(404).end('NOT FOUND');
   }
 });
-
 
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);

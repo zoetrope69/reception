@@ -2,18 +2,40 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Icon } from 'components';
+import * as notificationActions from 'redux/modules/notifications';
+import { pushState } from 'redux-router';
 
-@connect(state => ({ people: state.people.data }))
-export default class FrontPeople extends Component {
+@connect(
+  state => ({
+    error: state.notifications.error,
+    notified: state.notifications.notified,
+    notifying: state.notifications.notifying,
+    people: state.people.data,
+  }),
+  {...notificationActions, pushState})
+export default class FrontPerson extends Component {
   static propTypes = {
-    people: PropTypes.object.isRequired,
-    params: PropTypes.object
+    error: PropTypes.string,
+    notified: PropTypes.bool,
+    notify: PropTypes.func,
+    notifying: PropTypes.bool,
+    params: PropTypes.object,
+    people: PropTypes.array.isRequired,
+    pushState: PropTypes.func.isRequired
+  }
+
+  handleNotification(person) {
+    const { notify } = this.props;
+    return () => {
+      notify(person); // notify the person
+      this.props.pushState(null, '/front/instruction/reception'); // redirect them back to the thank you message
+    };
   }
 
   render() {
 
-    const { people, params } = this.props;
-    const person = people.find(personItem => personItem.email[0].address === params.person);
+    const { notifying, people, params } = this.props;
+    const person = people.find(personItem => personItem.email === params.person);
 
     let image = 'default.png';
     let labelNode;
@@ -41,35 +63,35 @@ export default class FrontPeople extends Component {
         <div className="person person--page">
 
           <div className="person__image">
-            <img src={`/images/person/${image}`} alt={`Picture of ${person.name.first} ${person.name.last}`} />
+            <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
           </div>
 
           <div className="person__details">
 
             <div className="person__name">
-              {person.name.first} {person.name.last} {labelNode}
+              {person.firstName} {person.lastName} {labelNode}
             </div>
 
             <div className="person__actions">
 
-              { (person.notifications.sms || person.notifications.email) && (
+              { (person.notificationSms || person.notificationEmail) && (
               <div style={{ float: 'left', width: '100%' }}>
-                <button className="button button--notify" onClick={this.notifyPerson}>
-                  <Icon name="alarm" large /> Notify
+                <button className="button button--notify" disabled={notifying} onClick={::this.handleNotification(person)}>
+                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
                 </button>
                 <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
               </div>
               )}
 
-              {person.email[0].address && (
-              <span className="person__email" href={`mailto:${person.email[0].address}`}>
-                <Icon name="envelope" large /> {person.email[0].address}
+              {person.email && (
+              <span className="person__email" href={`mailto:${person.email}`}>
+                <Icon name="envelope" large /> {person.email}
               </span>
               )}
 
-              {person.phone[0].number && (
-              <span className="person__phone" href={`tel:${person.phone[0].number}`}>
-                <Icon name="phone-handset" large /> {person.phone[0].number}
+              {person.phone && (
+              <span className="person__phone" href={`tel:${person.phone}`}>
+                <Icon name="phone-handset" large /> {person.phone}
               </span>
               )}
 

@@ -40,15 +40,13 @@ export default class Admin extends Component {
                           <Icon name="exit" /> Sign-out
                       </a>
                       <Link to="/admin/settings" className="nav-link" activeClassName="nav-link--active">
-                          <Icon name="cog" /> Settings
+                          <Icon name="user" /> Profile
                       </Link>
-                      {user.type === 'Staff' && (
+                      {(user.role === 'admin' || user.role === 'owner') && (
                       <div>
-                          {/*
                           <Link to="/admin/companies" className="nav-link" activeClassName="nav-link--active">
-                              <Icon name="briefcase" /> Companies
+                              <Icon name="briefcase" /> {user.role === 'owner' ? 'Company' : 'Companies'}
                           </Link>
-                          */}
                           <Link to="/admin/people" className="nav-link" activeClassName="nav-link--active">
                               <Icon name="users" /> People
                           </Link>
@@ -73,7 +71,7 @@ export default class Admin extends Component {
                 <h1>Hey, {user.firstName}!</h1>
               )}
 
-              <p>We're just starting with this app, for now you can <Link to="/admin/settings">update your profile over on the settings page</Link>.</p>
+              <p>We're just starting with this app, for now you can <Link to="/admin/settings">update your profile</Link>.</p>
               <p>This app is an work in progress, please do send us your feedback.</p>
 
               <button className="button" onClick={::this.handleLogout}>

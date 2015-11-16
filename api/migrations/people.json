@@ -4,186 +4,97 @@
     "resource": "person",
     "visibility": true,
     "type": "full",
-    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
+    "role": "owner",
+    "password": "$2a$10$G4Z8Mfll0Kodu/x/2SsL3eaBTuHMfBBFzwvIE4/FGr4yt4kPVmMrq",
     "token": "testtoken",
-    "name": {
-      "first": "Zac",
-      "last": "Colley"
-    },
+    "firstName": "Zac",
+    "lastName": "Colley",
     "title": "Webmaster",
-    "email": [
-      {
-        "address": "zac@rosedigital.co.uk",
-        "default": true
-      },
-      {
-        "address": "zaccolley@gmail.com"
-      }
-    ],
-    "phone": [
-      {
-        "number": "07534317671",
-        "default": true
-      },
-      {
-        "number": "0123456789"
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "email": false
-    },
+    "email": "zac@rosedigital.co.uk",
+    "phone": "07534317671",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "zac.jpeg"
   },
   {
     "_id": "peter-jones",
     "resource": "person",
     "visibility": true,
+    "role": "member",
     "type": "full",
-    "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "Peter",
-      "last": "Jones"
-    },
+    "password": "$2a$10$G4Z8Mfll0Kodu/x/2SsL3eaBTuHMfBBFzwvIE4/FGr4yt4kPVmMrq",
+    "firstName": "Peter",
+    "lastName": "Jones",
     "title": "Lad",
-    "email": [
-      {
-        "address": "peter@rosedigital.co.uk",
-        "default": true
-      },
-      {
-        "address": "hi@peterjones.io"
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "email": false
-    },
+    "email": "peter@rosedigital.co.uk",
+    "phone": "01234567891",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "peter.jpeg"
   },
   {
     "_id": "chris-cooper",
     "resource": "person",
+    "role": "owner",
     "deleted": true,
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "Chris",
-      "last": "Cooper"
-    },
+    "firstName": "Chris",
+    "lastName": "Cooper",
     "title": "Founder Director",
-    "email": [
-      {
-        "address": "chris@example.com",
-        "default": true
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "phone": false,
-      "email": false
-    },
+    "email": "chris@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "chris.png"
   },
   {
     "_id": "david-patterson",
     "resource": "person",
+    "role": "member",
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "David",
-      "last": "Patterson"
-    },
+    "firstName": "David",
+    "lastName": "Patterson",
     "title": "Founder Director",
-    "email": [
-      {
-        "address": "david@example.com",
-        "default": true
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "phone": false,
-      "email": false
-    },
+    "email": "david@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEhone": false,
     "image": "dave.png"
   },
   {
     "_id": "john-wheal",
     "resource": "person",
+    "role": "owner",
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-        "first": "John",
-        "last": "Wheal"
-    },
+    "firstName": "John",
+    "lastName": "Wheal",
     "title": "Director",
-    "email": [
-        {
-            "address": "john@example.com",
-            "default": true
-        }
-    ],
-    "phone": [
-        {
-            "number": "0123456789",
-            "default": true
-        }
-    ],
-    "notifications": {
-        "sms": false,
-        "email": false
-    },
+    "email": "john@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "john.jpeg"
   },
   {
     "_id": "stella-adagiri",
     "resource": "person",
+    "role": "owner",
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "Stella",
-      "last": "Adagiri"
-    },
+    "firstName": "Stella",
+    "lastName": "Adagiri",
     "title": "Director",
-    "email": [
-      {
-        "address": "john@example.com",
-        "default": true
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "email": false
-    },
+    "email": "john@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "stella.jpeg"
   },
   {
@@ -192,56 +103,29 @@
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "Lizz",
-      "last": "Clarke"
-    },
+    "firstName": "Lizz",
+    "lastName": "Clarke",
     "title": "Director",
-    "email": [
-      {
-        "address": "lizz@example.com",
-        "default": true
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "email": false
-    },
+    "email": "lizz@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "lizz.jpeg"
   },
   {
     "_id": "andy-mew",
     "resource": "person",
+    "role": "admin",
     "visibility": true,
     "type": "full",
     "password": "$2a$10$jpSeTeC2yOnnye1D/zuyUO95xeXyicUKZBum/aTUy1oeDiI81Hzqa",
-    "name": {
-      "first": "Andy",
-      "last": "Mew"
-    },
+    "firstName": "Andy",
+    "lastName": "Mew",
     "title": "Building Manager",
-    "email": [
-      {
-        "address": "andy@example.com",
-        "default": true
-      }
-    ],
-    "phone": [
-      {
-        "number": "0123456789",
-        "default": true
-      }
-    ],
-    "notifications": {
-      "sms": false,
-      "email": false
-    },
+    "email": "andy@example.com",
+    "phone": "0123456789",
+    "notificationSms": false,
+    "notificationEmail": false,
     "image": "andy.jpeg"
   }
 ]

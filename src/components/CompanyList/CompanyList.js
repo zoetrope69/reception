@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { Company } from 'components';
+import { AdminCompany, Company } from 'components';
 
 export default class CompanyList extends Component {
   static propTypes = {
+    admin: PropTypes.bool,
     companies: PropTypes.array.isRequired
   }
 
   render() {
-    const { companies } = this.props;
+    const { admin, companies } = this.props;
 
     companies.sort((aItem, bItem) => {
       if (aItem.name < bItem.name) return -1;
@@ -18,9 +19,14 @@ export default class CompanyList extends Component {
     return (
       <ul className="companyList">
       {companies.map((company, key) => {
-        if (JSON.parse(company.visibility)) {
-          return (<Company company={company} key={key} />);
-        }
+        return (admin ? (
+            <AdminCompany company={company} key={company._id + key} />
+          ) : (
+            JSON.parse(company.visibility) && (
+              <Company company={company} key={company._id + key} />
+            )
+          )
+        );
       })}
       </ul>
     );

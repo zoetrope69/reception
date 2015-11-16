@@ -2,7 +2,7 @@ import { createValidator, required, maxLength, oneOf, email } from 'utils/valida
 
 export const types = ['Hot Desk', 'Full Time', 'Staff'];
 
-const settingValidation = createValidator({
+const peopleValidation = createValidator({
   visibility: [required],
   type: [required, oneOf(types)],
   firstName: [required, maxLength(30)],
@@ -10,4 +10,4 @@ const settingValidation = createValidator({
   email: [required, email],
   phone: [required]
 });
-export default settingValidation;
+export default peopleValidation;

@@ -121,7 +121,7 @@ db.exists((err, exists) => {
       byEmail: {
         map: `function(doc) {
           if (!doc.deleted && doc.resource === 'person') {
-            emit(doc.email[0].address, doc);
+            emit(doc.email, doc);
           }
         }`
       },

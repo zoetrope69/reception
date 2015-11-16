@@ -21,7 +21,6 @@ export default function login(req) {
         }
 
         // clean up user
-        delete user._id;
         delete user._rev;
         delete user.password;
         delete user.token;

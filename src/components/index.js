@@ -13,5 +13,7 @@ export AdminPerson from './AdminPerson/AdminPerson';
 
 export CompanyList from './CompanyList/CompanyList';
 export Company from './Company/Company';
+export AdminCompany from './AdminCompany/AdminCompany';
 
-export SettingForm from './SettingForm/SettingForm';
+export PeopleForm from './PeopleForm/PeopleForm';
+export CompanyForm from './CompanyForm/CompanyForm';

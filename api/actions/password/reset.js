@@ -64,7 +64,7 @@ export default function reset(req) {
 
           // send token to person via email
           const subject = 'Password reset!';
-          let message = `Hey ${person.name.first}!`;
+          let message = `Hey ${person.firstName}!`;
 
           message += 'Your password has been reset!';
 
@@ -75,8 +75,8 @@ export default function reset(req) {
             message += '\n\r\nLog in: https://reception.innovationspace.org.co.uk/login/';
           }
 
-          const emailToSend = person.email[0].address;
-          const name = person.name.first;
+          const emailToSend = person.email;
+          const name = person.firstName;
 
           sendEmail(subject, message, emailToSend, name, (emailErr, emailMessage) => {
             if (emailErr) {
