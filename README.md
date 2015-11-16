@@ -14,11 +14,14 @@ One of the things that differ is this project is using a standard set-up for the
 
 Requires a CouchDB server to be set-up with the default settings and a admin user created.
 
-There is a `env.json` config file that must be created and filled in. This includes Mandrill, Twilio and CouchDB admin details. You'll find a `env-sample.json` to get started
+There is a `env.json` config file that must be created and filled in. This includes Mandrill, Twilio and CouchDB admin details. You'll find a `env-sample.json` to get started.
 
-```
-npm install
-```
+The styles are using Sass so this should be installed too.
+
+1. Install CouchDB
+2. Configure `env.json` file
+3. Install Sass: `gem install sass`
+4. Install Node dependencies: `npm install`
 
 ## Running Dev Server
 
