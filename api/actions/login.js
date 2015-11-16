@@ -20,20 +20,13 @@ export default function login(req) {
           return reject(loginErr);
         }
 
-        const tempUser = user;
-
         // clean up user
-        delete tempUser._id;
-        delete tempUser._rev;
-        delete tempUser.password;
-        delete tempUser.token;
+        delete user._id;
+        delete user._rev;
+        delete user.password;
+        delete user.token;
 
-        tempUser.username = req.body.username;
-
-        const sessionUser = tempUser;
-
-        req.session.user = sessionUser;
-        return resolve(sessionUser);
+        return resolve(user);
 
       });
 
