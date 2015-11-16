@@ -34,7 +34,7 @@ export default class Html extends Component {
 
           {/* TODO: build font based on usage */}
           <link rel="stylesheet" type="text/css"
-                  href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" />
+                  href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" />
           <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
 
           {/* TODO: replace with built */}
