@@ -21,8 +21,14 @@ const server = new http.Server(app);
 const io = new SocketIo(server);
 io.path('/ws');
 
+const RedisStore = require('connect-redis')(session);
+
 const timeToExpire = 3600000; // an hour
 const sess = {
+  store: new RedisStore({
+    host: '127.0.0.1',
+    port: 6379
+  }),
   secret: 'ireallywanttobeainnospaceman',
   resave: true,
   saveUninitialized: false,
@@ -39,6 +45,13 @@ if (app.get('env') === 'production') {
 }
 
 app.use(session(sess));
+// handle lost connections with redis
+app.use((req, res, next) => {
+  if (!req.session) {
+    return next(new Error('oh no')); // handle error
+  }
+  next(); // otherwise continue
+});
 
 app.use(bodyParser.json());
 

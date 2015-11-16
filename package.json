@@ -85,6 +85,7 @@
     "bcrypt": "^0.8.5",
     "body-parser": "1.14.1",
     "compression": "1.6.0",
+    "connect-redis": "^3.0.1",
     "cradle": "^0.6.9",
     "express": "4.13.3",
     "express-session": "1.11.3",
