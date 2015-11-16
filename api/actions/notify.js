@@ -32,7 +32,7 @@ export default function notify(req) {
       if (process.env.NODE_ENV !== 'production') {
         message += 'http://localhost:3000/';
       } else {
-        message += 'https://reception.innovationspace.org.co.uk/';
+        message += 'https://reception.innovationspace.org.uk/';
       }
 
       const emailToSend = person.email;

@@ -60,7 +60,7 @@ export default function generateToken(req) {
           if (process.env.NODE_ENV !== 'production') {
             message += '\n\r\nhttps://localhost:3000/password/reset?token=' + token;
           } else {
-            message += '\n\r\nhttps://reception.innovationspace.org.co.uk/password/reset?token=' + token;
+            message += '\n\r\nhttps://reception.innovationspace.org.uk/password/reset?token=' + token;
           }
 
           const emailToSend = person.email;

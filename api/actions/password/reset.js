@@ -72,7 +72,7 @@ export default function reset(req) {
           if (process.env.NODE_ENV === 'production') {
             message += '\n\r\nLog in: https://localhost:' + process.env.PORT + '/login/';
           } else {
-            message += '\n\r\nLog in: https://reception.innovationspace.org.co.uk/login/';
+            message += '\n\r\nLog in: https://reception.innovationspace.org.uk/login/';
           }
 
           const emailToSend = person.email;
