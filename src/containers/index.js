@@ -3,10 +3,10 @@ export App from './App/App';
 export Home from './Home/Home';
 
 export Admin from './Admin/Admin';
-export PeopleSettings from './PeopleSettings/PeopleSettings';
-export CompanySettings from './CompanySettings/CompanySettings';
+export AdminPeopleSettings from './AdminPeopleSettings/AdminPeopleSettings';
 export AdminPeople from './AdminPeople/AdminPeople';
 export AdminCompanies from './AdminCompanies/AdminCompanies';
+export AdminCompanySettings from './AdminCompanySettings/AdminCompanySettings';
 
 export Front from './Front/Front';
 export FrontHome from './FrontHome/FrontHome';

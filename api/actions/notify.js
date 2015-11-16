@@ -41,7 +41,7 @@ export default function notify(req) {
 
       if (person.notificationEmail) {
 
-        sendEmail('🔔 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
+        sendEmail('👋 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
           if (emailErr) {
             return reject(emailErr);
           }
@@ -55,7 +55,7 @@ export default function notify(req) {
 
       if (person.notificationSms) {
 
-        sendSms('🔔 ' + message, smsToSend, (smsErr, smsMessage) => {
+        sendSms('👋 ' + message, smsToSend, (smsErr, smsMessage) => {
           if (smsErr) {
             return reject(smsErr);
           }

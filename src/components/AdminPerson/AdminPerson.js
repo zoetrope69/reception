@@ -7,6 +7,10 @@ export default class Person extends Component {
     person: PropTypes.object.isRequired
   }
 
+  notifyPerson() {
+    // do something here
+  }
+
   render() {
 
     const { person } = this.props;

@@ -1,20 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Icon, PersonList } from 'components';
-import { load as loadPeople } from 'redux/modules/people';
+import * as settingActions from 'redux/modules/settings';
+import { load as loadSettings } from 'redux/modules/settings';
 
-@connect(state => ({
-  user: state.auth.user,
-  people: state.people.data
-}))
+@connect(
+  state => ({
+    user: state.auth.user,
+    people: state.settings.data
+  }),
+  {...settingActions })
 export default class AdminPeople extends Component {
   static propTypes = {
-    people: PropTypes.array.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object,
+    people: PropTypes.array.isRequired
   }
 
   static fetchDataDeferred(getState, dispatch) {
-    return dispatch(loadPeople());
+    return dispatch(loadSettings());
   }
 
   render() {
@@ -22,7 +25,7 @@ export default class AdminPeople extends Component {
     const { user } = this.props;
     let { people } = this.props;
 
-    // remove current user from this list
+    // remove the current user
     people = people.filter(person => person._id !== user._id);
 
     return (

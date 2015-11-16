@@ -20,13 +20,12 @@ export default class CompanyList extends Component {
       <ul className="companyList">
       {companies.map((company, key) => {
         return (admin ? (
-            <AdminCompany company={company} key={company._id + key} />
-          ) : (
-            JSON.parse(company.visibility) && (
-              <Company company={company} key={company._id + key} />
-            )
+          <AdminCompany company={company} key={company._id + key} />
+        ) : (
+          JSON.parse(company.visibility) && (
+            <Company company={company} key={company._id + key} />
           )
-        );
+        ));
       })}
       </ul>
     );

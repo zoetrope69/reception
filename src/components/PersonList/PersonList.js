@@ -26,13 +26,12 @@ export default class PersonList extends Component {
       <ul className="personList">
       {people.map((person, key) => {
         return (admin ? (
-            <AdminPerson person={person} key={person._id + key} />
-          ) : (
-            JSON.parse(person.visibility) && (
-              <Person person={person} key={person._id + key} />
-            )
+          <AdminPerson person={person} key={person._id + key} />
+        ) : (
+          JSON.parse(person.visibility) && (
+            <Person person={person} key={person._id + key} />
           )
-        );
+        ));
       })}
       </ul>
     );

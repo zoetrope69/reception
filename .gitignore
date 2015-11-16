@@ -5,3 +5,4 @@ dist/
 env.json
 webpack-stats.json
 npm-debug.log
+.sass-cache/

@@ -2,22 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
-import companyValidation, { locations } from './companyValidation';
-import * as companiesActions from 'redux/modules/companies';
+import settingCompanyValidation, { locations } from './settingCompanyValidation';
+import * as settingCompanyActions from 'redux/modules/settingsCompanies';
 import { Icon } from 'components';
 
 @connect(
   state => ({
-    saveError: state.companies.saveError
+    saveError: state.settings.saveError
   }),
-  dispatch => bindActionCreators(companiesActions, dispatch)
+  dispatch => bindActionCreators(settingCompanyActions, dispatch)
 )
 @reduxForm({
-  form: 'company',
-  fields: ['_id', '_rev', 'visibility', 'name', 'location', 'website', 'email'],
-  validate: companyValidation
+  form: 'settingCompany',
+  fields: ['_id', '_rev', 'visibility', 'location', 'name', 'lastName', 'email', 'website'],
+  validate: settingCompanyValidation
 })
-export default class CompanyForm extends Component {
+export default class SettingCompanyForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     editStop: PropTypes.func.isRequired,
@@ -39,7 +39,7 @@ export default class CompanyForm extends Component {
   }
 
   render() {
-    const { editing, editStop, fields: {_id, _rev, visibility, name, location, website, email }, formKey, handleSubmit, invalid,
+    const { editing, editStop, fields: {_id, _rev, visibility, location, name, email, website }, formKey, handleSubmit, invalid,
       pristine, save, submitting, saveError: { [formKey]: saveError }, values } = this.props;
 
     return (
@@ -72,16 +72,16 @@ export default class CompanyForm extends Component {
           {name.error && name.touched && this.renderHelpText(name.error)}
         </div>
 
-        <div className={'input-wrapper' + (website.error ? ' has-error' : '')}>
-          <label htmlFor="website">Website</label>
-          <input name="website" type="text" placeholder="http://example.com" disabled={editing} {...website} />
-          {website.error && website.touched && this.renderHelpText(website.error)}
-        </div>
-
         <div className={'input-wrapper' + (email.error ? ' has-error' : '')}>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" placeholder="hello@example.com" disabled={editing} {...email} />
+          <input name="email" type="email" placeholder="jane.smith@example.com" disabled {...email} />
           {email.error && email.touched && this.renderHelpText(email.error)}
+        </div>
+
+        <div className={'input-wrapper' + (website.error ? ' has-error' : '')}>
+          <label htmlFor="website">Website</label>
+          <input name="website" type="text" placeholder="0123456789" disabled={editing} {...website} />
+          {website.error && website.touched && this.renderHelpText(website.error)}
         </div>
 
         <div className="input-wrapper">

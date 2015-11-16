@@ -8,6 +8,10 @@ export default class Person extends Component {
     preview: PropTypes.bool
   }
 
+  notifyPerson() {
+    // do something here
+  }
+
   render() {
 
     const { preview, person } = this.props;

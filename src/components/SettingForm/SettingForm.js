@@ -2,22 +2,22 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { reduxForm } from 'redux-form';
-import peopleValidation, { types } from './peopleValidation';
-import * as peopleActions from 'redux/modules/people';
+import settingValidation, { types } from './settingValidation';
+import * as settingActions from 'redux/modules/settings';
 import { Icon } from 'components';
 
 @connect(
   state => ({
-    saveError: state.people.saveError
+    saveError: state.settings.saveError
   }),
-  dispatch => bindActionCreators(peopleActions, dispatch)
+  dispatch => bindActionCreators(settingActions, dispatch)
 )
 @reduxForm({
-  form: 'people',
+  form: 'setting',
   fields: ['_id', '_rev', 'visibility', 'type', 'firstName', 'lastName', 'email', 'phone'],
-  validate: peopleValidation
+  validate: settingValidation
 })
-export default class PeopleForm extends Component {
+export default class SettingForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     editStop: PropTypes.func.isRequired,
@@ -133,7 +133,7 @@ export default class PeopleForm extends Component {
 
             <div className="input-wrapper input-wrapper--control">
                 <label htmlFor="notify-sms" className="control checkbox">
-                    <input id="notify-sms" name="notify-sms" type="checkbox" checked={JSON.parse(person.notificationSms)} onChange={this.handleChange} />
+                    <input id="notify-sms" name="notify-sms" type="checkbox" checked={JSON.parse(person.notifcationSms)} onChange={this.handleChange} />
                     <span className="control-indicator"></span>
                     <Icon name="bubble" /> SMS <em style={{ 'float': 'right', 'fontSize': '.9em' }}>Texts to {person.phone}</em>
                 </label>
@@ -141,7 +141,7 @@ export default class PeopleForm extends Component {
 
             <div className="input-wrapper input-wrapper--control">
                 <label htmlFor="notify-email" className="control checkbox">
-                    <input id="notify-email" name="notify-email" type="checkbox" checked={JSON.parse(person.notificationEmail)} onChange={this.handleChange} />
+                    <input id="notify-email" name="notify-email" type="checkbox" checked={JSON.parse(person.notifcationEmail)} onChange={this.handleChange} />
                     <span className="control-indicator"></span>
                     <Icon name="envelope" /> Email <em style={{ 'float': 'right', 'fontSize': '.9em' }}>Emails to {person.email}</em>
                 </label>

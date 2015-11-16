@@ -71,7 +71,7 @@ export default class Admin extends Component {
                 <h1>Hey, {user.firstName}!</h1>
               )}
 
-              <p>We're just starting with this app, for now you can <Link to="/admin/settings">update your profile</Link>.</p>
+              <p>We're just starting with this app, for now you can <Link to="/admin/settings">update your profile over on the settings page</Link>.</p>
               <p>This app is an work in progress, please do send us your feedback.</p>
 
               <button className="button" onClick={::this.handleLogout}>

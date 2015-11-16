@@ -2,39 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Icon } from 'components';
-import * as notificationActions from 'redux/modules/notifications';
-import { pushState } from 'redux-router';
 
-@connect(
-  state => ({
-    error: state.notifications.error,
-    notified: state.notifications.notified,
-    notifying: state.notifications.notifying,
-    people: state.people.data,
-  }),
-  {...notificationActions, pushState})
-export default class FrontPerson extends Component {
+@connect(state => ({ people: state.people.data }))
+export default class FrontPeople extends Component {
   static propTypes = {
-    error: PropTypes.string,
-    notified: PropTypes.bool,
-    notify: PropTypes.func,
-    notifying: PropTypes.bool,
-    params: PropTypes.object,
-    people: PropTypes.array.isRequired,
-    pushState: PropTypes.func.isRequired
-  }
-
-  handleNotification(person) {
-    const { notify } = this.props;
-    return () => {
-      notify(person); // notify the person
-      this.props.pushState(null, '/front/instruction/reception'); // redirect them back to the thank you message
-    };
+    people: PropTypes.object.isRequired,
+    params: PropTypes.object
   }
 
   render() {
 
-    const { notifying, people, params } = this.props;
+    const { people, params } = this.props;
     const person = people.find(personItem => personItem.email === params.person);
 
     let image = 'default.png';
@@ -74,10 +52,10 @@ export default class FrontPerson extends Component {
 
             <div className="person__actions">
 
-              { (person.notificationSms || person.notificationEmail) && (
+              { (person.notifcationSms || person.notifcationEmail) && (
               <div style={{ float: 'left', width: '100%' }}>
-                <button className="button button--notify" disabled={notifying} onClick={::this.handleNotification(person)}>
-                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
+                <button className="button button--notify" onClick={this.notifyPerson}>
+                  <Icon name="alarm" large /> Notify
                 </button>
                 <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
               </div>

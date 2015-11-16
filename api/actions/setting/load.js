@@ -81,7 +81,7 @@ export default function load(req) {
     }else if (req.user.role === 'member') {
       // get settings page for user
 
-      db.view('people/byId', { key: req._id }, (peopleErr, peopleData) => {
+      db.view('people/byId', { key: req.user._id }, (peopleErr, peopleData) => {
         if (peopleErr) {
           reject(peopleErr);
         }

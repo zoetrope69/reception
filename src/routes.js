@@ -6,10 +6,10 @@ import {
   App,
 
   Admin,
-  PeopleSettings,
-  CompanySettings,
+  AdminPeopleSettings,
   AdminPeople,
   AdminCompanies,
+  AdminCompanySettings,
 
   Front,
   FrontHome,
@@ -50,23 +50,6 @@ export default (store) => {
     }
   };
 
-  const requireAdminOrOwner = (nextState, replaceState, callback) => {
-    function checkPermissions() {
-      const { auth: { user } } = store.getState();
-      if (!user || (user.role !== 'admin' && user.role !== 'owner')) {
-        // oops, don't have permissions, so can't be here!
-        replaceState(null, '/admin');
-      }
-      callback();
-    }
-
-    if (!isAuthLoaded(store.getState())) {
-      store.dispatch(loadAuth()).then(checkPermissions);
-    } else {
-      checkPermissions();
-    }
-  };
-
   /**
    * Please keep routes in alphabetical order
    */
@@ -78,14 +61,14 @@ export default (store) => {
       { /* Routes requiring login */ }
       <Route path="admin" component={Admin} onEnter={requireLogin}>
 
-        <Route onEnter={requireAdminOrOwner}>
+        <Route>
           <Route path="people" component={AdminPeople} />
-          <Route path="people/:person" component={PeopleSettings} />
+          <Route path="people/:person" component={AdminPeopleSettings} />
           <Route path="companies" component={AdminCompanies} />
-          <Route path="companies/:company" component={CompanySettings} />
+          <Route path="companies/:company" component={AdminCompanySettings} />
         </Route>
 
-        <Route path="settings" component={PeopleSettings} />
+        <Route path="settings" component={AdminPeopleSettings} />
 
         <Route path="*" component={NotFound} status={404} />
       </Route>

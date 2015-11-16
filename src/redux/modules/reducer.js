@@ -9,6 +9,8 @@ import { reducer as form } from 'redux-form';
 import notifications from './notifications';
 import passwords from './passwords';
 import people from './people';
+import settings from './settings';
+import settingsCompanies from './settingsCompanies';
 
 export default combineReducers({
   router: routerStateReducer,
@@ -23,5 +25,7 @@ export default combineReducers({
   form,
   notifications,
   passwords,
-  people
+  people,
+  settings,
+  settingsCompanies
 });

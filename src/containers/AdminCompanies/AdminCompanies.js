@@ -1,24 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Icon, CompanyList } from 'components';
-import { load as loadCompanies } from 'redux/modules/companies';
+import * as settingCompanyActions from 'redux/modules/settingsCompanies';
+import { load as loadSettingsCompany } from 'redux/modules/settingsCompanies';
 
-@connect(state => ({
-  companies: state.companies.data
-}))
+@connect(
+  state => ({
+    companies: state.settingsCompanies.data
+  }),
+  {...settingCompanyActions })
 export default class AdminCompanies extends Component {
   static propTypes = {
-    companies: PropTypes.array.isRequired,
-    user: PropTypes.object.isRequired
+    companies: PropTypes.array.isRequired
   }
 
   static fetchDataDeferred(getState, dispatch) {
-    return dispatch(loadCompanies());
+    return dispatch(loadSettingsCompany());
   }
 
   render() {
 
     const { companies } = this.props;
+
+    console.log(companies);
 
     return (
       <main className="page page--companies">

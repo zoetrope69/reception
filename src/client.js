@@ -19,12 +19,6 @@ const client = new ApiClient();
 const dest = document.getElementById('content');
 const store = createStore(reduxReactRouter, makeRouteHooksSafe(getRoutes), createHistory, client, window.__data);
 
-// TODO: handle stylesheets better
-if (process.env.NODE_ENV !== 'production') {
-  // stylesheet
-  require('./styles/main.scss');
-}
-
 function initSocket() {
   const socket = io('', {path: '/api/ws', transports: ['polling']});
   socket.on('news', (data) => {
