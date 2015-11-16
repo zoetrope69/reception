@@ -11,7 +11,7 @@ export default class InstructionReception extends Component {
 
         <div className="top-nav">
           <Link className="back-button" to="/front">
-            <Icon name="chevron-left" large />
+            <Icon name="chevron-left" large /> Home
           </Link>
           <p className="instruction">Thanks!</p>
         </div>
