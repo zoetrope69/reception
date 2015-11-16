@@ -23,10 +23,9 @@ export default function notify(req) {
       }
 
       // send token to person via email
-      const subject = `${person.firstName}! Someones here to see you!`;
-      let message = `Hey ${person.firstName}!`;
+      const subject = `Someones here to see you, ${person.firstName}!`;
 
-      message += '\nSomeone\'s here to see you in the reception.';
+      let message = 'Someone\'s here to see you in the reception.';
       message += '\n\r\nYour details can be changed here: ';
 
       // add url
@@ -42,7 +41,7 @@ export default function notify(req) {
 
       if (person.notificationEmail) {
 
-        sendEmail(subject, message, emailToSend, name, (emailErr, emailMessage) => {
+        sendEmail('👋 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
           if (emailErr) {
             return reject(emailErr);
           }
@@ -56,7 +55,7 @@ export default function notify(req) {
 
       if (person.notificationSms) {
 
-        sendSms(message, smsToSend, (smsErr, smsMessage) => {
+        sendSms('👋 ' + message, smsToSend, (smsErr, smsMessage) => {
           if (smsErr) {
             return reject(smsErr);
           }
