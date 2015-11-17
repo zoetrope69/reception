@@ -13,59 +13,6 @@
       "peter-jones"
     ]
   },
-  {
-    "_id": "know-now",
-    "resource": "company",
-    "visibility": true,
-    "name": "Know Now",
-    "location": "Floor 1",
-    "website": "http://example.com",
-    "image": "logo--know-now.png",
-    "email": "hello@example.com",
-    "people": [
-      "chris-cooper",
-      "david-patterson"
-    ]
- },
- {
-   "_id": "wheal-media",
-   "visibility": true,
-   "resource": "company",
-   "name": "Wheal Media",
-   "location": "Floor 2",
-   "website": "http://example.com",
-   "image": "logo--wheal.png",
-   "email": "wheal@example.com",
-   "people": [
-     "john-wheal"
-   ]
- },
- {
-   "_id": "portsbridge",
-   "visibility": true,
-   "resource": "company",
-   "name": "Portsbridge Educational Services",
-   "location": "Floor 2",
-   "website": "http://example.com",
-   "image": "logo--portsbridge.png",
-   "email": "stella@example.com",
-   "people": [
-     "stella-adagiri"
-   ]
- },
- {
-   "_id": "lcm",
-   "resource": "company",
-   "visibility": true,
-   "name": "LCM Logical Creative Marketing",
-   "location": "Floor 3",
-   "website": "http://example.com",
-   "image": "logo--lcm.png",
-   "email": "lcm@example.com",
-   "people": [
-     "lizz-clarke"
-   ]
- },
  {
    "_id": "innospace",
    "resource": "company",
