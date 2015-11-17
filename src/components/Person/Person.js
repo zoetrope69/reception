@@ -17,7 +17,6 @@ export default class Person extends Component {
     const { preview, person } = this.props;
 
     let companyNode;
-    let image = 'default.png';
     let labelNode;
 
     if (person && typeof person.company !== 'undefined') {
@@ -38,19 +37,14 @@ export default class Person extends Component {
 
     }
 
-    // if they have a image
-    if (typeof person.image !== 'undefined') {
-      image = person.image;
-    }
-
-    if (person.type === 'staff') {
+    if (person.type === 'Staff') {
       labelNode = (<span className="label">Staff</span>);
     }
 
     const contentsNode = (
     <div>
       <div className="person__image">
-        <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
+        <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
       </div>
 
       <div className="person__details">

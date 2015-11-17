@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
+import * as passwordActions from 'redux/modules/passwords';
 import * as settingActions from 'redux/modules/settings';
 import { load as loadSettings } from 'redux/modules/settings';
 import { initializeWithKey } from 'redux-form';
@@ -13,12 +14,13 @@ import { Icon, SettingForm } from 'components';
     editing: state.settings.editing,
     error: state.settings.error,
   }),
-  {...settingActions, initializeWithKey })
+  {...passwordActions, ...settingActions, initializeWithKey })
 export default class AdminPeopleSettings extends Component {
   static propTypes = {
     settings: PropTypes.array,
     editStop: PropTypes.func.isRequired,
     error: PropTypes.string,
+    generatePasswordToken: PropTypes.func,
     initializeWithKey: PropTypes.func.isRequired,
     editing: PropTypes.object.isRequired,
     editStart: PropTypes.func.isRequired,
@@ -35,6 +37,13 @@ export default class AdminPeopleSettings extends Component {
     return () => {
       editStart(String(setting._id));
     };
+  }
+
+  handleInvite(email) {
+
+    const { generatePasswordToken } = this.props;
+
+    generatePasswordToken(email, true);
   }
 
   render() {
@@ -55,6 +64,14 @@ export default class AdminPeopleSettings extends Component {
       <div className="container">
 
       <DocumentMeta title="Settings" />
+
+      {setting && (
+        <button style={{ float: 'right' }}
+                className="button button--success"
+                onClick={::this.handleInvite(setting.email)}>
+          <Icon name="thumbs-up" /> Invite
+        </button>
+      )}
 
       {setting && (
 

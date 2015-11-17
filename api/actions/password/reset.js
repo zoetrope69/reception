@@ -26,6 +26,7 @@ export default function reset(req) {
     const token = req.body.token;
     const password = req.body.password;
     const passwordConfirm = req.body.passwordConfirm;
+    const invite = req.body.invite;
 
     if (passwordConfirm !== password) {
       return reject('Confirmed new password doesn\'t match new password');
@@ -63,10 +64,16 @@ export default function reset(req) {
           }
 
           // send token to person via email
-          const subject = 'Password reset!';
+          let subject = 'Password reset!';
           let message = `Hey ${person.firstName}!`;
 
-          message += 'Your password has been reset!';
+
+          if (invite) {
+            subject = 'Account created!';
+            message += 'Your account has been created!';
+          } else {
+            message += 'Your password has been reset!';
+          }
 
           // add url
           if (process.env.NODE_ENV === 'production') {

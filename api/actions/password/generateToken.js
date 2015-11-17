@@ -47,7 +47,7 @@ export default function generateToken(req) {
           let message = `Hey ${person.firstName}!`;
 
           if (invite) {
-            subject = `Hey ${person.firstName}!`;
+            subject = `Hey ${person.firstName}! `;
             subject += "Here's your invite to the Innovation Space's reception app system.";
 
             message += "\n\r\nYou've been invited to the Innovation Space's reception app system.";
@@ -58,9 +58,13 @@ export default function generateToken(req) {
 
           // add url
           if (process.env.NODE_ENV !== 'production') {
-            message += '\n\r\nhttps://localhost:3000/password/reset?token=' + token;
+            message += '\n\r\nhttp://localhost:3000/password/reset?token=' + token;
           } else {
             message += '\n\r\nhttps://reception.innovationspace.org.uk/password/reset?token=' + token;
+          }
+
+          if (invite) {
+            message += `&invite=${person.firstName}!`;
           }
 
           const emailToSend = person.email;

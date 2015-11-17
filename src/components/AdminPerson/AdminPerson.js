@@ -12,7 +12,7 @@ export default class Person extends Component {
     const { person } = this.props;
     let labelNode;
 
-    if (person.type === 'staff') {
+    if (person.type === 'Staff') {
       labelNode = (<span className="label">Staff</span>);
     }
 

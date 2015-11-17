@@ -32,37 +32,49 @@ export default function companyCreate(req) {
     person.visibility = false;
     person.image = 'default.png';
 
-    if (req.user.role === 'admin') {
+    db.view('people/byEmail', { key: person.email }, (peopleErr, peopleData) => {
+      if (peopleErr) {
+        reject(peopleErr);
+      }
 
-      const company = {
-        resource: 'company',
-        location: inputData.location,
-        name: inputData.name,
-        visibility: false,
-        people: []
-      };
+      if (peopleData.length > 0) {
+        reject('Email is already in use');
+        return;
+      }
 
-      db.save(person, (personErr, personData) => {
-        if (personErr) {
-          reject(personErr);
-        }
+      if (req.user.role === 'admin') {
 
-        // add user to company
-        company.people.push(personData._id);
+        const company = {
+          resource: 'company',
+          location: inputData.location,
+          name: inputData.name,
+          visibility: false,
+          people: []
+        };
 
-        db.save(company, (err, companyData) => {
-          if (err) {
-            reject(err);
+        db.save(person, (personErr, personData) => {
+          if (personErr) {
+            reject(personErr);
           }
 
-          resolve(companyData);
+          // add user to company
+          company.people.push(personData._id);
+
+          db.save(company, (err, companyData) => {
+            if (err) {
+              reject(err);
+            }
+
+            resolve(companyData);
+          });
+
         });
 
-      });
+      } else {
+        reject('You don\'t have permission to create a company');
+      }
 
-    } else {
-      reject('You don\'t have permission to create a company');
-    }
+    });
 
 
   });

@@ -702,7 +702,7 @@ body {
   display: none; }
 
 .person__right-arrow {
-  float: left;
+  float: right;
   width: 10%; }
 
 .person__right-arrow .icon {

@@ -37,12 +37,17 @@ export default class PasswordReset extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const { resetPassword, token } = this.props;
+    const { resetPassword, token, location } = this.props;
+    let invite = false;
+
+    if (typeof location.query.invite !== 'undefined') {
+      invite = location.query.invite;
+    }
 
     const password = this.refs.password.value;
     const passwordConfirm = this.refs.passwordConfirm.value;
 
-    resetPassword(token, password, passwordConfirm);
+    resetPassword(token, password, passwordConfirm, invite);
 
   }
 
@@ -54,7 +59,12 @@ export default class PasswordReset extends Component {
 
   render() {
 
-    const { isValidToken, error, generateError, resetting, successful } = this.props;
+    const { isValidToken, error, generateError, resetting, successful, location } = this.props;
+    let invite = false;
+
+    if (typeof location.query.invite !== 'undefined') {
+      invite = location.query.invite;
+    }
 
     return (
       <main className="page page--password">
@@ -64,13 +74,13 @@ export default class PasswordReset extends Component {
 
         {successful && (
         <form>
-          <h1>Password reset successful</h1>
+          <h1>{invite ? 'You\'re all ready to go!' : 'Password reset successful'}</h1>
 
           <div className="input-wrapper">
             <div className="icon--password">
               <Icon name="thumbs-up" large />
             </div>
-            <p>Your password has been changed, you can log back in now.</p>
+            <p>You've got a password now, go log in.</p>
           </div>
 
           <div className="input-wrapper">
@@ -97,12 +107,16 @@ export default class PasswordReset extends Component {
         {(isValidToken && !successful) && (
         <div>
 
-        <h1>Change password</h1>
+        <h1>{invite ? `Hey ${invite}!` : 'Change password'}</h1>
+
+        {invite && (
+          <p>You'll be able to change your details soon, for now let's make a password!</p>
+        )}
 
         <form className="form" onSubmit={::this.handleSubmit}>
 
           <div className="input-wrapper">
-            <label htmlFor="password">New password</label>
+            <label htmlFor="password">{invite ? 'Password' : 'New password'}</label>
             <input
               ref="password"
               name="password"
@@ -111,7 +125,7 @@ export default class PasswordReset extends Component {
           </div>
 
           <div className="input-wrapper">
-            <label htmlFor="passwordConfirm">Confirm new password</label>
+            <label htmlFor="passwordConfirm">{invite ? 'Confirm password' : 'Confirm new password'}</label>
             <input
               ref="passwordConfirm"
               name="passwordConfirm"

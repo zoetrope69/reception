@@ -35,19 +35,11 @@ export default class FrontPeople extends Component {
   render() {
 
     const { notifying, people, params } = this.props;
-    console.log(people);
-    console.log(params);
     const person = people.find(personItem => personItem._id === params.person);
-    console.log(person);
 
-    let image = 'default.png';
     let labelNode;
 
-    if (person.image) {
-      image = person.image;
-    }
-
-    if (person.type === 'staff') {
+    if (person.type === 'Staff') {
       labelNode = (<span className="label">Staff</span>);
     }
 
@@ -65,7 +57,7 @@ export default class FrontPeople extends Component {
         <div className="person person--page">
 
           <div className="person__image">
-            <img src={`/images/person/${image}`} alt={`Picture of ${person.firstName} ${person.lastName}`} />
+            <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
           </div>
 
           <div className="person__details">
@@ -74,30 +66,30 @@ export default class FrontPeople extends Component {
               {person.firstName} {person.lastName} {labelNode}
             </div>
 
-            <div className="person__actions">
+          </div>
 
-              { (person.notificationSms || person.notificationEmail) && (
-              <div style={{ float: 'left', width: '100%' }}>
-                <button className="button button--notify" disabled={notifying} onClick={::this.handleNotification(person)}>
-                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
-                </button>
-                <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
-              </div>
-              )}
+          <div className="person__actions">
 
-              {person.email && (
-              <span className="person__email" href={`mailto:${person.email}`}>
-                <Icon name="envelope" large /> {person.email}
-              </span>
-              )}
-
-              {person.phone && (
-              <span className="person__phone" href={`tel:${person.phone}`}>
-                <Icon name="phone-handset" large /> {person.phone}
-              </span>
-              )}
-
+            { (person.notificationSms || person.notificationEmail) && (
+            <div style={{ float: 'left', width: '100%' }}>
+              <button className="button button--notify" style={{ marginTop: '1em' }} disabled={notifying} onClick={::this.handleNotification(person)}>
+                <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
+              </button>
+              <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
             </div>
+            )}
+
+            {person.email && (
+            <span className="person__email" href={`mailto:${person.email}`}>
+              <Icon name="envelope" large /> {person.email}
+            </span>
+            )}
+
+            {person.phone && (
+            <span className="person__phone" href={`tel:${person.phone}`}>
+              <Icon name="phone-handset" large /> {person.phone}
+            </span>
+            )}
 
           </div>
 
