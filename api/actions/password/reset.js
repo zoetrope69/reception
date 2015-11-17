@@ -65,7 +65,7 @@ export default function reset(req) {
 
           // send token to person via email
           let subject = 'Password reset!';
-          let message = `Hey ${person.firstName}!`;
+          let message = `Hey ${person.firstName}! `;
 
 
           if (invite) {
@@ -77,9 +77,9 @@ export default function reset(req) {
 
           // add url
           if (process.env.NODE_ENV === 'production') {
-            message += '\n\r\nLog in: https://localhost:' + process.env.PORT + '/login/';
-          } else {
             message += '\n\r\nLog in: https://reception.innovationspace.org.uk/login/';
+          } else {
+            message += '\n\r\nLog in: http://localhost:3000/login/';
           }
 
           const emailToSend = person.email;
