@@ -1,37 +1,37 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Icon, CompanyList } from 'components';
-import * as settingCompanyActions from 'redux/modules/settingsCompanies';
-import { load as loadSettingsCompany } from 'redux/modules/settingsCompanies';
+import { load as loadCompanies } from 'redux/modules/settingsCompanies';
 
-@connect(
-  state => ({
-    companies: state.settingsCompanies.data
-  }),
-  {...settingCompanyActions })
+@connect(state => ({
+  user: state.auth.user,
+  companies: state.settingsCompanies.data
+}))
 export default class AdminCompanies extends Component {
   static propTypes = {
-    companies: PropTypes.array.isRequired
+    companies: PropTypes.array.isRequired,
+    user: PropTypes.object.isRequired
   }
 
   static fetchDataDeferred(getState, dispatch) {
-    return dispatch(loadSettingsCompany());
+    return dispatch(loadCompanies());
   }
 
   render() {
 
-    const { companies } = this.props;
-
-    console.log(companies);
+    const { companies, user } = this.props;
 
     return (
       <main className="page page--companies">
       <div className="container">
 
-        <button style={{ float: 'right' }}
+        {user && user.role === 'admin' && (
+        <Link to="/admin/company/new" style={{ float: 'right' }}
                 className="button button--success">
           <Icon name="plus-circle" /> Add new
-        </button>
+        </Link>
+        )}
 
         <h1>Companies</h1>
 

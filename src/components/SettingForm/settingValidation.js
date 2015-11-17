@@ -8,6 +8,8 @@ const settingValidation = createValidator({
   firstName: [required, maxLength(30)],
   lastName: [maxLength(30)],
   email: [required, email],
-  phone: [required]
+  phone: [required],
+  notificationSms: [required],
+  notificationEmail: [required]
 });
 export default settingValidation;

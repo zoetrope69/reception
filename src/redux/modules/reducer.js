@@ -5,6 +5,7 @@ import { routerStateReducer } from 'redux-router';
 import auth from './auth';
 import companies from './companies';
 import counter from './counter';
+import create from './create';
 import { reducer as form } from 'redux-form';
 import notifications from './notifications';
 import passwords from './passwords';
@@ -22,6 +23,7 @@ export default combineReducers({
 
   auth,
   companies,
+  create,
   form,
   notifications,
   passwords,

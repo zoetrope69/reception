@@ -94,7 +94,7 @@ export default class Login extends Component {
         }
         {user &&
         <div>
-          <p>You are currently logged in as {user.username}.</p>
+          <p>You are currently logged in as {user.email}.</p>
 
           <div>
             <button className="button" onClick={logout}>

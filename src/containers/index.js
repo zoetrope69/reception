@@ -8,6 +8,8 @@ export AdminPeople from './AdminPeople/AdminPeople';
 export AdminCompanies from './AdminCompanies/AdminCompanies';
 export AdminCompanySettings from './AdminCompanySettings/AdminCompanySettings';
 
+export CreatePeople from './CreatePeople/CreatePeople';
+
 export Front from './Front/Front';
 export FrontHome from './FrontHome/FrontHome';
 export FrontMenu from './FrontMenu/FrontMenu';

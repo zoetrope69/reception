@@ -11,3 +11,4 @@ export notify from './notify';
 export * as password from './password/index';
 export * as setting from './setting/index';
 export * as settingCompany from './settingCompany/index';
+export * as create from './create/index';

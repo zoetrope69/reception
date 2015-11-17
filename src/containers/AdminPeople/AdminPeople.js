@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { Icon, PersonList } from 'components';
 import * as settingActions from 'redux/modules/settings';
 import { load as loadSettings } from 'redux/modules/settings';
@@ -32,10 +33,10 @@ export default class AdminPeople extends Component {
       <main className="page page--people">
       <div className="container">
 
-        <button style={{ float: 'right' }}
-                className="button button--success">
+        <Link to="/admin/people/new" style={{ float: 'right' }}
+              className="button button--success">
           <Icon name="plus-circle" /> Add new
-        </button>
+        </Link>
 
         <h1>People</h1>
 

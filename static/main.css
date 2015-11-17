@@ -996,10 +996,6 @@ body {
   color: #fff;
   background-color: #E26A46; }
 
-/* Disabled state */
-.control input:disabled ~ .control-indicator {
-  background-color: #d9d9d9; }
-
 /* Active */
 .control input:active ~ .control-indicator {
   color: #fff;
@@ -1507,15 +1503,14 @@ form li {
   transition: background 1s; }
 
 .admin .page {
-  float: left;
   width: 60%;
   padding: 2em;
-  margin: 2em 0;
+  margin: 2em auto;
   background: white;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px; }
+  border-radius: 5px; }
   @media (max-width: 700px) {
     .admin .page {
+      border-radius: 0;
       width: 100%; } }
 
 .page--sign-in,
@@ -1634,3 +1629,5 @@ form li {
 
 .app--cell-block .page--front {
   background-image: radial-gradient(farthest-corner at 100% 100%, rgba(226, 106, 70, 0.95) 50%, rgba(226, 158, 70, 0.95) 100%), url("/images/cellblock.jpg"); }
+
+/*# sourceMappingURL=main.css.map */

@@ -68,13 +68,13 @@ export default class SettingCompanyForm extends Component {
 
         <div className={'input-wrapper' + (name.error ? ' has-error' : '')}>
           <label htmlFor="name">Name</label>
-          <input name="name" type="text" placeholder="Jane" disabled={editing} {...name} />
+          <input name="name" type="text" placeholder="Coca-Cola" disabled={editing} {...name} />
           {name.error && name.touched && this.renderHelpText(name.error)}
         </div>
 
         <div className={'input-wrapper' + (email.error ? ' has-error' : '')}>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" placeholder="jane.smith@example.com" disabled {...email} />
+          <input name="email" type="email" placeholder="hello@example.com" disabled={editing} {...email} />
           {email.error && email.touched && this.renderHelpText(email.error)}
         </div>
 

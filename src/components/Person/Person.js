@@ -76,7 +76,7 @@ export default class Person extends Component {
           {contentsNode}
         </div>
       ) : (
-        <Link to={`/front/people/${person.email}`} className="person">
+        <Link to={`/front/people/${person._id}`} className="person">
           {contentsNode}
         </Link>
       )

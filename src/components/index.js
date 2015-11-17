@@ -17,3 +17,5 @@ export AdminCompany from './AdminCompany/AdminCompany';
 
 export SettingForm from './SettingForm/SettingForm';
 export SettingCompanyForm from './SettingCompanyForm/SettingCompanyForm';
+
+export CreatePeopleForm from './CreatePeopleForm/CreatePeopleForm';

@@ -2,24 +2,48 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Icon } from 'components';
+import { pushState } from 'redux-router';
+import * as notificationActions from 'redux/modules/notifications';
 
-@connect(state => ({ people: state.people.data }))
+@connect(
+  state => ({
+    error: state.notifications.error,
+    notified: state.notifications.notified,
+    notifying: state.notifications.notifying,
+    people: state.people.data,
+  }),
+  {...notificationActions, pushState})
 export default class FrontPeople extends Component {
   static propTypes = {
-    people: PropTypes.object.isRequired,
-    params: PropTypes.object
+    error: PropTypes.string,
+    notified: PropTypes.bool,
+    notify: PropTypes.func,
+    notifying: PropTypes.bool,
+    params: PropTypes.object,
+    people: PropTypes.array.isRequired,
+    pushState: PropTypes.func.isRequired
+  }
+
+  handleNotification(person) {
+    const { notify } = this.props;
+    return () => {
+      notify(person); // notify the person
+      this.props.pushState(null, '/front/instruction/reception'); // redirect them back to the thank you message
+    };
   }
 
   render() {
 
-    const { people, params } = this.props;
-    const person = people.find(personItem => personItem.email === params.person);
+    const { notifying, people, params } = this.props;
+    console.log(people);
+    console.log(params);
+    const person = people.find(personItem => personItem._id === params.person);
+    console.log(person);
 
     let image = 'default.png';
     let labelNode;
 
-    // if they have a image
-    if (typeof person.image !== 'undefined') {
+    if (person.image) {
       image = person.image;
     }
 
@@ -52,10 +76,10 @@ export default class FrontPeople extends Component {
 
             <div className="person__actions">
 
-              { (person.notifcationSms || person.notifcationEmail) && (
+              { (person.notificationSms || person.notificationEmail) && (
               <div style={{ float: 'left', width: '100%' }}>
-                <button className="button button--notify" onClick={this.notifyPerson}>
-                  <Icon name="alarm" large /> Notify
+                <button className="button button--notify" disabled={notifying} onClick={::this.handleNotification(person)}>
+                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
                 </button>
                 <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
               </div>
