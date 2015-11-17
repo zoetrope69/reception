@@ -40,10 +40,10 @@ export default class AdminPeopleSettings extends Component {
   }
 
   handleInvite(email) {
-
     const { generatePasswordToken } = this.props;
-
-    generatePasswordToken(email, true);
+    return () => {
+      generatePasswordToken(email, true);
+    };
   }
 
   render() {
