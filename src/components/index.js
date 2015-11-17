@@ -19,3 +19,4 @@ export SettingForm from './SettingForm/SettingForm';
 export SettingCompanyForm from './SettingCompanyForm/SettingCompanyForm';
 
 export CreatePeopleForm from './CreatePeopleForm/CreatePeopleForm';
+export CreateCompaniesForm from './CreateCompaniesForm/CreateCompaniesForm';

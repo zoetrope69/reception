@@ -14,7 +14,7 @@ import { Icon } from 'components';
 )
 @reduxForm({
   form: 'settingCompany',
-  fields: ['_id', '_rev', 'visibility', 'location', 'name', 'lastName', 'email', 'website'],
+  fields: ['_id', '_rev', 'visibility', 'location', 'name', 'email', 'website'],
   validate: settingCompanyValidation
 })
 export default class SettingCompanyForm extends Component {
@@ -61,7 +61,7 @@ export default class SettingCompanyForm extends Component {
         <div className={'input-wrapper' + (location.error ? ' has-error' : '')}>
           <label htmlFor="location">Location</label>
           <select name="location" {...location} disabled={editing} >
-            {locations.map(valueColor => <option value={valueColor} key={valueColor}>{valueColor}</option>)}
+            {locations.map((locationItem, key) => <option value={locationItem} key={locationItem + '_' + key}>{locationItem}</option>)}
           </select>
           {location.error && location.touched && this.renderHelpText(location.error)}
         </div>

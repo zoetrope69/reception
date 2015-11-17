@@ -1494,7 +1494,7 @@ form li {
   margin: 0 auto; }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
   padding: 1em;
   background-size: cover;
   background-position: 0 0, 10% 50%;

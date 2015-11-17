@@ -12,6 +12,7 @@ import {
   AdminCompanySettings,
 
   CreatePeople,
+  CreateCompanies,
 
   Front,
   FrontHome,
@@ -68,6 +69,7 @@ export default (store) => {
           <Route path="people/new" component={CreatePeople} />
           <Route path="people/:person" component={AdminPeopleSettings} />
           <Route path="companies" component={AdminCompanies} />
+          <Route path="companies/new" component={CreateCompanies} />
           <Route path="companies/:company" component={AdminCompanySettings} />
         </Route>
 

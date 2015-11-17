@@ -1,21 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import createPeopleValidation from './createPeopleValidation';
+import createCompaniesValidation, { locations } from './createCompaniesValidation';
 import { Icon } from 'components';
-import { connect } from 'react-redux';
 
-@connect(
-  state => ({
-    user: state.auth.user,
-    companies: state.companies.data
-  })
-)
 @reduxForm({
-  form: 'createPeople',
-  fields: ['type', 'firstName', 'lastName', 'email', 'company'],
-  validate: createPeopleValidation
+  form: 'createCompanies',
+  fields: ['type', 'name', 'location', 'personFirstName', 'personLastName', 'personEmail'],
+  validate: createCompaniesValidation
 })
-export default class CreatePeopleForm extends Component {
+export default class CreateCompaniesForm extends Component {
   static propTypes = {
     active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
@@ -38,10 +31,7 @@ export default class CreatePeopleForm extends Component {
 
   render() {
 
-    const { companies, fields: { firstName, lastName, email, company }, handleSubmit, resetForm, user } = this.props;
-
-    console.log(companies);
-    console.log(user);
+    const { fields: { name, location, personFirstName, personLastName, personEmail }, handleSubmit, resetForm } = this.props;
 
     const renderInput = (field, label) =>
       <div className={'input-wrapper' + (field.error && field.touched ? ' has-error' : '')}>
@@ -53,20 +43,23 @@ export default class CreatePeopleForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
 
-        {user.role === 'admin' && (
-          <div className={'input-wrapper' + (company.error && company.touched ? ' has-error' : '')}>
-            <label htmlFor="company">Company</label>
-            <select name="company" {...company}>
-              <option value="none">Pick a company...</option>
-              {companies.map((companyItem, key) => <option value={companyItem._id} key={companyItem._id + '_' + key}>{companyItem.name}</option>)}
-            </select>
-            {company.error && company.touched && this.renderHelpText(company.error)}
-          </div>
-        )}
+        <div className={'input-wrapper' + (location.error && location.touched ? ' has-error' : '')}>
+          <label htmlFor="location">Location</label>
+          <select name="location" {...location}>
+            <option value="none">Pick a location...</option>
+            {locations.map((locationItem, key) => <option value={locationItem._id} key={locationItem._id + '_' + key}>{locationItem}</option>)}
+          </select>
+          {location.error && location.touched && this.renderHelpText(location.error)}
+        </div>
 
-        {renderInput(email, 'Email')}
-        {renderInput(firstName, 'First Name')}
-        {renderInput(lastName, 'Last Name')}
+        {renderInput(name, 'Name')}
+
+        <h3 className="input-header" style={{ paddingBottom: '.25em' }}>Main contact</h3>
+        <p style={{ paddingBottom: '1em' }}>This person will look after the company.</p>
+
+        {renderInput(personEmail, 'Email')}
+        {renderInput(personFirstName, 'First Name')}
+        {renderInput(personLastName, 'Last Name')}
 
         <div className="input-wrapper">
           <button className="button button--success" onClick={handleSubmit} style={{ float: 'right' }}>

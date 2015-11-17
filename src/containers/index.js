@@ -9,6 +9,7 @@ export AdminCompanies from './AdminCompanies/AdminCompanies';
 export AdminCompanySettings from './AdminCompanySettings/AdminCompanySettings';
 
 export CreatePeople from './CreatePeople/CreatePeople';
+export CreateCompanies from './CreateCompanies/CreateCompanies';
 
 export Front from './Front/Front';
 export FrontHome from './FrontHome/FrontHome';

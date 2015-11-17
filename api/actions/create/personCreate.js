@@ -3,8 +3,7 @@ import db from '../../db';
 export default function personCreate(req) {
   return new Promise((resolve, reject) => {
 
-    const inputPersonData = req.body;
-    const person = inputPersonData.person;
+    const person = req.body.person;
 
     console.log(person);
 
@@ -22,7 +21,6 @@ export default function personCreate(req) {
 
     // add default attributes
     person.resource = 'person';
-    person.token = 'cooldad';
     person.role = 'member';
     person.notificationEmail = false;
     person.notificationSms = false;
@@ -38,7 +36,7 @@ export default function personCreate(req) {
         }
 
         if (companiesData.length < 0) {
-          reject('Invalid company selected');
+          reject('No company selected');
         }
 
         const company = companiesData[0].value;
