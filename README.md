@@ -38,3 +38,7 @@ npm run dev
 npm run build
 npm run start
 ```
+
+## Deployment
+
+On the server we'll use PM2. Install that then run: `pm2 start "/usr/local/bin/npm" --name "RECEPTION" -- start`
