@@ -59,7 +59,7 @@
 .button[disabled],
 .button.disabled{
   cursor: default;
-  background: grey;
+  opacity: .85;
 }
 
 .button-group{

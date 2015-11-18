@@ -36,18 +36,21 @@ export default function generateToken(req) {
         // assign token to person
         person.token = token;
 
+        // if an invitation to the syste,
         if (invite) {
-          person.invited = true;
+          if (person.registered) {
+            // check if they've already been invited and registered
+            return reject('Person is already invited...');
+          }
+
+          // otherwise set them as registered
+          person.registered = true;
         }
 
         // sync changes to person
-        db.merge(person._id, person, (dbErr, personData) => {
+        db.merge(person._id, person, (dbErr) => {
           if (dbErr) {
             return reject(dbErr);
-          }
-
-          if (invite && personData[0].value.invited) {
-            return reject('Person is already invited...');
           }
 
           // send token to person via email
@@ -72,7 +75,7 @@ export default function generateToken(req) {
           }
 
           if (invite) {
-            message += `&invite=${person.firstName}!`;
+            message += `&invite=${person.firstName}`;
           }
 
           const emailToSend = person.email;

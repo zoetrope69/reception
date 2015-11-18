@@ -32,6 +32,8 @@ export default function reset(req) {
       return reject('Confirmed new password doesn\'t match new password');
     }else if (passwordConfirm.length < 8 && passwordConfirm.length < 8) {
       return reject('Password needs to be at least 8 characters');
+    }else if (passwordConfirm.length >= 160 && passwordConfirm.length >= 160) {
+      return reject('Password needs to be less than 160 characters');
     }
 
     db.view('people/byToken', { key: token }, (err, data) => {

@@ -583,7 +583,7 @@ body {
 .button[disabled],
 .button.disabled {
   cursor: default;
-  background: grey; }
+  opacity: .8; }
 
 .button-group {
   overflow: hidden;

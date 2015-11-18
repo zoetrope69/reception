@@ -8,7 +8,7 @@ const SAVE_SUCCESS = 'reception/companies/SAVE_SUCCESS';
 const SAVE_FAIL = 'reception/companies/SAVE_FAIL';
 
 const initialState = {
-  editing: false,
+  editing: {},
   error: '',
   loaded: false,
   saveError: {}
