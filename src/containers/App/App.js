@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import { isLoaded as isFrontLoaded, load as loadFront } from 'redux/modules/front';
 import config from '../../config';
 import { pushState } from 'redux-router';
 
@@ -33,9 +32,6 @@ export default class App extends Component {
 
   static fetchData(getState, dispatch) {
     const promises = [];
-    if (!isFrontLoaded(getState())) {
-      promises.push(dispatch(loadFront()));
-    }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }

@@ -49,7 +49,7 @@
 
 .admin header .logo{
   float: left;
-  width: 25%;
+  width: 20%;
 }
 
 .admin header .logo img{
@@ -61,12 +61,12 @@
 .admin header nav{
   overflow: hidden; /* clearfix */
   float: left;
-  width: 75%;
+  width: 80%;
 }
 
 .admin header nav .nav-link{
   float: right;
-  width: (100%/5);
+  width: (100%/4);
   padding: 1.5em 1em;
 
   text-align: center;

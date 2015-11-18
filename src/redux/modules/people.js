@@ -35,7 +35,7 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loaded: false,
         data: null,
-        error: action.result
+        error: action.error
       };
     case EDIT_START:
       return {
