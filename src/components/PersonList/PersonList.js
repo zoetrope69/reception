@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { AdminPerson, Person } from 'components';
+import { Person } from 'components';
 
 export default class PersonList extends Component {
   static propTypes = {
@@ -26,7 +26,7 @@ export default class PersonList extends Component {
       <ul className="personList">
       {people.map((person, key) => {
         return (admin ? (
-          <AdminPerson person={person} key={person._id + key} />
+          <Person person={person} key={person._id + key} admin />
         ) : (
           JSON.parse(person.visibility) && (
             <Person person={person} key={person._id + key} />

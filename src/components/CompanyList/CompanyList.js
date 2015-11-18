@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { AdminCompany, Company } from 'components';
+import { Company } from 'components';
 
 export default class CompanyList extends Component {
   static propTypes = {
@@ -20,9 +20,9 @@ export default class CompanyList extends Component {
       <ul className="companyList">
       {companies.map((company, key) => {
         return (admin ? (
-          <AdminCompany company={company} key={company._id + key} />
+          <Company company={company} key={company._id + key} admin={admin} />
         ) : (
-          JSON.parse(company.visibility) && (
+          company.visibility && (
             <Company company={company} key={company._id + key} />
           )
         ));

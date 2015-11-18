@@ -4,17 +4,15 @@
   display: inline-block;
   fill: currentColor;
 
-  width: 20px;
-  height: 20px;
-
-  vertical-align: -5px;
+  width: 1em;
+  height: 1em;
+  vertical-align: -.1em;
 }
 
 .icon--large {
-  height: 40px;
-  width: 40px;
-
-  vertical-align: -10px;
+  width: 2em;
+  height: 2em;
+  vertical-align: -.2em;
 }
 
 .icon--spin {

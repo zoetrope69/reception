@@ -5,18 +5,14 @@
  *
  */
 
-export Icon from './Icon/Icon';
-
-export PersonList from './PersonList/PersonList';
-export Person from './Person/Person';
-export AdminPerson from './AdminPerson/AdminPerson';
-
-export CompanyList from './CompanyList/CompanyList';
+export Alert from './Alert/Alert';
 export Company from './Company/Company';
-export AdminCompany from './AdminCompany/AdminCompany';
-
-export SettingForm from './SettingForm/SettingForm';
-export SettingCompanyForm from './SettingCompanyForm/SettingCompanyForm';
-
-export CreatePeopleForm from './CreatePeopleForm/CreatePeopleForm';
-export CreateCompaniesForm from './CreateCompaniesForm/CreateCompaniesForm';
+export CompanyForm from './CompanyForm/CompanyForm';
+export CompanyList from './CompanyList/CompanyList';
+export CompanyNewForm from './CompanyNewForm/CompanyNewForm';
+export Icon from './Icon/Icon';
+export Loader from './Loader/Loader';
+export Person from './Person/Person';
+export PersonForm from './PersonForm/PersonForm';
+export PersonList from './PersonList/PersonList';
+export PersonNewForm from './PersonNewForm/PersonNewForm';

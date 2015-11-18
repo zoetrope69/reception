@@ -5,7 +5,7 @@ const NOTIFY_FAIL = 'reception/notifications/NOTIFY_FAIL';
 const initialState = {
   error: '',
   notified: false,
-  notifying: false,
+  notifying: false
 };
 
 export default function reducer(state = initialState, action = {}) {

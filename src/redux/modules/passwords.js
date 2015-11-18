@@ -9,13 +9,13 @@ const RESET_SUCCESS = 'reception/passwords/RESET_SUCCESS';
 const RESET_FAIL = 'reception/passwords/RESET_FAIL';
 
 const initialState = {
+  checked: false,
   error: '',
   generateError: '',
-  checked: false,
   generating: false,
   isValidToken: false,
-  successful: false,
-  resetting: false
+  resetting: false,
+  successful: false
 };
 
 export default function reducer(state = initialState, action = {}) {

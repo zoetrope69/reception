@@ -8,8 +8,6 @@
 .page{
   min-height: 100vh;
 
-  padding: 1em;
-
   background-size: cover;
   background-position: 0 0, 10% 50%;
   background-attachment: fixed;
@@ -19,8 +17,9 @@
 }
 
 .admin .page{
+  overflow: hidden;
   width: 60%;
-  padding: 2em;
+  padding: 0 2em;
   margin: 2em auto;
 
   background: white;

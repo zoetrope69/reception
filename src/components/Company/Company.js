@@ -3,15 +3,18 @@ import { Link } from 'react-router';
 
 export default class Company extends Component {
   static propTypes = {
+    admin: PropTypes.bool,
     company: PropTypes.object.isRequired
   }
 
   render() {
 
-    const { company } = this.props;
+    const { admin, company } = this.props;
+
+    const path = (admin ? 'company' : 'front/company');
 
     return (
-      <Link to={`/front/companies/${company._id}`} className="company">
+      <Link to={`/${path}/${company._id}`} className={'company' + (admin && ' company--admin')}>
         <span className="company__name">{company.name}</span>
         {company.image && (
         <div className="company__logo">

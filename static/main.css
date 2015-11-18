@@ -1503,8 +1503,9 @@ form li {
   transition: background 1s; }
 
 .admin .page {
+  overflow: hidden;
   width: 60%;
-  padding: 2em;
+  padding: 0 2em;
   margin: 2em auto;
   background: white;
   border-radius: 5px; }

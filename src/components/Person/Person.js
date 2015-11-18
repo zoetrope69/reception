@@ -4,17 +4,14 @@ import { Icon } from 'components';
 
 export default class Person extends Component {
   static propTypes = {
+    admin: PropTypes.bool,
     person: PropTypes.object.isRequired,
     preview: PropTypes.bool
   }
 
-  notifyPerson() {
-    // do something here
-  }
-
   render() {
 
-    const { preview, person } = this.props;
+    const { admin, person, preview } = this.props;
 
     let companyNode;
     let labelNode;
@@ -41,39 +38,51 @@ export default class Person extends Component {
       labelNode = (<span className="label">Staff</span>);
     }
 
-    const contentsNode = (
-    <div>
-      <div className="person__image">
-        <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
-      </div>
+    const contentsNode = admin ? (
+      <Link to={'/person/' + person._id} className="person person--admin">
 
-      <div className="person__details">
+        <span className="person__image">
+          <img src={'/images/person/default.png'} alt={'Picture of ' + person.firstName + ' ' + person.lastName} />
+        </span>
 
-        <div className="person__name">
-          {person.firstName} {person.lastName} {labelNode}
+        <span className="person__details">
+
+          <span className="person__name">
+            {person.firstName} {person.lastName} {labelNode}
+
+            {!JSON.parse(person.visibility) && (
+              <Icon name="eye" />
+            )}
+          </span>
+        </span>
+
+      </Link>
+      ) : (
+      <Link to={`/front/person/${person._id}`} className="person">
+
+        <div className="person__image">
+          <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
         </div>
 
-        {companyNode}
+        <div className="person__details">
 
-        <div className="person__right-arrow">
-          <Icon name="chevron-right" large />
+          <div className="person__name">
+            {person.firstName} {person.lastName} {labelNode}
+          </div>
+
+          {companyNode}
+
+          <div className="person__right-arrow">
+            <Icon name="chevron-right" large />
+          </div>
+
         </div>
 
-      </div>
-
-    </div>
-    );
+      </Link>
+      );
 
     return (
-      preview ? (
-        <div className="person">
-          {contentsNode}
-        </div>
-      ) : (
-        <Link to={`/front/people/${person._id}`} className="person">
-          {contentsNode}
-        </Link>
-      )
+      <div className={preview && 'person'}>{contentsNode}</div>
     );
   }
 

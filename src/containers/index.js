@@ -1,30 +1,27 @@
 export App from './App/App';
 
-export Home from './Home/Home';
+export Admin from './App/Admin/Admin';
+export AdminCompanies from './App/Admin/AdminCompanies/AdminCompanies';
+export AdminCompany from './App/Admin/AdminCompany/AdminCompany';
+export AdminCompanyNew from './App/Admin/AdminCompanyNew/AdminCompanyNew';
+export AdminHome from './App/Admin/AdminHome/AdminHome';
+export AdminPeople from './App/Admin/AdminPeople/AdminPeople';
+export AdminPerson from './App/Admin/AdminPerson/AdminPerson';
+export AdminPersonNew from './App/Admin/AdminPersonNew/AdminPersonNew';
 
-export Admin from './Admin/Admin';
-export AdminPeopleSettings from './AdminPeopleSettings/AdminPeopleSettings';
-export AdminPeople from './AdminPeople/AdminPeople';
-export AdminCompanies from './AdminCompanies/AdminCompanies';
-export AdminCompanySettings from './AdminCompanySettings/AdminCompanySettings';
+export Front from './App/Front/Front';
+export FrontCompanies from './App/Front/FrontCompanies/FrontCompanies';
+export FrontCompany from './App/Front/FrontCompany/FrontCompany';
+export FrontHome from './App/Front/FrontHome/FrontHome';
+export FrontInstructionDelivery from './App/Front/FrontInstructionDelivery/FrontInstructionDelivery';
+export FrontInstructionHelp from './App/Front/FrontInstructionHelp/FrontInstructionHelp';
+export FrontInstructionReception from './App/Front/FrontInstructionReception/FrontInstructionReception';
+export FrontMenu from './App/Front/FrontMenu/FrontMenu';
+export FrontPeople from './App/Front/FrontPeople/FrontPeople';
+export FrontPerson from './App/Front/FrontPerson/FrontPerson';
 
-export CreatePeople from './CreatePeople/CreatePeople';
-export CreateCompanies from './CreateCompanies/CreateCompanies';
+export Login from './App/Login/Login';
+export PasswordForgot from './App/PasswordForgot/PasswordForgot';
+export PasswordReset from './App/PasswordReset/PasswordReset';
 
-export Front from './Front/Front';
-export FrontHome from './FrontHome/FrontHome';
-export FrontMenu from './FrontMenu/FrontMenu';
-export FrontPeople from './FrontPeople/FrontPeople';
-export FrontCompanies from './FrontCompanies/FrontCompanies';
-export FrontCompany from './FrontCompany/FrontCompany';
-export FrontPerson from './FrontPerson/FrontPerson';
-
-export InstructionDelivery from './InstructionDelivery/InstructionDelivery';
-export InstructionHelp from './InstructionHelp/InstructionHelp';
-export InstructionReception from './InstructionReception/InstructionReception';
-
-export Login from './Login/Login';
-export PasswordForgot from './PasswordForgot/PasswordForgot';
-export PasswordReset from './PasswordReset/PasswordReset';
-
-export NotFound from './NotFound/NotFound';
+export NotFound from './App/NotFound/NotFound';

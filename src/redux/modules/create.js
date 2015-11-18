@@ -6,9 +6,9 @@ const COMPANY_SUCCESS = 'reception/create/COMPANY_SUCCESS';
 const COMPANY_FAIL = 'reception/create/COMPANY_FAIL';
 
 const initialState = {
+  created: false,
   creating: false,
-  error: '',
-  created: false
+  error: ''
 };
 
 export default function reducer(state = initialState, action = {}) {

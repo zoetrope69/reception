@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
-import { isLoaded as isPeopleLoaded, load as loadPeople } from 'redux/modules/people';
-import { isLoaded as isCompaniesLoaded, load as loadCompanies } from 'redux/modules/companies';
+import { isLoaded as isFrontLoaded, load as loadFront } from 'redux/modules/front';
 import config from '../../config';
 import { pushState } from 'redux-router';
 
@@ -25,7 +24,7 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState(null, '/admin');
+      this.props.pushState(null, '/home');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState(null, '/login');
@@ -34,11 +33,8 @@ export default class App extends Component {
 
   static fetchData(getState, dispatch) {
     const promises = [];
-    if (!isCompaniesLoaded(getState())) {
-      promises.push(dispatch(loadCompanies()));
-    }
-    if (!isPeopleLoaded(getState())) {
-      promises.push(dispatch(loadPeople()));
+    if (!isFrontLoaded(getState())) {
+      promises.push(dispatch(loadFront()));
     }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));

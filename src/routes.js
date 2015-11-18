@@ -6,25 +6,24 @@ import {
   App,
 
   Admin,
-  AdminPeopleSettings,
-  AdminPeople,
   AdminCompanies,
-  AdminCompanySettings,
-
-  CreatePeople,
-  CreateCompanies,
+  AdminCompany,
+  AdminCompanyNew,
+  AdminHome,
+  AdminPerson,
+  AdminPersonNew,
+  AdminPeople,
 
   Front,
+  FrontCompanies,
+  FrontCompany,
   FrontHome,
+  FrontInstructionDelivery,
+  FrontInstructionHelp,
+  FrontInstructionReception,
   FrontMenu,
   FrontPeople,
   FrontPerson,
-  FrontCompanies,
-  FrontCompany,
-
-  InstructionDelivery,
-  InstructionHelp,
-  InstructionReception,
 
   Login,
   PasswordReset,
@@ -58,47 +57,40 @@ export default (store) => {
    */
   return (
     <Route path="/" component={App}>
-      { /* Home (main) route */ }
-      <IndexRedirect to="admin" />
+      <IndexRedirect to="home" />
 
-      { /* Routes requiring login */ }
-      <Route path="admin" component={Admin} onEnter={requireLogin}>
-
-        <Route>
-          <Route path="people" component={AdminPeople} />
-          <Route path="people/new" component={CreatePeople} />
-          <Route path="people/:person" component={AdminPeopleSettings} />
-          <Route path="companies" component={AdminCompanies} />
-          <Route path="companies/new" component={CreateCompanies} />
-          <Route path="companies/:company" component={AdminCompanySettings} />
-        </Route>
-
-        <Route path="settings" component={AdminPeopleSettings} />
-
-        <Route path="*" component={NotFound} status={404} />
-      </Route>
-
-      <Route path="front" component={Front}>
-        <IndexRoute component={FrontHome} />
-
-        <Route path="menu" component={FrontMenu} />
-        <Route path="people" component={FrontPeople} />
-        <Route path="people/:person" component={FrontPerson} />
-        <Route path="companies" component={FrontCompanies} />
-        <Route path="companies/:company" component={FrontCompany} />
-
-        <Route path="instruction/help" component={InstructionHelp} />
-        <Route path="instruction/delivery" component={InstructionDelivery} />
-        <Route path="instruction/reception" component={InstructionReception} />
-
-      </Route>
-
-      { /* Routes */ }
       <Route path="login" component={Login} />
       <Route path="password/forgot" component={PasswordForgot} />
       <Route path="password/reset" component={PasswordReset} />
 
-      { /* Catch all route */ }
+      { /* backend routes */ }
+      <Route component={Admin} onEnter={requireLogin}>
+        <Route path="companies" component={AdminCompanies} />
+        <Route path="company/new" component={AdminCompanyNew} />
+        <Route path="company/:company" component={AdminCompany} />
+        <Route path="home" component={AdminHome} />
+        <Route path="people" component={AdminPeople} />
+        <Route path="person/new" component={AdminPersonNew} />
+        <Route path="person/:person" component={AdminPerson} />
+        <Route path="profile" component={AdminPerson} />
+      </Route>
+
+      { /* frontend routes */ }
+      <Route path="front" component={Front}>
+        <IndexRoute component={FrontHome} />
+
+        <Route path="companies" component={FrontCompanies} />
+        <Route path="company/:company" component={FrontCompany} />
+        <Route path="menu" component={FrontMenu} />
+        <Route path="people" component={FrontPeople} />
+        <Route path="person/:person" component={FrontPerson} />
+
+        <Route path="delivery" component={FrontInstructionDelivery} />
+        <Route path="help" component={FrontInstructionHelp} />
+        <Route path="reception" component={FrontInstructionReception} />
+
+      </Route>
+
       <Route path="*" component={NotFound} status={404} />
     </Route>
   );
