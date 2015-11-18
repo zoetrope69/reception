@@ -48,7 +48,7 @@ export default class SettingCompanyForm extends Component {
         <input type="hidden" value={_id} />
         <input type="hidden" value={_rev} />
 
-        <div className={'input-wrapper' + (visibility.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <label htmlFor="visibility" className="control checkbox">
             <input id="visibility" name="visibility" type="checkbox" {...visibility} disabled={editing} />
@@ -58,7 +58,7 @@ export default class SettingCompanyForm extends Component {
           {visibility.error && visibility.touched && this.renderHelpText(visibility.error)}
         </div>
 
-        <div className={'input-wrapper' + (location.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (location.error && location.touched ? ' has-error' : '')}>
           <label htmlFor="location">Location</label>
           <select name="location" {...location} disabled={editing} >
             {locations.map((locationItem, key) => <option value={locationItem} key={locationItem + '_' + key}>{locationItem}</option>)}
@@ -66,19 +66,19 @@ export default class SettingCompanyForm extends Component {
           {location.error && location.touched && this.renderHelpText(location.error)}
         </div>
 
-        <div className={'input-wrapper' + (name.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (name.error && name.touched ? ' has-error' : '')}>
           <label htmlFor="name">Name</label>
           <input name="name" type="text" placeholder="Coca-Cola" disabled={editing} {...name} />
           {name.error && name.touched && this.renderHelpText(name.error)}
         </div>
 
-        <div className={'input-wrapper' + (email.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (email.error && email.touched ? ' has-error' : '')}>
           <label htmlFor="email">Email</label>
           <input name="email" type="email" placeholder="hello@example.com" disabled={editing} {...email} />
           {email.error && email.touched && this.renderHelpText(email.error)}
         </div>
 
-        <div className={'input-wrapper' + (website.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (website.error && website.touched ? ' has-error' : '')}>
           <label htmlFor="website">Website</label>
           <input name="website" type="text" placeholder="0123456789" disabled={editing} {...website} />
           {website.error && website.touched && this.renderHelpText(website.error)}

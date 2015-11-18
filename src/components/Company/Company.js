@@ -14,7 +14,7 @@ export default class Company extends Component {
     const path = (admin ? 'company' : 'front/company');
 
     return (
-      <Link to={`/${path}/${company._id}`} className={'company' + (admin && ' company--admin')}>
+      <Link to={`/${path}/${company._id}`} className={'company' + (admin ? ' company--admin' : '')}>
         <span className="company__name">{company.name}</span>
         {company.image && (
         <div className="company__logo">

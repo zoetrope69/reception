@@ -28,6 +28,7 @@ export default class PersonForm extends Component {
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
     pristine: PropTypes.bool.isRequired,
+    profile: PropTypes.bool,
     save: PropTypes.func.isRequired,
     saveError: PropTypes.object,
     submitting: PropTypes.bool.isRequired,
@@ -43,7 +44,7 @@ export default class PersonForm extends Component {
 
   render() {
     const { editing, editStop, fields: { _id, _rev, visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
-      pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
+      profile, pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
 
     return (
       <div className={submitting ? 'saving' : ''}>
@@ -78,10 +79,10 @@ export default class PersonForm extends Component {
         <input type="hidden" value={_id} />
         <input type="hidden" value={_rev} />
 
-        <div className={'input-wrapper' + (visibility.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <label htmlFor="visibility" className="control checkbox">
-            <input id="visibility" name="visibility" type="checkbox" {...visibility} disabled={editing} />
+            <input id="visibility" name="visibility" type="checkbox" disabled={editing} {...visibility} />
             <span className="control-indicator"></span>
             <Icon name="eye" /> Public
           </label>
@@ -89,7 +90,7 @@ export default class PersonForm extends Component {
         </div>
 
         {user.role === 'admin' && (
-        <div className={'input-wrapper' + (type.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (type.error && type.touched ? ' has-error' : '')}>
           <label htmlFor="type">Type</label>
           <select name="type" {...type} disabled={editing} >
             {types.map(valueColor => <option value={valueColor} key={valueColor}>{valueColor}</option>)}
@@ -98,49 +99,51 @@ export default class PersonForm extends Component {
         </div>
         )}
 
-        <div className={'input-wrapper' + (email.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (email.error && email.touched ? ' has-error' : '')}>
           <label htmlFor="email">Email</label>
           <input name="email" type="email" placeholder="jane.smith@example.com" disabled {...email} />
           {email.error && email.touched && this.renderHelpText(email.error)}
         </div>
 
-        <div className={'input-wrapper' + (firstName.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (firstName.error && firstName.touched ? ' has-error' : '')}>
           <label htmlFor="firstName">First Name</label>
           <input name="firstName" type="text" placeholder="Jane" disabled={editing} {...firstName} />
           {firstName.error && firstName.touched && this.renderHelpText(firstName.error)}
         </div>
 
-        <div className={'input-wrapper' + (lastName.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (lastName.error && lastName.touched ? ' has-error' : '')}>
           <label htmlFor="lastName">Last Name</label>
           <input name="lastName" type="text" placeholder="Smith" disabled={editing} {...lastName} />
           {lastName.error && lastName.touched && this.renderHelpText(lastName.error)}
         </div>
 
-        <div className={'input-wrapper' + (phone.error ? ' has-error' : '')}>
+        <div className={'input-wrapper' + (phone.error && phone.touched ? ' has-error' : '')}>
           <label htmlFor="phone">Phone</label>
           <input name="phone" type="text" placeholder="0123456789" disabled={editing} {...phone} />
           {phone.error && phone.touched && this.renderHelpText(phone.error)}
         </div>
 
-        {(_id.value === user._id) && (
+        {/* check if this is the profile page */}
+        {profile && (
         <div>
 
           <h3 className="input-header">Notifications</h3>
 
           <div className="input-notifications">
 
-              <div className={'input-wrapper input-wrapper--control' + (notificationSms.error ? ' has-error' : '')}>
+
+              <div className={'input-wrapper input-wrapper--control' + (notificationSms.error && notificationSms.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-sms" className="control checkbox">
-                      <input id="notify-sms" name="notify-sms" type="checkbox" {...notificationSms} disabled={editing} />
+                      <input type="checkbox" id="notify-sms" disabled={editing} {...notificationSms} />
                       <span className="control-indicator"></span>
                       <Icon name="bubble" /> SMS
                   </label>
                   {notificationSms.error && notificationSms.touched && this.renderHelpText(notificationSms.error)}
               </div>
 
-              <div className={'input-wrapper input-wrapper--control' + (notificationEmail.error ? ' has-error' : '')}>
+              <div className={'input-wrapper input-wrapper--control' + (notificationEmail.error && notificationEmail.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-email" className="control checkbox">
-                      <input id="notify-email" name="notify-email" type="checkbox" {...notificationEmail} disabled={editing} />
+                      <input id="notify-email" name="notify-email" type="checkbox" disabled={editing} {...notificationEmail} />
                       <span className="control-indicator"></span>
                       <Icon name="envelope" /> Email
                   </label>

@@ -50,7 +50,7 @@ export default class AdminPeople extends Component {
         <h1 style={{ color: '#E64B1D' }}>
           People
 
-          <Link to="/people/new" style={{ fontSize: '1.25rem', float: 'right' }}
+          <Link to="/person/new" style={{ fontSize: '1.25rem', float: 'right' }}
                 className="button button--success">
             <Icon name="plus-circle" /> Add new
           </Link>

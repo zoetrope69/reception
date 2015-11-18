@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import personNewValidation from './personNewValidation';
-import { Icon } from 'components';
+import { Icon, Loader } from 'components';
 import { connect } from 'react-redux';
 
 @connect(
   state => ({
-    user: state.auth.user,
-    companies: state.front.companies
+    companies: state.companies.data,
+    error: state.companies.error,
+    loaded: state.companies.loaded,
+    loading: state.companies.loading,
+    user: state.auth.user
   })
 )
 @reduxForm({
@@ -20,14 +23,17 @@ export default class personNewForm extends Component {
     active: PropTypes.string,
     asyncValidating: PropTypes.bool.isRequired,
     companies: PropTypes.array,
-    fields: PropTypes.object.isRequired,
     dirty: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    resetForm: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
+    loaded: PropTypes.bool,
+    loading: PropTypes.bool,
     pristine: PropTypes.bool.isRequired,
-    valid: PropTypes.bool.isRequired,
-    user: PropTypes.object
+    resetForm: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    valid: PropTypes.bool.isRequired
   }
 
   renderHelpText(message) {
@@ -38,10 +44,7 @@ export default class personNewForm extends Component {
 
   render() {
 
-    const { companies, fields: { firstName, lastName, email, company }, handleSubmit, resetForm, user } = this.props;
-
-    console.log(companies);
-    console.log(user);
+    const { companies, fields: { firstName, lastName, email, company }, handleSubmit, loaded, loading, resetForm, user } = this.props;
 
     const renderInput = (field, label) =>
       <div className={'input-wrapper' + (field.error && field.touched ? ' has-error' : '')}>
@@ -56,10 +59,13 @@ export default class personNewForm extends Component {
         {user.role === 'admin' && (
           <div className={'input-wrapper' + (company.error && company.touched ? ' has-error' : '')}>
             <label htmlFor="company">Company</label>
+            {!loading && loaded && (
             <select name="company" {...company}>
               <option value="none">Pick a company...</option>
               {companies.map((companyItem, key) => <option value={companyItem._id} key={companyItem._id + '_' + key}>{companyItem.name}</option>)}
             </select>
+            )}
+            {loading && <Loader />}
             {company.error && company.touched && this.renderHelpText(company.error)}
           </div>
         )}
@@ -69,7 +75,7 @@ export default class personNewForm extends Component {
         {renderInput(lastName, 'Last Name')}
 
         <div className="input-wrapper">
-          <button className="button button--success" onClick={handleSubmit} style={{ float: 'right' }}>
+          <button className="button button--success" disabled={loading} onClick={handleSubmit} style={{ float: 'right' }}>
             <Icon name="thumbs-up"/> Submit
           </button>
           <button className="button button--warning" onClick={resetForm} style={{ float: 'right' }}>

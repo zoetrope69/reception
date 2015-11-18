@@ -41,7 +41,7 @@ export default class AdminCompanies extends Component {
           Companies
 
           {user.role === 'admin' && (
-          <Link to="/companies/new" style={{ fontSize: '1.25rem', float: 'right' }}
+          <Link to="/company/new" style={{ fontSize: '1.25rem', float: 'right' }}
                 className="button button--success">
             <Icon name="plus-circle" /> Add new
           </Link>
