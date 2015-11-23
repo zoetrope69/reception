@@ -16,13 +16,19 @@ export default function generateToken(req) {
     const email = req.body.email;
     const invite = req.body.invite;
 
+    if (email.length < 1) {
+      return reject('Please enter your email address');
+    }
+
     db.view('people/byEmail', { key: email }, (err, data) => {
       if (err) {
         return reject(err);
       }
 
       if (data.length < 1) {
-        return reject('Not a valid email');
+        // while this isn't a valid email we don't want information to be leaked
+        // to potential abusers
+        return resolve(email);
       }
 
       const person = data[0].value;

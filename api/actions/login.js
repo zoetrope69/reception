@@ -4,7 +4,7 @@ export default function login(req) {
 
   return new Promise((resolve, reject) => {
 
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', (err, user) => {
 
       if (err) {
         return reject(err);
@@ -12,7 +12,7 @@ export default function login(req) {
 
       if (!user) {
         // couldn't authenticate, send back the reason
-        return reject(info.message);
+        return reject('Either username or password is incorrect');
       }
 
       req.logIn(user, (loginErr) => {
