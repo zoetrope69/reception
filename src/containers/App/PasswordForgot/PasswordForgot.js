@@ -7,18 +7,20 @@ import { Icon } from 'components';
 
 @connect(
   state => ({
+    error: state.passwords.generateError,
+    generating: state.passwords.generating,
     isValidEmail: state.passwords.isValidEmail,
-    sent: state.passwords.sentEmail,
-    generating: state.passwords.generating
+    sent: state.passwords.sentEmail
   }),
   passwordActions)
 export default class PasswordForgot extends Component {
   static propTypes = {
-    isValidEmail: PropTypes.bool,
+    error: PropTypes.string,
     generatePasswordToken: PropTypes.func.isRequired,
     generating: PropTypes.bool,
-    sent: PropTypes.bool,
-    location: PropTypes.object
+    isValidEmail: PropTypes.bool,
+    location: PropTypes.object,
+    sent: PropTypes.bool
   }
 
   handleSubmit(event) {
@@ -41,7 +43,7 @@ export default class PasswordForgot extends Component {
 
   render() {
 
-    const { generating, sent } = this.props;
+    const { error, generating, sent } = this.props;
 
     return (
       <main className="page page--password">
@@ -53,6 +55,13 @@ export default class PasswordForgot extends Component {
 
         <form className="form" onSubmit={::this.handleSubmit}>
 
+          <div style={{ paddingBottom: '1em' }} className={'input-wrapper' + (error ? ' has-error' : '')}>
+            {error && (
+              <span style={{ top: 0, right: 0, width: '100%' }}
+                    className="help-block">{error !== '' ? error : 'Bad information'}</span>
+            )}
+          </div>
+
           {!sent ? (
           <div>
 
@@ -62,7 +71,7 @@ export default class PasswordForgot extends Component {
                 ref="email"
                 name="email"
                 type="email"
-                placeholder="john@example.com"
+                placeholder="jane@example.com"
                 />
             </div>
 
