@@ -40,7 +40,7 @@ export default class FrontCompany extends Component {
 
         <div className="top-nav">
           <Link className="back-button" to="/front/companies">
-            <Icon name="chevron-left" large /> Back
+            <Icon name="chevron-left" /> Back
           </Link>
           <p className="instruction">Members</p>
         </div>

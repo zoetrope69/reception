@@ -43,6 +43,8 @@ export default class CompanyNewForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
 
+        <h3 className="input-header">Company</h3>
+
         <div className={'input-wrapper' + (location.error && location.touched ? ' has-error' : '')}>
           <label htmlFor="location">Location</label>
           <select name="location" {...location}>
@@ -63,10 +65,10 @@ export default class CompanyNewForm extends Component {
 
         <div className="input-wrapper">
           <button className="button button--success" onClick={handleSubmit} style={{ float: 'right' }}>
-            <Icon name="thumbs-up"/> Submit
+            <Icon name="checkmark-circle"/> Submit
           </button>
-          <button className="button button--warning" onClick={resetForm} style={{ float: 'right' }}>
-            <Icon name="cross" /> Reset
+          <button className="button button--warning" onClick={resetForm} style={{ marginRight: '.5em', float: 'right' }}>
+            <Icon name="cross-circle" /> Reset
           </button>
         </div>
 

@@ -56,6 +56,7 @@
   display: block;
   max-height: 2em;
   margin: 1em;
+  margin-left: 2.5em;
 }
 
 .admin header nav{
@@ -70,23 +71,18 @@
   padding: 1.5em 1em;
 
   text-align: center;
-  color: white;
+  color: lighten($colour-brand, 30%);
   background: rgba($colour-bg, 0);
 
   transition: background .25s;
 }
 
-.admin header nav .nav-link--active{
-  color: $colour-brand;
-  font-weight: 400;
-
-  background: white;
-}
-
 .admin header nav .nav-link:hover{
-  color: rgba(white, .75);
+  color: lighten($colour-brand, 40%);
 }
 
+.admin header nav .nav-link--active,
 .admin header nav .nav-link--active:hover{
-  color: rgba($colour-brand, .75);
+  color: white;
+  font-weight: 400;
 }

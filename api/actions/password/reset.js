@@ -60,6 +60,17 @@ export default function reset(req) {
         // TODO: remove token field completely
         person.token = false;
 
+        if (invite) {
+          if (person.registered) {
+            // check if they've already been registered
+            return reject('Person is already registered...');
+          }
+
+          // otherwise set them as registered and not invited
+          person.invited = false;
+          person.registered = true;
+        }
+
         db.merge(person._id, person, (dbErr) => {
           if (dbErr) {
             return reject(dbErr);

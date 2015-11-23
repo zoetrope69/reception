@@ -17,6 +17,11 @@ export default function personCreate(req) {
       return;
     }
 
+    if (req.user.role === 'admin' && (typeof person.company === 'undefined' || person.company.length <= 0)) {
+      reject('No company selected');
+      return;
+    }
+
     // add default attributes
     person.resource = 'person';
     person.role = 'member';
@@ -43,7 +48,7 @@ export default function personCreate(req) {
             reject(companiesErr);
           }
 
-          if (companiesData.length < 0) {
+          if (companiesData.length <= 0) {
             reject('No company selected');
           }
 

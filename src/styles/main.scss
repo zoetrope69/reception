@@ -1,34 +1,31 @@
 @import 'utils/variables';
-@import 'utils/animation';
 //@import 'utils/functions';
 //@import 'utils/mixins';
+@import 'utils/animation';
 //@import 'utils/placeholders';
 
 @import 'base/reset';
 @import 'base/type';
 
-// @import 'layout/navigation';
+@import 'layout/footer';
 @import 'layout/grid';
 @import 'layout/header';
-@import 'layout/footer';
-// @import 'layout/sidebar';
-// @import 'layout/forms';
 
+@import 'components/alerts';
 @import 'components/buttons';
-@import 'components/person';
 @import 'components/company';
 @import 'components/event';
 @import 'components/forms';
 @import 'components/icons';
-// @import 'components/dropdown';
+@import 'components/person';
 
 @import 'pages/all'; // covers all pages
-@import 'pages/front';
-@import 'pages/passwords';
-@import 'pages/home';
 @import 'pages/companies';
+@import 'pages/front';
+@import 'pages/home';
 @import 'pages/instruction';
+@import 'pages/passwords';
 
 @import 'themes/theme';
-@import 'themes/innospace';
 @import 'themes/cellblock';
+@import 'themes/innospace';

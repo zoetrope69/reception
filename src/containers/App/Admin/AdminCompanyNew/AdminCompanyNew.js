@@ -3,7 +3,7 @@ import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import * as createActions from 'redux/modules/create';
-import { Alert, CompanyNewForm } from 'components';
+import { Alert, Icon, CompanyNewForm } from 'components';
 
 @connect(
   state => ({
@@ -24,7 +24,7 @@ export default class AdminCompanyNew extends Component {
   handleSubmit = (data) => {
     const { createCompany } = this.props;
     createCompany(data); // notify the person
-    this.props.pushState(null, '/admin/companies'); // redirect them back to the thank you message
+    this.props.pushState(null, '/companies'); // redirect them back to the thank you message
   }
 
   render() {
@@ -32,19 +32,26 @@ export default class AdminCompanyNew extends Component {
     const { error } = this.props;
 
     return (
+    <div>
+
+      <div className="page-title">
+      <div className="container">
+        <DocumentMeta title="Create New Company | Innovation Space Reception App" />
+        <h1><Icon name="plus-circle" /> Create New Company</h1>
+      </div>
+      </div>
+
+      {error && <Alert message={error} />}
+
       <main className="page page--create-companies">
       <div className="container">
-
-        <DocumentMeta title="Create New Company | Innovation Space Reception App"/>
-
-        {error && <Alert message={error} />}
-
-        <h1 style={{ color: '#E64B1D' }}>Create New Company</h1>
 
         <CompanyNewForm onSubmit={::this.handleSubmit}/>
 
       </div>
       </main>
+
+    </div>
     );
   }
 }

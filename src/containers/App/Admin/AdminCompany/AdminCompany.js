@@ -48,32 +48,42 @@ export default class AdminCompany extends Component {
     const company = companies.find(companiesItem => companiesItem._id === params.company);
 
     return (
-      <main className="page page--company">
+    <div>
+
+      <div className="page-title">
       <div className="container">
 
         <DocumentMeta title="Company | Innovation Space Reception App"/>
 
-        {error && <Alert message={error} />}
+        <h1><Icon name="briefcase" /> Company</h1>
 
-        {!loading && loaded && company && (
-          editing[company._id] ? (
-            <button key={'edit' + company._id}
-                    style={{ float: 'right' }}
-                    className="button"
-                    onClick={() => editStop(company._id)}>
-              <Icon name="trash" /> Cancel
-            </button>
-          ) : (
-            <button key={'edit' + company._id}
-                    style={{ float: 'right' }}
-                    className="button"
-                    onClick={::this.handleEdit(company)}>
-              <Icon name="pencil" /> Edit
-            </button>
-          )
-        )}
+        <div className="buttons">
+          {!loading && loaded && company && (
+            editing[company._id] ? (
+              <button key={'edit' + company._id}
+                      style={{ float: 'right' }}
+                      className="button"
+                      onClick={() => editStop(company._id)}>
+                <Icon name="trash" /> Cancel
+              </button>
+            ) : (
+              <button key={'edit' + company._id}
+                      style={{ float: 'right' }}
+                      className="button"
+                      onClick={::this.handleEdit(company)}>
+                <Icon name="pencil" /> Edit
+              </button>
+            )
+          )}
+        </div>
 
-        <h1 style={{ color: '#E64B1D' }}>Company</h1>
+      </div>
+      </div>
+
+      {error && <Alert message={error} />}
+
+      <main className="page page--company">
+      <div className="container">
 
         {!loading && loaded && (
           company ? (
@@ -85,8 +95,10 @@ export default class AdminCompany extends Component {
 
         {loading && <Loader />}
 
+      </div>
+      </main>
+
     </div>
-    </main>
     );
   }
 }

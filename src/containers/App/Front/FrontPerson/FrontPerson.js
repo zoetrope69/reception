@@ -53,7 +53,7 @@ export default class FrontPeople extends Component {
 
         <div className="top-nav">
           <Link className="back-button" to="/front/people">
-            <Icon name="chevron-left" large /> Back
+            <Icon name="chevron-left" /> Back
           </Link>
           <p className="instruction">Person</p>
         </div>
@@ -79,7 +79,7 @@ export default class FrontPeople extends Component {
               { (person.notificationSms || person.notificationEmail) && (
               <div style={{ float: 'left', width: '100%' }}>
                 <button className="button button--notify" style={{ marginTop: '1em' }} disabled={notifying} onClick={::this.handleNotification(person)}>
-                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} large /> {(notifying) ? 'Notifying...' : 'Notify'}
+                  <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} /> {(notifying) ? 'Notifying...' : 'Notify'}
                 </button>
                 <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
               </div>
@@ -87,13 +87,13 @@ export default class FrontPeople extends Component {
 
               {person.email && (
               <span className="person__email" href={`mailto:${person.email}`}>
-                <Icon name="envelope" large /> {person.email}
+                <Icon name="envelope" /> {person.email}
               </span>
               )}
 
               {person.phone && (
               <span className="person__phone" href={`tel:${person.phone}`}>
-                <Icon name="phone-handset" large /> {person.phone}
+                <Icon name="phone-handset" /> {person.phone}
               </span>
               )}
 

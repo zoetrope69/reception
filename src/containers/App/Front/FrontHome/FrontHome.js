@@ -17,7 +17,7 @@ export default class FrontInstructionHome extends Component {
         <h1>Welcome to the <em>{ innovationSpace ? 'Innovation Space' : 'Cell Block' }</em></h1>
 
         <Link to="/front/menu" className="button">
-            Touch to start&hellip; <Icon name="chevron-right" large />
+            Touch to start&hellip; <Icon name="chevron-right" />
         </Link>
 
       </div>

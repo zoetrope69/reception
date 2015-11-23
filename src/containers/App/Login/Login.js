@@ -6,7 +6,10 @@ import DocumentMeta from 'react-document-meta';
 import * as authActions from 'redux/modules/auth';
 
 @connect(
-  state => ({ user: state.auth.user, error: state.auth.loginError }),
+  state => ({
+    user: state.auth.user,
+    error: state.auth.loginError
+  }),
   authActions)
 export default class Login extends Component {
   static propTypes = {

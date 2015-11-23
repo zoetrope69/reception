@@ -36,15 +36,16 @@ export default function generateToken(req) {
         // assign token to person
         person.token = token;
 
-        // if an invitation to the syste,
+        // if an invitation to the system
         if (invite) {
           if (person.registered) {
-            // check if they've already been invited and registered
-            return reject('Person is already invited...');
+            // check if they've already been registered
+            return reject('Person is already registered...');
           }
 
           // otherwise set them as registered
-          person.registered = true;
+          person.invited = true;
+          person.registered = false;
         }
 
         // sync changes to person
@@ -75,8 +76,9 @@ export default function generateToken(req) {
           }
 
           if (invite) {
-            message += `&invite=${person.firstName}`;
+            message += '&invite=' + encodeURIComponent(person.firstName);
           }
+
 
           const emailToSend = person.email;
           const name = person.firstName;

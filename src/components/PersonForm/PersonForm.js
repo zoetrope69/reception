@@ -49,35 +49,10 @@ export default class PersonForm extends Component {
     return (
       <div className={submitting ? 'saving' : ''}>
 
-        {!editing && (
-        <div className="input-wrapper">
-
-          <button style={{ float: 'right' }}
-                  className="button button--success"
-                  onClick={handleSubmit(() => save(values)
-                    .then(result => {
-                      if (result && typeof result.error === 'object') {
-                        return Promise.reject(result.error);
-                      }
-                    })
-                  )}
-                  disabled={editing || pristine || invalid || submitting}>
-            <Icon name={submitting ? 'cloud-upload' : 'cloud-check'} /> {submitting ? 'Saving' : 'Save'}
-          </button>
-          {saveError && <div className="text-danger">{saveError}</div>}
-
-          <button style={{ marginRight: '1em', float: 'right' }}
-                  className="button button--warning"
-                  onClick={() => editStop(formKey)}
-                  disabled={editing || submitting}>
-            <Icon name="trash" /> Cancel
-          </button>
-
-        </div>
-        )}
-
         <input type="hidden" value={_id} />
         <input type="hidden" value={_rev} />
+
+        <h3 className="input-header">Main details</h3>
 
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
@@ -131,12 +106,13 @@ export default class PersonForm extends Component {
 
           <div className="input-notifications">
 
+              <p>Choose how you'd like to be notified, or not at all!</p>
 
               <div className={'input-wrapper input-wrapper--control' + (notificationSms.error && notificationSms.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-sms" className="control checkbox">
-                      <input type="checkbox" id="notify-sms" disabled={editing} {...notificationSms} />
+                      <input type="checkbox" id="notify-sms" disabled={editing || !phone.value} {...notificationSms} />
                       <span className="control-indicator"></span>
-                      <Icon name="bubble" /> SMS
+                      <Icon name="bubble" /> SMS {phone.value && ('to ' + phone.value)} {!phone.value && <small>(Need a phone number)</small>}
                   </label>
                   {notificationSms.error && notificationSms.touched && this.renderHelpText(notificationSms.error)}
               </div>
@@ -145,7 +121,7 @@ export default class PersonForm extends Component {
                   <label htmlFor="notify-email" className="control checkbox">
                       <input id="notify-email" name="notify-email" type="checkbox" disabled={editing} {...notificationEmail} />
                       <span className="control-indicator"></span>
-                      <Icon name="envelope" /> Email
+                      <Icon name="envelope" /> Email {email.value && ('to ' + email.value)}
                   </label>
                   {notificationEmail.error && notificationEmail.touched && this.renderHelpText(notificationEmail.error)}
               </div>
@@ -154,6 +130,27 @@ export default class PersonForm extends Component {
 
         </div>
         )}
+
+        <button style={{ float: 'right' }}
+                className="button button--success"
+                onClick={handleSubmit(() => save(values)
+                  .then(result => {
+                    if (result && typeof result.error === 'object') {
+                      return Promise.reject(result.error);
+                    }
+                  })
+                )}
+                disabled={editing || pristine || invalid || submitting}>
+          <Icon name={submitting ? 'sync' : 'checkmark-circle'} spin={submitting} /> {submitting ? 'Saving' : 'Save'}
+        </button>
+        {saveError && <div className="text-danger">{saveError}</div>}
+
+        <button style={{ marginRight: '1em', float: 'right' }}
+                className="button button--warning"
+                onClick={() => editStop(formKey)}
+                disabled={editing || submitting}>
+          <Icon name="cross-circle" /> Cancel
+        </button>
 
       </div>
     );

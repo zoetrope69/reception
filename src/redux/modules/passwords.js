@@ -15,6 +15,7 @@ const initialState = {
   generating: false,
   isValidToken: false,
   resetting: false,
+  sentEmail: '',
   successful: false
 };
 
@@ -48,15 +49,13 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         generating: false,
-        sentEmail: true,
-        message: action.result
+        sentEmail: action.result
       };
     case GENERATE_TOKEN_FAIL:
       return {
         ...state,
         generating: false,
-        sentEmail: false,
-        message: null,
+        sentEmail: '',
         generateError: action.error
       };
     case RESET:

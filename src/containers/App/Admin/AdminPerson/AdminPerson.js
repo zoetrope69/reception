@@ -25,6 +25,7 @@ export default class AdminPerson extends Component {
     editStart: PropTypes.func.isRequired,
     editStop: PropTypes.func.isRequired,
     error: PropTypes.string,
+    deletePeople: PropTypes.func,
     generatePasswordToken: PropTypes.func.isRequired,
     generating: PropTypes.bool,
     initializeWithKey: PropTypes.func.isRequired,
@@ -32,7 +33,7 @@ export default class AdminPerson extends Component {
     loading: PropTypes.bool,
     params: PropTypes.object,
     people: PropTypes.array,
-    sent: PropTypes.bool,
+    sent: PropTypes.string,
     user: PropTypes.object
   }
 
@@ -56,7 +57,7 @@ export default class AdminPerson extends Component {
 
   render() {
 
-    const { editing, error, generating, loaded, loading, params, people, sent, user } = this.props;
+    const { editing, editStop, error, generating, loaded, loading, params, people, sent, user } = this.props;
 
     let person = null;
     let profile = null;
@@ -70,43 +71,98 @@ export default class AdminPerson extends Component {
     }
 
     return (
-      <main className="page page--person">
+    <div>
+
+      <div className="page-title">
       <div className="container">
 
-      <DocumentMeta title={param ? 'Edit Person' : 'Profile'} />
+        <DocumentMeta title={(param ? 'Edit Person' : 'Profile') + ' | Innovation Space Reception App'} />
+
+        <h1><Icon name="user" /> {param ? 'Edit Person' : 'Profile'}</h1>
+
+          <div className="buttons">
+            {!loading && loaded && person && (
+              editing[person._id] ? (
+                <button key={'edit' + person._id}
+                        style={{ float: 'right' }}
+                        className="button"
+                        onClick={() => editStop(person._id)}>
+                  <Icon name="trash" /> Cancel
+                </button>
+              ) : (
+                <button key={'edit' + person._id}
+                        style={{ float: 'right' }}
+                        className="button"
+                        onClick={::this.handleEdit(person)}>
+                  <Icon name="pencil" /> Edit
+                </button>
+              )
+            )}
+          </div>
+
+      </div>
+      </div>
 
       {error && <Alert message={error} />}
 
-      {!loading && loaded && person && (
-        !editing[person._id] && (
-          <button key={'edit' + person._id}
-                  style={{ float: 'right' }}
-                  className="button"
-                  onClick={::this.handleEdit(person)}>
-            <Icon name="pencil" /> Edit
-          </button>
-        )
-      )}
+      {!profile && !loading && loaded && !sent && !person.invited && !person.registered && (
+      <div className="alert alert--info">
+      <div className="container">
 
-      {!loading && loaded && !sent && !person.registered && (
+        <Icon name="smile"/> This person hasn't been invited yet!
+
         <button key={'invite' + person._id}
-                style={{ marginRight: '1em', float: 'right' }}
                 className="button"
                 onClick={::this.handleInvite(person)}
                 disabled={sent || generating}>
-          <Icon name={(generating) ? 'sync' : 'envelope'} spin={generating} /> {generating ? 'Sending email' : 'Invite to system'}
+          <Icon name={(generating) ? 'sync' : 'envelope'} spin={generating} />{' '}
+          {(generating ? 'Sending email to ' : 'Email invite to ') + person.email}
         </button>
+
+      </div>
+    </div>
       )}
 
-      {!loading && loaded && sent && (
-        <button style={{ marginRight: '1em', float: 'right' }}
-                className="button button--success"
-                disabled>
-          <Icon name="thumbs-up" /> Invited!
-        </button>
+      {!profile && !loading && loaded && (sent === person.email) && !person.invited && (
+      <div className="alert alert--success">
+      <div className="container">
+
+        <Icon name="thumbs-up" /> They've been invited!
+
+      </div>
+      </div>
       )}
 
-      <h1 style={{ color: '#E64B1D' }}>{param ? 'Edit Person' : 'Profile'}</h1>
+      {!profile && !loading && loaded && (sent === person.email) && person.invited && (
+      <div className="alert alert--success">
+      <div className="container">
+
+        <Icon name="thumbs-up" /> They've been invited again!
+
+      </div>
+      </div>
+      )}
+
+      {!profile && !loading && loaded && !sent && person.invited && (
+      <div className="alert alert--info">
+      <div className="container">
+
+        <Icon name="thumbs-up" /> They've been invited!
+
+        <button key={'invite' + person._id}
+                className="button"
+                onClick={::this.handleInvite(person)}
+                disabled={sent || generating}>
+          <Icon name={(generating) ? 'sync' : 'envelope'} spin={generating} />{' '}
+          {(generating ? 'Sending email to ' : 'Send another email invite to ') + person.email}
+        </button>
+
+      </div>
+      </div>
+      )}
+
+      <main className="page page--person">
+      <div className="container">
 
       {!loading && loaded && (
         person ? (
@@ -118,18 +174,10 @@ export default class AdminPerson extends Component {
 
       {loading && <Loader />}
 
-      {!loading && loaded && person && (
-        <button key={'invite' + person._id}
-                style={{ marginRight: '1em', float: 'right' }}
-                className="button"
-                onClick={::this.handleInvite(person)}
-                disabled={sent || generating}>
-          <Icon name={(generating) ? 'sync' : 'envelope'} spin={generating} /> Delete user
-        </button>
-      )}
+      </div>
+      </main>
 
     </div>
-    </main>
     );
   }
 }

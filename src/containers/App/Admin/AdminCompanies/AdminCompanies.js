@@ -30,23 +30,30 @@ export default class AdminCompanies extends Component {
     const { companies, error, loaded, loading, user } = this.props;
 
     return (
-      <main className="page page--companies">
+    <div>
+
+      <div className="page-title">
       <div className="container">
 
         <DocumentMeta title="Companies | Innovation Space Reception App"/>
 
-        {error && <Alert message={error} />}
+        <h1><Icon name="briefcase" /> Companies</h1>
 
-        <h1 style={{ color: '#E64B1D' }}>
-          Companies
-
+        <div className="buttons">
           {user.role === 'admin' && (
-          <Link to="/company/new" style={{ fontSize: '1.25rem', float: 'right' }}
-                className="button button--success">
-            <Icon name="plus-circle" /> Add new
+          <Link to="/company/new" className="button">
+            <Icon name="plus-circle" /> Create New Company
           </Link>
           )}
-        </h1>
+        </div>
+
+      </div>
+      </div>
+
+      {error && <Alert message={error} />}
+
+      <main className="page page--companies">
+      <div className="container">
 
         {!loading && loaded && (
           companies ? (
@@ -60,6 +67,8 @@ export default class AdminCompanies extends Component {
 
       </div>
       </main>
+
+    </div>
     );
 
   }

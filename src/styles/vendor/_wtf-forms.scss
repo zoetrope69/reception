@@ -80,6 +80,13 @@
   background-color: lighten($colour-brand, 15%);
 }
 
+/* Disabled */
+.control input:disabled ~ .control-indicator,
+.control input.disabled ~ .control-indicator {
+  color: #fff;
+  background-color: grey;
+}
+
 /* Checkbox modifiers */
 .checkbox .control-indicator {
   border-radius: .25rem;

@@ -11,7 +11,7 @@ export default class FrontInstructionHelp extends Component {
 
         <div className="top-nav">
           <Link className="back-button" to="/front/menu">
-            <Icon name="chevron-left" large /> Back
+            <Icon name="chevron-left" /> Back
           </Link>
           <p className="instruction">Help</p>
         </div>

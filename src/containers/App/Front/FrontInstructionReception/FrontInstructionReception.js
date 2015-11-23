@@ -7,11 +7,11 @@ export default class FrontInstructionReception extends Component {
   render() {
     return (
       <main className="page page--instruction-reception">
-      <div className="wrapper">
+      <div className="container">
 
         <div className="top-nav">
           <Link className="back-button" to="/front">
-            <Icon name="chevron-left" large /> Home
+            <Icon name="chevron-left" /> Home
           </Link>
           <p className="instruction">Thanks!</p>
         </div>

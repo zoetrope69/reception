@@ -70,7 +70,7 @@ export default class PasswordReset extends Component {
       <main className="page page--password">
       <div className="container">
 
-        <DocumentMeta title="Reset Password | Innovation Space"/>
+        <DocumentMeta title={(invite ? 'Create password' : 'Reset Password' ) + ' | Innovation Space'} />
 
         {successful && (
         <form>
@@ -84,7 +84,7 @@ export default class PasswordReset extends Component {
           </div>
 
           <div className="input-wrapper">
-            <Link to="/login">Log in!</Link>
+            <Link to="/">Log in!</Link>
           </div>
         </form>
         )}
@@ -107,7 +107,7 @@ export default class PasswordReset extends Component {
         {(isValidToken && !successful) && (
         <div>
 
-        <h1>{invite ? `Hey ${invite}!` : 'Change password'}</h1>
+        <h1>{invite ? `Create password!` : 'Change password'}</h1>
 
         {invite && (
           <p>You'll be able to change your details soon, for now let's make a password!</p>
@@ -137,7 +137,7 @@ export default class PasswordReset extends Component {
             <button className="button button--small"
                     onClick={::this.handleSubmit}
                     disabled={resetting}>
-              <Icon name={(resetting) ? 'sync' : 'envelope'} spin={resetting} /> {(resetting) ? 'Changing' : 'Change'} password
+              <Icon name={(resetting) ? 'sync' : 'envelope'} spin={resetting} /> {(resetting) ? 'Submitting' : 'Submit'} password
             </button>
 
             {error && this.renderHelpText(error)}

@@ -22,14 +22,15 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         creating: false,
-        created: true
+        created: true,
+        error: ''
       };
     case PERSON_FAIL:
       return {
         ...state,
-        notifying: false,
+        creating: false,
         created: false,
-        error: action.result
+        error: action.error
       };
     case COMPANY:
       return {
@@ -40,14 +41,15 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         creating: false,
-        created: true
+        created: true,
+        error: ''
       };
     case COMPANY_FAIL:
       return {
         ...state,
-        notifying: false,
+        creating: false,
         created: false,
-        error: action.result
+        error: action.error
       };
     default:
       return state;

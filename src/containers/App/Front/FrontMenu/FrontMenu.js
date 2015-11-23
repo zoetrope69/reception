@@ -8,28 +8,28 @@ export default class FrontMenu extends Component {
 
     return (
       <main className="page page--home">
-      <div className="wrapper">
+      <div className="container">
 
           <div className="top-nav">
               <Link className="back-button" to="/front">
-                  <Icon name="chevron-left" large /> Back
+                  <Icon name="chevron-left" /> Back
               </Link>
               <p className="instruction">Pick an option</p>
           </div>
 
           <Link to="/front/people" className="button">
-              <Icon name="users" large /> Members
+              <Icon name="users" /> Members
           </Link>
           <Link to="/front/companies" className="button">
-              <Icon name="briefcase" large /> Companies
+              <Icon name="briefcase" /> Companies
           </Link>
 
           <div className="button-group">
               <Link to="/front/delivery" className="button">
-                  <Icon name="gift" large /> Deliveries
+                  <Icon name="gift" /> Deliveries
               </Link>
               <Link to="/front/help" className="button">
-                  <Icon name="question-circle" large /> Help
+                  <Icon name="question-circle" /> Help
               </Link>
           </div>
 

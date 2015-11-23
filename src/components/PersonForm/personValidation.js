@@ -7,7 +7,6 @@ const peopleValidation = createValidator({
   type: [required, oneOf(types)],
   firstName: [required, maxLength(30)],
   lastName: [required, maxLength(30)],
-  email: [required, email],
-  phone: [required]
+  email: [required, email]
 });
 export default peopleValidation;

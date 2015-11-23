@@ -40,27 +40,35 @@ export default class AdminPeople extends Component {
     }
 
     return (
-      <main className="page page--people">
+    <div>
+
+      <div className="page-title">
       <div className="container">
 
         <DocumentMeta title="People | Innovation Space Reception App"/>
+        <h1><Icon name="users" /> People</h1>
 
-        {error && <Alert message={error} />}
-
-        <h1 style={{ color: '#E64B1D' }}>
-          People
-
-          <Link to="/person/new" style={{ fontSize: '1.25rem', float: 'right' }}
-                className="button button--success">
-            <Icon name="plus-circle" /> Add new
+        <div className="buttons">
+          <Link to="/person/new" className="button">
+            <Icon name="plus-circle" /> Create New Person
           </Link>
-        </h1>
+        </div>
+
+      </div>
+      </div>
+
+      {error && <Alert message={error} />}
+
+      <main className="page page--people">
+      <div className="container">
 
         {!loading && loaded && (
           people ? (
             <PersonList people={people} admin />
           ) : (
+          <div>
             <p>No people</p>
+          </div>
           )
         )}
 
@@ -68,6 +76,8 @@ export default class AdminPeople extends Component {
 
       </div>
       </main>
+
+    </div>
     );
 
   }

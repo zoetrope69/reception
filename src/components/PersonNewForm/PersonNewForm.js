@@ -44,7 +44,8 @@ export default class personNewForm extends Component {
 
   render() {
 
-    const { companies, fields: { firstName, lastName, email, company }, handleSubmit, loaded, loading, resetForm, user } = this.props;
+    const { companies, fields: { firstName, lastName, email, company },
+            handleSubmit, loaded, loading, pristine, invalid, resetForm, user } = this.props;
 
     const renderInput = (field, label) =>
       <div className={'input-wrapper' + (field.error && field.touched ? ' has-error' : '')}>
@@ -61,7 +62,7 @@ export default class personNewForm extends Component {
             <label htmlFor="company">Company</label>
             {!loading && loaded && (
             <select name="company" {...company}>
-              <option value="none">Pick a company...</option>
+              <option value="none"></option>
               {companies.map((companyItem, key) => <option value={companyItem._id} key={companyItem._id + '_' + key}>{companyItem.name}</option>)}
             </select>
             )}
@@ -75,11 +76,17 @@ export default class personNewForm extends Component {
         {renderInput(lastName, 'Last Name')}
 
         <div className="input-wrapper">
-          <button className="button button--success" disabled={loading} onClick={handleSubmit} style={{ float: 'right' }}>
-            <Icon name="thumbs-up"/> Submit
+          <button className="button button--success"
+                  style={{ float: 'right' }}
+                  disabled={loading || pristine || invalid}
+                  onClick={handleSubmit}>
+            <Icon name="checkmark-circle"/> Submit
           </button>
-          <button className="button button--warning" onClick={resetForm} style={{ float: 'right' }}>
-            <Icon name="cross" /> Reset
+          <button className="button button--warning"
+                  style={{ marginRight: '.5em', float: 'right' }}
+                  disabled={loading || pristine}
+                  onClick={resetForm}>
+            <Icon name="cross-circle" /> Reset
           </button>
         </div>
 

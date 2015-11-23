@@ -96,7 +96,7 @@ export default class SettingCompanyForm extends Component {
                     })
                   )}
                   disabled={editing || pristine || invalid || submitting}>
-            <Icon name={submitting ? 'cloud-upload' : 'cloud-check'} /> Save
+            <Icon name={submitting ? 'sync' : 'checkmark-circle'} spin={submitting} /> {submitting ? 'Saving' : 'Save'}
           </button>
           {saveError && <div className="text-danger">{saveError}</div>}
 
@@ -104,7 +104,7 @@ export default class SettingCompanyForm extends Component {
                   className="button button--warning"
                   onClick={() => editStop(formKey)}
                   disabled={editing || submitting}>
-            <Icon name="trash" /> Cancel
+            <Icon name="cross-circle" /> Cancel
           </button>
 
         </div>

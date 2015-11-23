@@ -24,10 +24,17 @@ export default class Admin extends Component {
     const { user } = this.props;
 
     return (
+    <div>
+
+      <div className="page-title">
+      <div className="container">
+        <DocumentMeta title="Home | Innovation Space Reception App"/>
+        <h1><Icon name="home" /> Home</h1>
+      </div>
+      </div>
+
       <main className="page page--welcome">
       <div className="container">
-
-        <DocumentMeta title="Home | Innovation Space Reception App"/>
 
         {user && typeof user.firstName !== 'undefined' && (
           <h1>Hey, {user.firstName}!</h1>
@@ -42,6 +49,8 @@ export default class Admin extends Component {
 
       </div>
       </main>
+
+    </div>
     );
 
   }
