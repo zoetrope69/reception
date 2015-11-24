@@ -1,6 +1,7 @@
 // _front.scss
 
 .page--front{
+  padding-top: 10em;
   background-image: radial-gradient(farthest-corner at 100% 100%, rgba($colour-bg, .95) 50%, rgba(adjust-hue($colour-bg, 20), .95) 100%);
 
   animation: animateBackground 60s linear infinite alternate;
@@ -22,7 +23,7 @@
 
   color: white;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 3em;
   font-weight: 300;
 }
 

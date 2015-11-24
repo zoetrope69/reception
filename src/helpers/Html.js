@@ -30,7 +30,9 @@ export default class Html extends Component {
 
           <link rel="shortcut icon" href="/favicon.ico" />
 
-          <meta name="viewport" content="width=device-width" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
           {/* TODO: build font based on usage */}
           <link rel="stylesheet" type="text/css"
