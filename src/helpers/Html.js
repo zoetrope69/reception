@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import DocumentMeta from 'react-document-meta';
 
+// remove 300ms delays on tap
+const injectTapEventPlugin = require('react-tap-event-plugin');
+injectTapEventPlugin();
+
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
  * Used in server-side code only to wrap the string output of the

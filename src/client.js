@@ -11,10 +11,6 @@ import io from 'socket.io-client';
 import { Provider } from 'react-redux';
 import { reduxReactRouter, ReduxRouter } from 'redux-router';
 
-// remove 300ms delays
-const injectTapEventPlugin = require('react-tap-event-plugin');
-injectTapEventPlugin();
-
 import getRoutes from './routes';
 import makeRouteHooksSafe from './helpers/makeRouteHooksSafe';
 
