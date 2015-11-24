@@ -4,6 +4,7 @@ import serialize from 'serialize-javascript';
 import DocumentMeta from 'react-document-meta';
 
 // remove 300ms delays on tap
+// TODO: Remove when this is supported in React 1.0
 const injectTapEventPlugin = require('react-tap-event-plugin');
 injectTapEventPlugin();
 
