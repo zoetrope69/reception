@@ -1684,6 +1684,9 @@ form li {
   height: 80px;
   animation: rainbowFill 10s infinite; }
 
+.instruction-message .icon--spin {
+  animation: iconSpin 1s infinite linear; }
+
 .instruction-message p {
   margin: .25em 0; }
 
