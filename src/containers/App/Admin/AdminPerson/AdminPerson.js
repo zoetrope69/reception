@@ -9,7 +9,6 @@ import { Alert, Icon, Loader, PersonForm } from 'components';
 
 @connect(
   state => ({
-    editing: state.people.editing,
     error: state.people.error,
     generating: state.passwords.generating,
     loaded: state.people.loaded,
@@ -21,9 +20,6 @@ import { Alert, Icon, Loader, PersonForm } from 'components';
   {...passwordActions, ...peopleActions, initializeWithKey })
 export default class AdminPerson extends Component {
   static propTypes = {
-    editing: PropTypes.object.isRequired,
-    editStart: PropTypes.func.isRequired,
-    editStop: PropTypes.func.isRequired,
     error: PropTypes.string,
     deletePeople: PropTypes.func,
     generatePasswordToken: PropTypes.func.isRequired,
@@ -48,16 +44,9 @@ export default class AdminPerson extends Component {
     };
   }
 
-  handleEdit(person) {
-    const { editStart } = this.props; // eslint-disable-line no-shadow
-    return () => {
-      editStart(String(person._id));
-    };
-  }
-
   render() {
 
-    const { editing, editStop, error, generating, loaded, loading, params, people, sent, user } = this.props;
+    const { error, generating, loaded, loading, params, people, sent, user } = this.props;
 
     let person = null;
     let profile = null;
@@ -79,26 +68,6 @@ export default class AdminPerson extends Component {
         <DocumentMeta title={(param ? 'Edit Person' : 'Profile') + ' | Innovation Space Reception App'} />
 
         <h1><Icon name="user" /> {param ? 'Edit Person' : 'Profile'}</h1>
-
-          <div className="buttons">
-            {!loading && loaded && person && (
-              editing[person._id] ? (
-                <button key={'edit' + person._id}
-                        style={{ float: 'right' }}
-                        className="button"
-                        onClick={() => editStop(person._id)}>
-                  <Icon name="trash" /> Cancel
-                </button>
-              ) : (
-                <button key={'edit' + person._id}
-                        style={{ float: 'right' }}
-                        className="button"
-                        onClick={::this.handleEdit(person)}>
-                  <Icon name="pencil" /> Edit
-                </button>
-              )
-            )}
-          </div>
 
       </div>
       </div>
@@ -166,7 +135,7 @@ export default class AdminPerson extends Component {
 
       {!loading && loaded && (
         person ? (
-          <PersonForm formKey={String(person._id)} key={String(person._id)} initialValues={person} editing={!editing[person._id]} profile={profile} />
+          <PersonForm formKey={String(person._id)} key={String(person._id)} initialValues={person} profile={profile} />
         ) : (
           <p>No person</p>
         )

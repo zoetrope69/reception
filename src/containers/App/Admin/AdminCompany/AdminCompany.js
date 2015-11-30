@@ -9,7 +9,6 @@ import { Alert, Icon, Loader, CompanyForm } from 'components';
 @connect(
   state => ({
     companies: state.companies.data,
-    editing: state.companies.editing,
     error: state.companies.error,
     loaded: state.companies.loaded,
     loading: state.companies.loading,
@@ -19,9 +18,6 @@ import { Alert, Icon, Loader, CompanyForm } from 'components';
 export default class AdminCompany extends Component {
   static propTypes = {
     companies: PropTypes.array,
-    editing: PropTypes.object.isRequired,
-    editStart: PropTypes.func.isRequired,
-    editStop: PropTypes.func.isRequired,
     error: PropTypes.string,
     initializeWithKey: PropTypes.func.isRequired,
     loaded: PropTypes.bool,
@@ -34,16 +30,9 @@ export default class AdminCompany extends Component {
     return dispatch(loadCompanies());
   }
 
-  handleEdit(company) {
-    const { editStart } = this.props; // eslint-disable-line no-shadow
-    return () => {
-      editStart(String(company._id));
-    };
-  }
-
   render() {
 
-    const { companies, editing, editStop, error, loaded, loading, params } = this.props;
+    const { companies, error, loaded, loading, params } = this.props;
 
     const company = companies.find(companiesItem => companiesItem._id === params.company);
 
@@ -57,26 +46,6 @@ export default class AdminCompany extends Component {
 
         <h1><Icon name="briefcase" /> Company</h1>
 
-        <div className="buttons">
-          {!loading && loaded && company && (
-            editing[company._id] ? (
-              <button key={'edit' + company._id}
-                      style={{ float: 'right' }}
-                      className="button"
-                      onClick={() => editStop(company._id)}>
-                <Icon name="trash" /> Cancel
-              </button>
-            ) : (
-              <button key={'edit' + company._id}
-                      style={{ float: 'right' }}
-                      className="button"
-                      onClick={::this.handleEdit(company)}>
-                <Icon name="pencil" /> Edit
-              </button>
-            )
-          )}
-        </div>
-
       </div>
       </div>
 
@@ -87,7 +56,7 @@ export default class AdminCompany extends Component {
 
         {!loading && loaded && (
           company ? (
-            <CompanyForm formKey={String(company._id)} key={String(company._id)} initialValues={company} editing={!editing[company._id]} />
+            <CompanyForm formKey={String(company._id)} key={String(company._id)} initialValues={company} />
           ) : (
           <div>
             <h1>Oops! No company</h1>

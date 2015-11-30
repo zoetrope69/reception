@@ -1,14 +1,11 @@
 const LOAD = 'reception/companies/LOAD';
 const LOAD_SUCCESS = 'reception/companies/LOAD_SUCCESS';
 const LOAD_FAIL = 'reception/companies/LOAD_FAIL';
-const EDIT_START = 'reception/companies/EDIT_START';
-const EDIT_STOP = 'reception/companies/EDIT_STOP';
 const SAVE = 'reception/companies/SAVE';
 const SAVE_SUCCESS = 'reception/companies/SAVE_SUCCESS';
 const SAVE_FAIL = 'reception/companies/SAVE_FAIL';
 
 const initialState = {
-  editing: {},
   error: '',
   loaded: false,
   saveError: {}
@@ -37,22 +34,6 @@ export default function reducer(state = initialState, action = {}) {
         data: null,
         error: action.error
       };
-    case EDIT_START:
-      return {
-        ...state,
-        editing: {
-          ...state.editing,
-          [action.id]: true
-        }
-      };
-    case EDIT_STOP:
-      return {
-        ...state,
-        editing: {
-          ...state.editing,
-          [action.id]: false
-        }
-      };
     case SAVE:
       return state; // 'saving' flag handled by redux-form
     case SAVE_SUCCESS:
@@ -61,10 +42,6 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         data: data,
-        editing: {
-          ...state.editing,
-          [action.id]: false
-        },
         saveError: {
           ...state.saveError,
           [action.id]: null
@@ -102,12 +79,4 @@ export function save(setting) {
       data: setting
     })
   };
-}
-
-export function editStart(id) {
-  return { type: EDIT_START, id };
-}
-
-export function editStop(id) {
-  return { type: EDIT_STOP, id };
 }

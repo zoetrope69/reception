@@ -41,7 +41,7 @@ export default function update(req) {
             reject(err);
           }
 
-          resolve(companyData);
+          resolve(company);
         });
 
       });

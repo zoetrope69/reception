@@ -19,13 +19,12 @@ import { Icon } from 'components';
 })
 export default class SettingCompanyForm extends Component {
   static propTypes = {
-    editStop: PropTypes.func.isRequired,
-    editing: PropTypes.bool,
     fields: PropTypes.object.isRequired,
     formKey: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
     pristine: PropTypes.bool.isRequired,
+    resetForm: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
     saveError: PropTypes.object,
     submitting: PropTypes.bool.isRequired,
@@ -39,8 +38,8 @@ export default class SettingCompanyForm extends Component {
   }
 
   render() {
-    const { editing, editStop, fields: {_id, _rev, visibility, location, name, email, website }, formKey, handleSubmit, invalid,
-      pristine, save, submitting, saveError: { [formKey]: saveError }, values } = this.props;
+    const { fields: {_id, _rev, visibility, location, name, email, website }, formKey, handleSubmit, invalid,
+      resetForm, pristine, save, submitting, saveError: { [formKey]: saveError }, values } = this.props;
 
     return (
       <div className={submitting ? 'saving' : ''}>
@@ -51,7 +50,7 @@ export default class SettingCompanyForm extends Component {
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <label htmlFor="visibility" className="control checkbox">
-            <input id="visibility" name="visibility" type="checkbox" {...visibility} disabled={editing} />
+            <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
             <Icon name="eye" /> Public
           </label>
@@ -60,7 +59,7 @@ export default class SettingCompanyForm extends Component {
 
         <div className={'input-wrapper' + (location.error && location.touched ? ' has-error' : '')}>
           <label htmlFor="location">Location</label>
-          <select name="location" {...location} disabled={editing} >
+          <select name="location" {...location} >
             {locations.map((locationItem, key) => <option value={locationItem} key={locationItem + '_' + key}>{locationItem}</option>)}
           </select>
           {location.error && location.touched && this.renderHelpText(location.error)}
@@ -68,19 +67,19 @@ export default class SettingCompanyForm extends Component {
 
         <div className={'input-wrapper' + (name.error && name.touched ? ' has-error' : '')}>
           <label htmlFor="name">Name</label>
-          <input name="name" type="text" placeholder="Coca-Cola" disabled={editing} {...name} />
+          <input name="name" type="text" placeholder="Coca-Cola" {...name} />
           {name.error && name.touched && this.renderHelpText(name.error)}
         </div>
 
         <div className={'input-wrapper' + (email.error && email.touched ? ' has-error' : '')}>
           <label htmlFor="email">Email</label>
-          <input name="email" type="email" placeholder="hello@example.com" disabled={editing} {...email} />
+          <input name="email" type="email" placeholder="hello@example.com" {...email} />
           {email.error && email.touched && this.renderHelpText(email.error)}
         </div>
 
         <div className={'input-wrapper' + (website.error && website.touched ? ' has-error' : '')}>
           <label htmlFor="website">Website</label>
-          <input name="website" type="text" placeholder="0123456789" disabled={editing} {...website} />
+          <input name="website" type="text" placeholder="0123456789" {...website} />
           {website.error && website.touched && this.renderHelpText(website.error)}
         </div>
 
@@ -95,15 +94,15 @@ export default class SettingCompanyForm extends Component {
                       }
                     })
                   )}
-                  disabled={editing || pristine || invalid || submitting}>
+                  disabled={pristine || invalid || submitting}>
             <Icon name={submitting ? 'sync' : 'checkmark-circle'} spin={submitting} /> {submitting ? 'Saving' : 'Save'}
           </button>
           {saveError && <div className="text-danger">{saveError}</div>}
 
           <button style={{ marginRight: '1em', float: 'right' }}
                   className="button button--warning"
-                  onClick={() => editStop(formKey)}
-                  disabled={editing || submitting}>
+                  onClick={resetForm}
+                  disabled={pristine || submitting}>
             <Icon name="cross-circle" /> Cancel
           </button>
 

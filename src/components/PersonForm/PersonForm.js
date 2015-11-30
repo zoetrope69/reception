@@ -21,14 +21,13 @@ import { Icon } from 'components';
 })
 export default class PersonForm extends Component {
   static propTypes = {
-    editing: PropTypes.bool,
-    editStop: PropTypes.func.isRequired,
     fields: PropTypes.object.isRequired,
     formKey: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
     pristine: PropTypes.bool.isRequired,
     profile: PropTypes.bool,
+    resetForm: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
     saveError: PropTypes.object,
     submitting: PropTypes.bool.isRequired,
@@ -43,8 +42,8 @@ export default class PersonForm extends Component {
   }
 
   render() {
-    const { editing, editStop, fields: { _id, _rev, visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
-      profile, pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
+    const { fields: { _id, _rev, visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
+      resetForm, profile, pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
 
     return (
       <div className={submitting ? 'saving' : ''}>
@@ -57,7 +56,7 @@ export default class PersonForm extends Component {
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <label htmlFor="visibility" className="control checkbox">
-            <input id="visibility" name="visibility" type="checkbox" disabled={editing} {...visibility} />
+            <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
             <Icon name="eye" /> Public
           </label>
@@ -67,7 +66,7 @@ export default class PersonForm extends Component {
         {user.role === 'admin' && (
         <div className={'input-wrapper' + (type.error && type.touched ? ' has-error' : '')}>
           <label htmlFor="type">Type</label>
-          <select name="type" {...type} disabled={editing} >
+          <select name="type" {...type} >
             {types.map(valueColor => <option value={valueColor} key={valueColor}>{valueColor}</option>)}
           </select>
           {type.error && type.touched && this.renderHelpText(type.error)}
@@ -82,19 +81,19 @@ export default class PersonForm extends Component {
 
         <div className={'input-wrapper' + (firstName.error && firstName.touched ? ' has-error' : '')}>
           <label htmlFor="firstName">First Name</label>
-          <input name="firstName" type="text" placeholder="Jane" disabled={editing} {...firstName} />
+          <input name="firstName" type="text" placeholder="Jane" {...firstName} />
           {firstName.error && firstName.touched && this.renderHelpText(firstName.error)}
         </div>
 
         <div className={'input-wrapper' + (lastName.error && lastName.touched ? ' has-error' : '')}>
           <label htmlFor="lastName">Last Name</label>
-          <input name="lastName" type="text" placeholder="Smith" disabled={editing} {...lastName} />
+          <input name="lastName" type="text" placeholder="Smith" {...lastName} />
           {lastName.error && lastName.touched && this.renderHelpText(lastName.error)}
         </div>
 
         <div className={'input-wrapper' + (phone.error && phone.touched ? ' has-error' : '')}>
           <label htmlFor="phone">Phone</label>
-          <input name="phone" type="text" placeholder="0123456789" disabled={editing} {...phone} />
+          <input name="phone" type="text" placeholder="0123456789" {...phone} />
           {phone.error && phone.touched && this.renderHelpText(phone.error)}
         </div>
 
@@ -110,16 +109,16 @@ export default class PersonForm extends Component {
 
               <div className={'input-wrapper input-wrapper--control' + (notificationSms.error && notificationSms.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-sms" className="control checkbox">
-                      <input type="checkbox" id="notify-sms" disabled={editing || !phone.value} {...notificationSms} />
+                      <input type="checkbox" id="notify-sms" {...notificationSms} disabled={!phone.value} />
                       <span className="control-indicator"></span>
-                      <Icon name="bubble" /> SMS {phone.value && ('to ' + phone.value)} {!phone.value && <small>(Need a phone number)</small>}
+                      <Icon name="bubble" /> SMS {phone.value && ('to ' + phone.value)} {!phone.value && <small>(Need a valid phone number)</small>}
                   </label>
                   {notificationSms.error && notificationSms.touched && this.renderHelpText(notificationSms.error)}
               </div>
 
               <div className={'input-wrapper input-wrapper--control' + (notificationEmail.error && notificationEmail.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-email" className="control checkbox">
-                      <input id="notify-email" name="notify-email" type="checkbox" disabled={editing} {...notificationEmail} />
+                      <input id="notify-email" name="notify-email" type="checkbox" {...notificationEmail} />
                       <span className="control-indicator"></span>
                       <Icon name="envelope" /> Email {email.value && ('to ' + email.value)}
                   </label>
@@ -140,15 +139,15 @@ export default class PersonForm extends Component {
                     }
                   })
                 )}
-                disabled={editing || pristine || invalid || submitting}>
+                disabled={pristine || invalid || submitting}>
           <Icon name={submitting ? 'sync' : 'checkmark-circle'} spin={submitting} /> {submitting ? 'Saving' : 'Save'}
         </button>
         {saveError && <div className="text-danger">{saveError}</div>}
 
         <button style={{ marginRight: '1em', float: 'right' }}
                 className="button button--warning"
-                onClick={() => editStop(formKey)}
-                disabled={editing || submitting}>
+                onClick={resetForm}
+                disabled={pristine || submitting}>
           <Icon name="cross-circle" /> Cancel
         </button>
 

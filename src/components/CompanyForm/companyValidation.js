@@ -6,6 +6,6 @@ const companyValidation = createValidator({
   visibility: [required],
   location: [required, oneOf(locations)],
   name: [required],
-  email: email
+  email: [email]
 });
 export default companyValidation;
