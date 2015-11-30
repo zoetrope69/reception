@@ -89,7 +89,10 @@ export default class AdminCompany extends Component {
           company ? (
             <CompanyForm formKey={String(company._id)} key={String(company._id)} initialValues={company} editing={!editing[company._id]} />
           ) : (
+          <div>
+            <h1>Oops! No company</h1>
             <p>No company</p>
+          </div>
           )
         )}
 

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import DocumentMeta from 'react-document-meta';
+import { logout } from 'redux/modules/auth';
 import * as passwordActions from 'redux/modules/passwords';
 import { checkPasswordToken } from 'redux/modules/passwords';
 import { Icon } from 'components';
@@ -15,13 +16,14 @@ import { Icon } from 'components';
     resetting: state.passwords.resetting,
     successful: state.passwords.successful
   }),
-  passwordActions)
+  { ...passwordActions, logout })
 export default class PasswordReset extends Component {
   static propTypes = {
     error: PropTypes.string,
     generateError: PropTypes.string,
-    location: PropTypes.object,
     isValidToken: PropTypes.bool,
+    location: PropTypes.object,
+    logout: PropTypes.func.isRequired,
     resetPassword: PropTypes.func,
     resetting: PropTypes.bool,
     successful: PropTypes.bool,
@@ -48,6 +50,7 @@ export default class PasswordReset extends Component {
     const passwordConfirm = this.refs.passwordConfirm.value;
 
     resetPassword(token, password, passwordConfirm, invite);
+    this.props.logout(); // force logout user
 
   }
 

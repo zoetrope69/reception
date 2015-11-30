@@ -1,33 +1,35 @@
 import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import * as createActions from 'redux/modules/create';
-import { Alert, Icon, Loader, PersonNewForm } from 'components';
+import { pushState } from 'redux-router';
+import * as createActions from 'redux/modules/createPeople';
+import { Alert, Icon, PersonNewForm } from 'components';
 
 @connect(
   state => ({
-    created: state.create.created,
-    creating: state.create.creating,
-    error: state.create.error
+    created: state.createPeople.created,
+    creating: state.createPeople.creating,
+    error: state.createPeople.error
   }),
-  { ...createActions})
+  { ...createActions, pushState})
 export default class AdminPersonNew extends Component {
   static propTypes = {
     created: PropTypes.bool,
-    createPerson: PropTypes.func,
+    create: PropTypes.func,
     creating: PropTypes.bool,
-    error: PropTypes.string
+    error: PropTypes.string,
+    pushState: PropTypes.func.isRequired
   }
 
   handleSubmit = (data) => {
-    const { createPerson } = this.props;
-    createPerson(data); // notify the person
+    const { create } = this.props;
+    create(data); // notify the person
+    this.props.pushState(null, '/people'); // redirect them back to the thank you message
   }
 
   render() {
 
-    const { created, creating, error } = this.props;
+    const { error } = this.props;
 
     return (
     <div>
@@ -44,17 +46,7 @@ export default class AdminPersonNew extends Component {
       <main className="page page--create-people">
       <div className="container">
 
-        {!created ? (
-        <div>
-          {creating && <Loader />}
-          <PersonNewForm onSubmit={::this.handleSubmit}/>
-        </div>
-        ) : (
-        <div>
-          <p>Person created!</p>
-          <Link to="/people">Go back to people...</Link>
-        </div>
-        )}
+        <PersonNewForm onSubmit={::this.handleSubmit}/>
 
       </div>
       </main>

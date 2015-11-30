@@ -9,7 +9,8 @@ const LOGOUT_SUCCESS = 'reception/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'reception/auth/LOGOUT_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  error: ''
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -42,7 +43,8 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         loggingIn: false,
-        user: action.result
+        user: action.result,
+        loginError: ''
       };
     case LOGIN_FAIL:
       return {
