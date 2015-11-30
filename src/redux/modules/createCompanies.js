@@ -38,12 +38,12 @@ export function isCreated(globalState) {
   return globalState.createCompanies && globalState.createCompanies.created;
 }
 
-export function create(person) {
+export function create(company) {
   return {
     types: [CREATE, CREATE_SUCCESS, CREATE_FAIL],
     promise: (client) => client.post('/create/companyCreate', {
       data: {
-        person
+        company
       }
     })
   };

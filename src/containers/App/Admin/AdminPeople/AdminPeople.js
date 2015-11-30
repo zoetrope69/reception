@@ -8,6 +8,7 @@ import { Alert, Icon, Loader, PersonList } from 'components';
 
 @connect(
   state => ({
+    createError: state.createPeople.error,
     error: state.people.error,
     loaded: state.people.loaded,
     loading: state.people.loading,
@@ -17,6 +18,7 @@ import { Alert, Icon, Loader, PersonList } from 'components';
   {...peopleActions })
 export default class AdminPeople extends Component {
   static propTypes = {
+    createError: PropTypes.string,
     error: PropTypes.string,
     loaded: PropTypes.bool,
     loading: PropTypes.bool,
@@ -30,7 +32,7 @@ export default class AdminPeople extends Component {
 
   render() {
 
-    const { error, loaded, loading, user } = this.props;
+    const { createError, error, loaded, loading, user } = this.props;
     let { people } = this.props;
 
     // if no people don't try filter
@@ -58,6 +60,7 @@ export default class AdminPeople extends Component {
       </div>
 
       {error && <Alert message={error} />}
+      {createError && <Alert message={createError} />}
 
       <main className="page page--people">
       <div className="container">

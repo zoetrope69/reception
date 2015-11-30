@@ -6,6 +6,7 @@ import { load as loadCompanies } from 'redux/modules/companies';
 import { Alert, Icon, Loader, CompanyList } from 'components';
 
 @connect(state => ({
+  createError: state.createCompanies.error,
   error: state.companies.error,
   loaded: state.companies.loaded,
   loading: state.companies.loading,
@@ -14,6 +15,7 @@ import { Alert, Icon, Loader, CompanyList } from 'components';
 }))
 export default class AdminCompanies extends Component {
   static propTypes = {
+    createError: PropTypes.string,
     error: PropTypes.string,
     loaded: PropTypes.bool,
     loading: PropTypes.bool,
@@ -27,7 +29,7 @@ export default class AdminCompanies extends Component {
 
   render() {
 
-    const { companies, error, loaded, loading, user } = this.props;
+    const { companies, createError, error, loaded, loading, user } = this.props;
 
     return (
     <div>
@@ -51,6 +53,7 @@ export default class AdminCompanies extends Component {
       </div>
 
       {error && <Alert message={error} />}
+      {createError && <Alert message={createError} />}
 
       <main className="page page--companies">
       <div className="container">

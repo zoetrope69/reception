@@ -62,7 +62,7 @@ export default class personNewForm extends Component {
             <label htmlFor="company">Company</label>
             {!loading && loaded && (
             <select name="company" {...company}>
-              <option value="none"></option>
+              <option value="none">Pick a company...</option>
               {companies.map((companyItem, key) => <option value={companyItem._id} key={companyItem._id + '_' + key}>{companyItem.name}</option>)}
             </select>
             )}
