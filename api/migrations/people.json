@@ -6,7 +6,7 @@
     "visibility": true,
     "type": "Hot Desk",
     "role": "owner",
-    "password": "$2a$10$/EGKhNkqnSdVK.w/.gr5nuZb9960BtctcL6vUCXYj.xyNfyKQlRae",
+    "password": "$2a$10$9jjCDGiq/ZMVgIxYDoppqeZST3ZknhU57RUJXw917apTv.tELv1V2",
     "registered": true,
     "firstName": "Zac",
     "lastName": "Colley",
@@ -14,24 +14,7 @@
     "email": "zac@rosedigital.co.uk",
     "phone": "07534317671",
     "notificationSms": false,
-    "notificationEmail": false,
-    "image": "zac.jpeg"
-  },
-  {
-    "_id": "peter-jones",
-    "resource": "person",
-    "visibility": true,
-    "registered": false,
-    "role": "member",
-    "type": "Hot Desk",
-    "firstName": "Peter",
-    "lastName": "Jones",
-    "title": "Lad",
-    "email": "peter@rosedigital.co.uk",
-    "phone": "01234567891",
-    "notificationSms": false,
-    "notificationEmail": false,
-    "image": "peter.jpeg"
+    "notificationEmail": false
   },
   {
     "_id": "andy-mew",
@@ -44,10 +27,9 @@
     "firstName": "Andy",
     "lastName": "Mew",
     "title": "Building Manager",
-    "email": "andy@example.com",
+    "email": "andy@innovationspace.org.uk",
     "phone": "0123456789",
     "notificationSms": false,
-    "notificationEmail": false,
-    "image": "andy.jpeg"
+    "notificationEmail": false
   }
 ]

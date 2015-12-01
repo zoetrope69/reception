@@ -42,7 +42,6 @@ db.exists((err, exists) => {
 
   } else {
 
-
     console.log('==> 📦  Database does not exist...' );
     console.log('   ... Creating database: http://localhost:5984/_utils');
 
