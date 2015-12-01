@@ -515,18 +515,27 @@ body {
 .admin header .logo {
   float: left;
   width: 20%; }
+  @media (max-width: 700px) {
+    .admin header .logo {
+      width: 100%; } }
 
 .admin header .logo img {
   display: block;
   max-height: 2em;
   margin: 1em;
   margin-left: 2.5em; }
+  @media (max-width: 700px) {
+    .admin header .logo img {
+      margin: 1em auto; } }
 
 .admin header nav {
   overflow: hidden;
   /* clearfix */
   float: left;
   width: 80%; }
+  @media (max-width: 700px) {
+    .admin header nav {
+      width: 100%; } }
 
 .admin header nav .nav-link {
   float: right;
@@ -536,6 +545,9 @@ body {
   color: #f7d5ca;
   background: rgba(255, 255, 255, 0);
   transition: background .25s; }
+  @media (max-width: 700px) {
+    .admin header nav .nav-link {
+      width: 50%; } }
 
 .admin header nav .nav-link:hover {
   color: #fef8f6; }

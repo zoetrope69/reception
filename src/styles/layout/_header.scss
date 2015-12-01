@@ -50,6 +50,10 @@
 .admin header .logo{
   float: left;
   width: 20%;
+  
+  @media (max-width: $break-small){
+    width: 100%;
+  }
 }
 
 .admin header .logo img{
@@ -57,12 +61,20 @@
   max-height: 2em;
   margin: 1em;
   margin-left: 2.5em;
+
+  @media (max-width: $break-small){
+    margin: 1em auto;
+  }
 }
 
 .admin header nav{
   overflow: hidden; /* clearfix */
   float: left;
   width: 80%;
+
+  @media (max-width: $break-small){
+    width: 100%;
+  }
 }
 
 .admin header nav .nav-link{
@@ -75,6 +87,10 @@
   background: rgba($colour-bg, 0);
 
   transition: background .25s;
+
+  @media (max-width: $break-small){
+    width: (100%/2);
+  }
 }
 
 .admin header nav .nav-link:hover{
