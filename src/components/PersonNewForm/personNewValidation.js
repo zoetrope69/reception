@@ -1,9 +1,9 @@
 import memoize from 'lru-memoize';
-import { createValidator, required, maxLength, email } from 'utils/validation';
+import { createValidator, required, maxLength, minLength, email } from 'utils/validation';
 
 const AdminPersonNewValidation = createValidator({
-  firstName: [required, maxLength(30)],
-  lastName: [required, maxLength(30)],
+  firstName: [required, minLength(1), maxLength(30)],
+  lastName: [required, minLength(1), maxLength(30)],
   email: [required, email]
 });
 export default memoize(10)(AdminPersonNewValidation);

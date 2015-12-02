@@ -41,7 +41,7 @@ export default class AdminPersonNew extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
+      {error && <Alert message={error} type="warning" />}
 
       <main className="page page--create-people">
       <div className="container">

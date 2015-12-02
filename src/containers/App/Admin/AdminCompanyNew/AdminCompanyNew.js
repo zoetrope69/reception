@@ -41,7 +41,7 @@ export default class AdminCompanyNew extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
+      {error && <Alert message={error} type="warning" />}
 
       <main className="page page--create-companies">
       <div className="container">

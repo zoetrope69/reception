@@ -49,7 +49,7 @@ export default class AdminCompany extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
+      {error && <Alert message={error} type="warning" />}
 
       <main className="page page--company">
       <div className="container">

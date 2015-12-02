@@ -109,6 +109,32 @@
   text-overflow: ellipsis;
 }
 
+.person--admin .person__labels{
+  float: left;
+  width: 50%;
+}
+
+.person--admin .person__label{
+  margin-left: .25em;
+  float: right;
+  padding: .25em;
+
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.person--admin .person__label--hidden{
+  color: grey;
+}
+
+.person--admin .person__label--invited{
+  color: $colour-success;
+}
+
+.person--admin .person__label--awaiting-invite{
+  color: purple;
+}
+
 .person__name .label{
   display: inline-block;
   padding: 0.33333rem 0.5rem;

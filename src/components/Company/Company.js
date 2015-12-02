@@ -16,18 +16,27 @@ export default class Company extends Component {
 
     return (
       <Link to={`/${path}/${company._id}`} className={'company' + (admin ? ' company--admin' : '')}>
+
         <span className="company__name">
           {company.name}
-
-          {admin && !JSON.parse(company.visibility) && (
-            <Icon name="eye" />
-          )}
         </span>
+
+        {admin && (
+          <span className="company__labels">
+            {!company.visibility && (
+              <span className="company__label company__label--hidden">
+                <Icon name="eye" /> Hidden
+              </span>
+            )}
+          </span>
+        )}
+
         {company.image && (
         <div className="company__logo">
           <img src={`/images/company/${company.image}`} alt={`${company.name}'s logo`} />
         </div>
         )}
+
       </Link>
     );
   }

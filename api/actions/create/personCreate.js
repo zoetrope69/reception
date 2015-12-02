@@ -65,12 +65,14 @@ export default function personCreate(req) {
             // add user to company
             company.people.push(personData._id);
 
-            db.merge(company._id, company, (err, companyData) => {
+            db.merge(company._id, company, (err) => {
               if (err) {
                 reject(err);
               }
 
-              resolve(companyData);
+              console.log('personData', personData);
+
+              resolve(`Cool, ${person.firstName}, has been created!`);
             });
 
           });
@@ -95,12 +97,12 @@ export default function personCreate(req) {
             // add user to company
             company.people.push(personData._id);
 
-            db.merge(company._id, company, (err, companyData) => {
+            db.merge(company._id, company, (err) => {
               if (err) {
                 reject(err);
               }
 
-              resolve(companyData);
+              resolve(`Cool, ${person.firstName}, has been created!`);
             });
 
           });

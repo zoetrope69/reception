@@ -6,21 +6,23 @@ import { load as loadCompanies } from 'redux/modules/companies';
 import { Alert, Icon, Loader, CompanyList } from 'components';
 
 @connect(state => ({
+  companies: state.companies.data,
   createError: state.createCompanies.error,
   error: state.companies.error,
   loaded: state.companies.loaded,
   loading: state.companies.loading,
-  companies: state.companies.data,
-  user: state.auth.user,
+  message: state.createCompanies.message,
+  user: state.auth.user
 }))
 export default class AdminCompanies extends Component {
   static propTypes = {
+    companies: PropTypes.array,
     createError: PropTypes.string,
     error: PropTypes.string,
     loaded: PropTypes.bool,
     loading: PropTypes.bool,
-    user: PropTypes.object,
-    companies: PropTypes.array
+    message: PropTypes.string,
+    user: PropTypes.object
   }
 
   static fetchDataDeferred(getState, dispatch) {
@@ -29,7 +31,9 @@ export default class AdminCompanies extends Component {
 
   render() {
 
-    const { companies, createError, error, loaded, loading, user } = this.props;
+    const { companies, createError, error, loaded, loading, message, user } = this.props;
+
+    console.log(message);
 
     return (
     <div>
@@ -52,8 +56,10 @@ export default class AdminCompanies extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
-      {createError && <Alert message={createError} />}
+      {error && <Alert message={error} type="warning" />}
+      {createError && <Alert message={createError} type="warning" />}
+
+      {message && <Alert message={message} type="success" />}
 
       <main className="page page--companies">
       <div className="container">

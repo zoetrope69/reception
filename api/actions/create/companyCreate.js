@@ -60,12 +60,12 @@ export default function companyCreate(req) {
           // add user to company
           company.people.push(personData._id);
 
-          db.save(company, (err, companyData) => {
+          db.save(company, (err) => {
             if (err) {
               reject(err);
             }
 
-            resolve(companyData);
+            resolve(`Nice. ${company.name}, has been created! With ${person.firstName} as their main contact!`);
           });
 
         });

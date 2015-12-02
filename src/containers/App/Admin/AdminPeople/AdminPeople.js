@@ -12,8 +12,9 @@ import { Alert, Icon, Loader, PersonList } from 'components';
     error: state.people.error,
     loaded: state.people.loaded,
     loading: state.people.loading,
+    message: state.createPeople.message,
     people: state.people.data,
-    user: state.auth.user,
+    user: state.auth.user
   }),
   {...peopleActions })
 export default class AdminPeople extends Component {
@@ -22,8 +23,9 @@ export default class AdminPeople extends Component {
     error: PropTypes.string,
     loaded: PropTypes.bool,
     loading: PropTypes.bool,
-    user: PropTypes.object,
-    people: PropTypes.array
+    message: PropTypes.string,
+    people: PropTypes.array,
+    user: PropTypes.object
   }
 
   static fetchDataDeferred(getState, dispatch) {
@@ -32,7 +34,7 @@ export default class AdminPeople extends Component {
 
   render() {
 
-    const { createError, error, loaded, loading, user } = this.props;
+    const { createError, error, loaded, loading, message, user } = this.props;
     let { people } = this.props;
 
     // if no people don't try filter
@@ -59,8 +61,10 @@ export default class AdminPeople extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
-      {createError && <Alert message={createError} />}
+      {error && <Alert message={error} type="warning" />}
+      {createError && <Alert message={createError} type="warning" />}
+
+      {message && <Alert message={message} type="success" />}
 
       <main className="page page--people">
       <div className="container">

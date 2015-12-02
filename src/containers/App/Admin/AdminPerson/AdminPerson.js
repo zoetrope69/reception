@@ -6,6 +6,7 @@ import * as peopleActions from 'redux/modules/people';
 import { load as loadPeople } from 'redux/modules/people';
 import { initializeWithKey } from 'redux-form';
 import { Alert, Icon, Loader, PersonForm } from 'components';
+import { NotFound } from 'containers';
 
 @connect(
   state => ({
@@ -54,6 +55,11 @@ export default class AdminPerson extends Component {
 
     if (param) { // url param use that
       person = people.find(peopleItem => peopleItem._id === params.person);
+
+      if (!person) {
+        return <NotFound />;
+      }
+
     }else if (user && typeof user._id !== 'undefined') { // otherwise check the session
       person = people.find(peopleItem => peopleItem._id === user._id);
       profile = true;
@@ -72,7 +78,7 @@ export default class AdminPerson extends Component {
       </div>
       </div>
 
-      {error && <Alert message={error} />}
+      {error && <Alert message={error} type="warning" />}
 
       {!profile && !loading && loaded && !sent && !person.invited && !person.registered && (
       <div className="alert alert--info">
@@ -113,7 +119,7 @@ export default class AdminPerson extends Component {
       )}
 
       {!profile && !loading && loaded && !sent && person.invited && (
-      <div className="alert alert--info">
+      <div className="alert alert--success">
       <div className="container">
 
         <Icon name="thumbs-up" /> They've been invited!

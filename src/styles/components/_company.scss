@@ -29,6 +29,24 @@
   font-size: 1.5em;
 }
 
+.company--admin .company__labels{
+  float: left;
+  width: 15%;
+}
+
+.company--admin .company__label{
+  margin-left: .25em;
+  float: right;
+  padding: .25em;
+
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.company--admin .company__label--hidden{
+  color: grey;
+}
+
 .company__logo{
   float: left;
   width: 35%;

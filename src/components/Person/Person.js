@@ -49,11 +49,26 @@ export default class Person extends Component {
 
           <span className="person__name">
             {person.firstName} {person.lastName} {labelNode}
+          </span>
 
-            {!JSON.parse(person.visibility) && (
-              <Icon name="eye" />
+          <span className="person__labels">
+            {!person.visibility && (
+              <span className="person__label person__label--hidden">
+                <Icon name="eye" /> Hidden
+              </span>
+            )}
+            {person.invited && (
+              <span className="person__label person__label--invited">
+                <Icon name="thumbs-up" /> Invited
+              </span>
+            )}
+            {!person.invited && !person.registered && (
+              <span className="person__label person__label--awaiting-invite">
+                <Icon name="envelope" /> Awaiting invite
+              </span>
             )}
           </span>
+
         </span>
 
       </Link>
