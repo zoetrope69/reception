@@ -7,6 +7,7 @@ export default function sendEmail(subject, text, email, name, callback) {
     message: {
       to: [{ email, name }],
       from_email: 'reception@innovationspace.org.uk',
+      from_name: 'Innovation Space Reception',
       subject,
       text
     }
