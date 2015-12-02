@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import DocumentMeta from 'react-document-meta';
 import { connect } from 'react-redux';
 import { logout } from 'redux/modules/auth';
-import { Link } from 'react-router';
 import { Icon } from 'components';
 
 @connect(
@@ -34,18 +33,24 @@ export default class Admin extends Component {
       </div>
 
       <main className="page page--welcome">
-      <div className="container">
+      <div className="container" style={{ maxWidth: '40em', fontSize: '1.25em' }}>
 
         {user && typeof user.firstName !== 'undefined' && (
           <h1>Hey, {user.firstName}!</h1>
         )}
 
-        <p>We're just starting with this app, for now you can <Link to="/profile">update your profile</Link>.</p>
-        <p>This app is an work in progress, please do send us your feedback.</p>
+        <p>This app is an work in progress, so everyone's feedback is really welcome!.</p>
 
-        <button className="button" onClick={::this.handleLogout}>
-          <Icon name="exit" /> Sign Out
-        </button>
+        <p>We're looking to grow this app based on everyone's feedback, so <a href="mailto:receptionfeedback@rosedigital.co.uk">please do tell us</a>!</p>
+
+        <h2 style={{ marginBottom: '.5em', fontWeight: 400 }}>Things on the roadmap:</h2>
+
+        <ul style={{ marginBottom: '1em', listStyle: 'inside' }}>
+          <li>Profile images and company logos</li>
+          <li>Multiple email addresses and phone numbers</li>
+          <li>Improved company pages on the app!</li>
+          <li>And more...</li>
+        </ul>
 
       </div>
       </main>
