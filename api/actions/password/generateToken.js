@@ -69,6 +69,7 @@ export default function generateToken(req) {
             subject += "Here's your invite to the Innovation Space's reception app system.";
 
             message += "\n\r\nYou've been invited to the Innovation Space's reception app system.";
+            message += '\n\r\nLet visitors notify you when they arrive in reception!';
             message += '\n\r\nSign up here: ';
           } else {
             message += '\n\r\nReset password now: ';
