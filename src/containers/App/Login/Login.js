@@ -1,22 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import {connect} from 'react-redux';
-import { Icon } from 'components';
+import { Alert, Icon } from 'components';
 import DocumentMeta from 'react-document-meta';
 import * as authActions from 'redux/modules/auth';
 
 @connect(
   state => ({
-    user: state.auth.user,
-    error: state.auth.loginError
+    error: state.auth.loginError,
+    passwordSuccessful: state.passwords.successful,
+    user: state.auth.user
   }),
   authActions)
 export default class Login extends Component {
   static propTypes = {
-    user: PropTypes.object,
+    error: PropTypes.string,
     login: PropTypes.func,
     logout: PropTypes.func,
-    error: PropTypes.string
+    passwordSuccessful: PropTypes.bool,
+    user: PropTypes.object
   }
 
   handleSubmit(event) {
@@ -39,13 +41,17 @@ export default class Login extends Component {
 
   render() {
 
-    const { error, logout, user } = this.props;
+    const { error, logout, passwordSuccessful, user } = this.props;
     const logoImage = require('./logo.png');
 
     return (
+    <div>
+      {passwordSuccessful && <Alert message="Yes! Go ahead and log in." type="success" />}
+
       <div className="page page--sign-in">
 
         <DocumentMeta title="Sign-in | Innovation Space - Reception App"/>
+
 
         <img style={{ margin: '0 auto', display: 'block', width: '50%' }} src={logoImage} alt="Logo" />
 
@@ -107,6 +113,8 @@ export default class Login extends Component {
         </div>
         }
       </div>
+
+    </div>
     );
   }
 }

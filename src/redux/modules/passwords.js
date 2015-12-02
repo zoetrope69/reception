@@ -109,12 +109,12 @@ export function generatePasswordToken(email, invite) {
   };
 }
 
-export function resetPassword(token, password, passwordConfirm) {
+export function resetPassword(token, password, passwordConfirm, invite) {
   return {
     types: [RESET, RESET_SUCCESS, RESET_FAIL],
     promise: (client) => client.post('/password/reset', {
       data: {
-        token, password, passwordConfirm
+        token, password, passwordConfirm, invite
       }
     })
   };
