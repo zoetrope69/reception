@@ -142,33 +142,33 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(new LocalStrategy((username, password, done) => {
-  // asynchronous verification, for effect...
-  process.nextTick(() => {
-
   // find the user by username
-    findByEmail(username, (err, user) => {
+  findByEmail(username, (err, user) => {
 
-      if (err) {
-        return done(err);
+    if (err) {
+      return done(err);
+    }
+
+    if (!user) {
+      return done(null, false, { message: `Sorry! Couldn't find any user with that email (${username}).` });
+    }
+
+    // check to see if they've only been invited
+    if (!user.password && user.invited) {
+      return done(null, false, { message: `Oops! You need to signup via your email ${username}` });
+    }
+
+    comparePassword(password, user.password, (passwordErr, isPasswordMatch) => {
+
+      if (passwordErr) {
+        return done(passwordErr);
       }
 
-      if (!user) {
-        return done(null, false, { message: `Sorry! Couldn't find any user with that email (${username}).` });
+      if (!isPasswordMatch) {
+        return done(null, false, { message: `Sorry! That password isn't right.` });
       }
 
-      comparePassword(password, user.password, (passwordErr, isPasswordMatch) => {
-
-        if (passwordErr) {
-          return done(passwordErr);
-        }
-
-        if (!isPasswordMatch) {
-          return done(null, false, { message: `Sorry! That password isn't right.` });
-        }
-
-        return done(null, user);
-
-      });
+      return done(null, user);
 
     });
 
