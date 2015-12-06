@@ -52,12 +52,30 @@ export default (store) => {
     }
   };
 
-  const requireAdminOrOwner = (nextState, replaceState, callback) => {
+  const requireOwner = (nextState, replaceState, callback) => {
     function checkAuth() {
       const { auth: { user } } = store.getState();
-      if (!user && (user.role !== 'admin' || user.olre !== 'owner')) {
+      if (!user || (user.role !== 'admin' && user.role !== 'owner')) {
         // oops, not logged in, so can't be here!
-        replaceState(null, '/login');
+        replaceState(null, '/');
+      }
+      callback();
+    }
+
+    if (!isAuthLoaded(store.getState())) {
+      store.dispatch(loadAuth()).then(checkAuth);
+    } else {
+      checkAuth();
+    }
+  };
+
+  const requireAdmin = (nextState, replaceState, callback) => {
+    function checkAuth() {
+      const { auth: { user } } = store.getState();
+      console.log(!user || (user.role !== 'admin'));
+      if (!user || (user.role !== 'admin')) {
+        // oops, not logged in, so can't be here!
+        replaceState(null, '/');
       }
       callback();
     }
@@ -84,9 +102,11 @@ export default (store) => {
       <Route component={Admin} onEnter={requireLogin}>
         <Route path="home" component={AdminHome} />
 
-        <Route onEnter={requireAdminOrOwner}>
-          <Route path="companies" component={AdminCompanies} />
-          <Route path="company/new" component={AdminCompanyNew} />
+        <Route onEnter={requireOwner}>
+          <Route onEnter={requireAdmin}>
+            <Route path="companies" component={AdminCompanies} />
+            <Route path="company/new" component={AdminCompanyNew} />
+          </Route>
           <Route path="company/:company" component={AdminCompany} />
           <Route path="people" component={AdminPeople} />
           <Route path="person/new" component={AdminPersonNew} />
