@@ -50,7 +50,6 @@ export default class PasswordReset extends Component {
     const passwordConfirm = this.refs.passwordConfirm.value;
 
     resetPassword(token, password, passwordConfirm, invite);
-    this.props.logout(); // force logout user
 
   }
 
@@ -87,7 +86,7 @@ export default class PasswordReset extends Component {
           </div>
 
           <div className="input-wrapper">
-            <Link to="/">Log in!</Link>
+            <Link to="/" onClick={this.props.logout()}>Log in!</Link>
           </div>
         </form>
         )}
