@@ -55,6 +55,7 @@ export default class PersonForm extends Component {
 
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
+          <p>This will toggle whether you're publically shown on the iPad in the reception.</p>
           <label htmlFor="visibility" className="control checkbox">
             <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
@@ -106,6 +107,7 @@ export default class PersonForm extends Component {
           <div className="input-notifications">
 
               <p>Choose how you'd like to be notified, or not at all!</p>
+              <p>On the iPad in the reception your visitors will get a button to notify. This automatically sends you a message via the options below!</p>
 
               <div className={'input-wrapper input-wrapper--control' + (notificationSms.error && notificationSms.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-sms" className="control checkbox">
