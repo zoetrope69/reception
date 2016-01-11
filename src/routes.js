@@ -72,7 +72,6 @@ export default (store) => {
   const requireAdmin = (nextState, replaceState, callback) => {
     function checkAuth() {
       const { auth: { user } } = store.getState();
-      console.log(!user || (user.role !== 'admin'));
       if (!user || (user.role !== 'admin')) {
         // oops, not logged in, so can't be here!
         replaceState(null, '/');
