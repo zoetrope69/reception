@@ -28,17 +28,26 @@ export default class FrontPeople extends Component {
     pushState: PropTypes.func.isRequired
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { notifying, notified } = nextProps;
+    console.log('componentWillReceiveProps', nextProps);
+    console.log('notifying', notifying);
+    console.log('notified', notified);
+    if (notified) {
+      this.props.pushState(null, '/front/reception'); // redirect them back to the thank you message
+    }
+  }
+
   handleNotification(person) {
     const { notify } = this.props;
     return () => {
       notify(person); // notify the person
-      this.props.pushState(null, '/front/reception'); // redirect them back to the thank you message
     };
   }
 
   render() {
 
-    const { loaded, loading, notifying, people, params } = this.props;
+    const { error, loaded, loading, notifying, people, params } = this.props;
     const person = people.find(personItem => personItem._id === params.person);
 
     let labelNode;
@@ -82,6 +91,11 @@ export default class FrontPeople extends Component {
                   <Icon name={(notifying) ? 'sync' : 'alarm'} spin={notifying} /> {(notifying) ? 'Notifying...' : 'Notify'}
                 </button>
                 <span style={{ opacity: 0.75, display: 'block', textAlign: 'center' }}>This will notify them you're here</span>
+                {error &&
+                  <span style={{ margin: '0 auto', width: '50%', color: 'red', opacity: 0.75, fontWeight: 500, display: 'block', textAlign: 'center' }}>
+                    {error}... :¬( <br /> Something went wrong notifying them. You can try again or contact them with their details below...
+                  </span>
+                }
               </div>
               )}
 

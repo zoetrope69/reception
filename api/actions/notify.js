@@ -39,33 +39,63 @@ export default function notify(req) {
       const smsToSend = person.phone;
       const name = person.firstName;
 
+      // if the person shouldn't be notified then fail the notification
+      if (!person.notificationEmail && !person.notificationSms) {
+        return reject('User has not notification set so shouldnt be notified');
+      }
+
+      const promises = [];
+
       if (person.notificationEmail) {
 
-        sendEmail('👋 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
-          if (emailErr) {
-            return reject(emailErr);
-          }
+        promises.push(
+          new Promise((resolvePromise, rejectPromise) => {
 
-          console.log('emailMessage', emailMessage);
+            sendEmail('👋 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
+              if (emailErr) {
+                // TODO: log error
+                return rejectPromise('Failed to send a notification to ' + emailToSend);
+              }
 
-          return resolve(emailToSend);
-        });
+              console.log('emailMessage', emailMessage);
+
+              return resolvePromise(emailToSend);
+            });
+
+          })
+        );
 
       }
 
       if (person.notificationSms) {
 
-        sendSms('👋 ' + message, smsToSend, (smsErr, smsMessage) => {
-          if (smsErr) {
-            return reject(smsErr);
-          }
+        promises.push(
+          new Promise((resolvePromise, rejectPromise) => {
 
-          console.log('smsMessage', smsMessage);
+            sendSms('👋 ' + message, smsToSend, (smsErr, smsMessage) => {
+              if (smsErr) {
+                // TODO: log error
+                return rejectPromise('Failed to send a notification to ' + smsToSend);
+              }
 
-          return resolve(smsToSend);
-        });
+              console.log('smsMessage', smsMessage);
+
+              return resolvePromise(smsToSend);
+            });
+
+          })
+        );
 
       }
+
+      Promise.all(promises)
+        .then((result) => {
+          console.log('result', result);
+          resolve(result);
+        }, (reason) => {
+          console.log('reason', reason);
+          reject(reason);
+        });
 
     });
 
