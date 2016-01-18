@@ -7,7 +7,7 @@
       "exec_mode": "cluster_mode",
       "env": {
         "NODE_ENV": "production",
-        "PORT": 5225,
+        "PORT": 8080,
         "APIPORT": 3030,
         "NODE_PATH": "./src"
       }
