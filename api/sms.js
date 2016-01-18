@@ -15,10 +15,10 @@ export default function sendSMS(text, number, callback) {
   }, (error, message) => {
 
     if (error) {
-      callback(error.message, null);
-    } else {
-      callback(null, message);
+      return callback(error.message, null);
     }
+
+    return callback(null, message);
 
   });
 

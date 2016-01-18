@@ -11,13 +11,19 @@ export default function sendEmail(subject, text, email, name, callback) {
       subject,
       text
     }
-  }, (err, response) => {
+  }, (err, responses) => {
+
+    const response = responses[0];
 
     if (err) {
-      callback(JSON.stringify(err), null);
+      return callback(JSON.stringify(err), null);
     }
 
-    callback(null, response);
+    if (response.status === 'rejected') {
+      return callback(response.reject_reason, null);
+    }
+
+    return callback(null, response);
 
   });
 
