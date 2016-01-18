@@ -1,0 +1,27 @@
+{
+  "apps": [
+    {
+      "name": "reception",
+      "script": "./bin/server.js",
+      "instances": 0,
+      "exec_mode": "cluster_mode",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 5225,
+        "APIPORT": 3030,
+        "NODE_PATH": "./src"
+      }
+    },
+    {
+      "name": "reception_api",
+      "script": "./bin/api.js",
+      "instances": 0,
+      "exec_mode": "cluster_mode",
+      "env": {
+        "NODE_ENV": "production",
+        "APIPORT": 3030,
+        "NODE_PATH": "./api"
+      }
+    }
+  ]
+}
