@@ -21,10 +21,16 @@ export default class AdminPersonNew extends Component {
     pushState: PropTypes.func.isRequired
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { created } = nextProps;
+    if (created) {
+      this.props.pushState(null, '/people'); // redirect them back to the thank you message
+    }
+  }
+
   handleSubmit = (data) => {
     const { create } = this.props;
     create(data); // notify the person
-    this.props.pushState(null, '/people'); // redirect them back to the thank you message
   }
 
   render() {
