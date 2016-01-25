@@ -42,14 +42,11 @@ export default class PersonForm extends Component {
   }
 
   render() {
-    const { fields: { _id, _rev, visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
+    const { fields: { visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
       resetForm, profile, pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
 
     return (
       <div className={submitting ? 'saving' : ''}>
-
-        <input type="hidden" value={_id} />
-        <input type="hidden" value={_rev} />
 
         <h3 className="input-header">Main details</h3>
 

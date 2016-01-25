@@ -38,14 +38,11 @@ export default class SettingCompanyForm extends Component {
   }
 
   render() {
-    const { fields: {_id, _rev, visibility, location, name, email, website }, formKey, handleSubmit, invalid,
+    const { fields: {visibility, location, name, email, website }, formKey, handleSubmit, invalid,
       resetForm, pristine, save, submitting, saveError: { [formKey]: saveError }, values } = this.props;
 
     return (
       <div className={submitting ? 'saving' : ''}>
-
-        <input type="hidden" value={_id} />
-        <input type="hidden" value={_rev} />
 
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
