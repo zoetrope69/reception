@@ -29,7 +29,7 @@ export default class FrontPeople extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { notifying, notified } = nextProps;
+    const { notified } = nextProps;
     if (notified) {
       this.props.pushState(null, '/front/reception'); // redirect them back to the thank you message
     }
