@@ -33,8 +33,6 @@ export default class AdminCompanies extends Component {
 
     const { companies, createError, error, loaded, loading, message, user } = this.props;
 
-    console.log(message);
-
     return (
     <div>
 

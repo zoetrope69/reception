@@ -30,9 +30,6 @@ export default class FrontPeople extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { notifying, notified } = nextProps;
-    console.log('componentWillReceiveProps', nextProps);
-    console.log('notifying', notifying);
-    console.log('notified', notified);
     if (notified) {
       this.props.pushState(null, '/front/reception'); // redirect them back to the thank you message
     }
