@@ -15,8 +15,8 @@ import { Icon } from 'components';
 )
 @reduxForm({
   form: 'person',
-  fields: ['_id', '_rev', 'visibility', 'type', 'firstName',
-           'lastName', 'email', 'phone', 'notificationSms', 'notificationEmail' ],
+  fields: ['_id', '_rev', 'visibility', 'type', 'firstName', 'lastName',
+          'email', 'phone', 'notificationSms', 'notificationEmail'],
   validate: personValidation
 })
 export default class PersonForm extends Component {

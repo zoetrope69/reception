@@ -69,7 +69,8 @@ export default class FrontPeople extends Component {
           <div className="person person--page">
 
             <div className="person__image">
-              <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
+              <img src={person.image ? person.image : '/images/person/default.png'}
+                    alt={`Picture of ${person.firstName} ${person.lastName}`} />
             </div>
 
             <div className="person__details">

@@ -30,7 +30,6 @@ export default function companyCreate(req) {
     person.notificationSms = false;
     person.type = 'Hot Desk';
     person.visibility = false;
-    person.image = 'default.png';
 
     db.view('people/byEmail', { key: person.email }, (peopleErr, peopleData) => {
       if (peopleErr) {

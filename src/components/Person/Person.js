@@ -42,7 +42,8 @@ export default class Person extends Component {
       <Link to={'/person/' + person._id} className="person person--admin">
 
         <span className="person__image">
-          <img src={'/images/person/default.png'} alt={'Picture of ' + person.firstName + ' ' + person.lastName} />
+          <img src={person.image ? person.image : '/images/person/default.png'}
+                alt={`Picture of ${person.firstName} ${person.lastName}`} />
         </span>
 
         <span className="person__details">
@@ -76,7 +77,8 @@ export default class Person extends Component {
       <Link to={`/front/person/${person._id}`} className="person">
 
         <div className="person__image">
-          <img src="/images/person/default.png" alt={`Picture of ${person.firstName} ${person.lastName}`} />
+          <img src={person.image ? person.image : '/images/person/default.png'}
+                alt={`Picture of ${person.firstName} ${person.lastName}`} />
         </div>
 
         <div className="person__details">

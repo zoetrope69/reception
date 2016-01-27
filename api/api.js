@@ -53,7 +53,7 @@ app.use((req, res, next) => {
   next(); // otherwise continue
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 // -- error handling
 

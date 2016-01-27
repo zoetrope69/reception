@@ -11,6 +11,7 @@ export CompanyForm from './CompanyForm/CompanyForm';
 export CompanyList from './CompanyList/CompanyList';
 export CompanyNewForm from './CompanyNewForm/CompanyNewForm';
 export Icon from './Icon/Icon';
+export ImageForm from './ImageForm/ImageForm';
 export Loader from './Loader/Loader';
 export Person from './Person/Person';
 export PersonForm from './PersonForm/PersonForm';

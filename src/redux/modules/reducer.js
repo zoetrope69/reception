@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerStateReducer as router } from 'redux-router';
 
+import { reducer as form } from 'redux-form';
 import auth from './auth';
 import companies from './companies';
-import createPeople from './createPeople';
 import createCompanies from './createCompanies';
-import { reducer as form } from 'redux-form';
+import createPeople from './createPeople';
 import front from './front';
+import image from './image';
 import notifications from './notifications';
 import passwords from './passwords';
 import people from './people';
@@ -14,10 +15,11 @@ import people from './people';
 export default combineReducers({
   auth,
   companies,
-  createPeople,
   createCompanies,
+  createPeople,
   form,
   front,
+  image,
   notifications,
   passwords,
   people,

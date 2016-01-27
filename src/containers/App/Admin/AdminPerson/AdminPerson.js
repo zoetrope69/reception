@@ -5,7 +5,7 @@ import * as passwordActions from 'redux/modules/passwords';
 import * as peopleActions from 'redux/modules/people';
 import { load as loadPeople } from 'redux/modules/people';
 import { initializeWithKey } from 'redux-form';
-import { Alert, Icon, Loader, PersonForm } from 'components';
+import { Alert, Icon, Loader, ImageForm, PersonForm } from 'components';
 import { NotFound } from 'containers';
 
 @connect(
@@ -141,7 +141,10 @@ export default class AdminPerson extends Component {
 
       {!loading && loaded && (
         person ? (
-          <PersonForm formKey={String(person._id)} key={String(person._id)} initialValues={person} profile={profile} />
+          <div>
+            {profile && <ImageForm initialImage={person.image} />}
+            <PersonForm formKey={String(person._id)} key={String(person._id)} initialValues={person} profile={profile} />
+          </div>
         ) : (
           <p>No person</p>
         )
