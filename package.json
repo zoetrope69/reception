@@ -87,7 +87,6 @@
     "compression": "1.6.0",
     "connect-redis": "^3.0.1",
     "cradle": "^0.6.9",
-    "css-loader": "^0.23.1",
     "express": "4.13.3",
     "express-session": "1.11.3",
     "file-loader": "0.8.4",
