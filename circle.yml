@@ -1,0 +1,18 @@
+machine:
+  timezone: Europe/London
+  node:
+    version: 4.0
+  services:
+    - couchdb
+  environment:
+    DATABASE_URL: http://127.0.0.1:5984/_utils/
+
+dependencies:
+  cache_directories:
+    - node_modules
+  override:
+    - npm prune && npm install
+
+test:
+  override:
+    - npm test
