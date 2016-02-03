@@ -2,6 +2,8 @@
 
 A reception app for the University of Portsmouth's shared offices
 
+![Build status](https://circleci.com/gh/zaccolley/reception.png?circle-token=0eb7cb5607a5c387ddf39eac62692a5b1c0e715a)
+
 ---
 
 ## About
