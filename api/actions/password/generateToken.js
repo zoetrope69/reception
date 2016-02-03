@@ -12,7 +12,6 @@ const getRandomToken = (callback) => {
 
 export default function generateToken(req) {
   return new Promise((resolve, reject) => {
-
     const email = req.body.email;
     const invite = req.body.invite;
 
@@ -99,12 +98,8 @@ export default function generateToken(req) {
 
             return resolve(emailToSend);
           });
-
         });
-
       });
-
     });
-
   });
 }

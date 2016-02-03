@@ -3,6 +3,7 @@ node_modules/
 dist/
 *.iml
 env.json
+webpack-assets.json
 webpack-stats.json
 npm-debug.log
 .sass-cache/

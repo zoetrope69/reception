@@ -43,7 +43,6 @@ export default class Admin extends Component {
   }
 
   render() {
-
     const { companies, loaded, loading, user } = this.props;
 
     let company = null;
@@ -102,7 +101,6 @@ export default class Admin extends Component {
 
     </div>
     );
-
   }
 
 }

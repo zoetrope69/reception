@@ -16,7 +16,6 @@ export default class FrontCompanies extends Component {
   }
 
   render() {
-
     const { companies, loaded, loading } = this.props;
 
     return (
@@ -43,7 +42,6 @@ export default class FrontCompanies extends Component {
         </div>
         </main>
     );
-
   }
 
 }

@@ -4,7 +4,6 @@ import sendSms from '../sms';
 
 export default function notify(req) {
   return new Promise((resolve, reject) => {
-
     const inputPerson = req.body.person;
 
     db.view('people/byId', { key: inputPerson._id }, (err, data) => {
@@ -47,10 +46,8 @@ export default function notify(req) {
       const promises = [];
 
       if (person.notificationEmail) {
-
         promises.push(
           new Promise((resolvePromise, rejectPromise) => {
-
             sendEmail('👋 ' + subject, message, emailToSend, name, (emailErr, emailMessage) => {
               if (emailErr) {
                 // TODO: log error
@@ -61,17 +58,13 @@ export default function notify(req) {
 
               return resolvePromise(emailToSend);
             });
-
           })
         );
-
       }
 
       if (person.notificationSms) {
-
         promises.push(
           new Promise((resolvePromise, rejectPromise) => {
-
             sendSms('👋 ' + message, smsToSend, (smsErr, smsMessage) => {
               if (smsErr) {
                 // TODO: log error
@@ -82,10 +75,8 @@ export default function notify(req) {
 
               return resolvePromise(smsToSend);
             });
-
           })
         );
-
       }
 
       Promise.all(promises)
@@ -96,8 +87,6 @@ export default function notify(req) {
           console.log('reason', reason);
           reject(reason);
         });
-
     });
-
   });
 }

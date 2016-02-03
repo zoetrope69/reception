@@ -30,7 +30,6 @@ export default class CompanyNewForm extends Component {
   }
 
   render() {
-
     const { fields: { name, location, personFirstName, personLastName, personEmail }, handleSubmit, resetForm } = this.props;
 
     const renderInput = (field, label) =>

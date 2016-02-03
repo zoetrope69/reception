@@ -1,10 +1,9 @@
-require('../server.babel'); // babel registration (runtime transpilation for node)
-
 import express from 'express';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import config from '../src/config';
 import * as actions from './actions/index';
+import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
@@ -92,9 +91,7 @@ const comparePassword = (password, userPassword, callback) => {
 };
 
 function findById(id, callback) {
-
   db.view('people/byId', { key: id }, (err, data) => {
-
     if (err) {
       return callback(err);
     }
@@ -106,15 +103,11 @@ function findById(id, callback) {
     }
 
     return callback(null, false);
-
   });
-
 }
 
 function findByEmail(email, callback) {
-
   db.view('people/byEmail', { key: email }, (err, data) => {
-
     if (err) {
       return callback(err);
     }
@@ -126,9 +119,7 @@ function findByEmail(email, callback) {
     }
 
     return callback(null, false);
-
   });
-
 }
 
 passport.serializeUser((user, done) => {
@@ -144,7 +135,6 @@ passport.deserializeUser((id, done) => {
 passport.use(new LocalStrategy((username, password, done) => {
   // find the user by username
   findByEmail(username, (err, user) => {
-
     if (err) {
       return done(err);
     }
@@ -159,7 +149,6 @@ passport.use(new LocalStrategy((username, password, done) => {
     }
 
     comparePassword(password, user.password, (passwordErr, isPasswordMatch) => {
-
       if (passwordErr) {
         return done(passwordErr);
       }
@@ -169,9 +158,7 @@ passport.use(new LocalStrategy((username, password, done) => {
       }
 
       return done(null, user);
-
     });
-
   });
 }));
 
@@ -181,32 +168,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res) => {
+  const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
-  const matcher = req.url.split('?')[0].split('/').slice(1);
+  const {action, params} = mapUrl(actions, splittedUrlPath);
 
-  let action = false;
-  let params = null;
-  let apiActions = actions;
-  let sliceIndex = 0;
-
-  for (const actionName of matcher) {
-
-    if (apiActions[actionName]) {
-      action = apiActions[actionName];
-    }
-
-    if (typeof action === 'function') {
-      params = matcher.slice(++sliceIndex);
-      break;
-    }
-    apiActions = action;
-    ++sliceIndex;
-  }
-
-  if (action && typeof action === 'function') {
+  if (action) {
     action(req, params)
       .then((result) => {
-        res.json(result);
+        if (result instanceof Function) {
+          result(res);
+        } else {
+          res.json(result);
+        }
       }, (reason) => {
         if (reason && reason.redirect) {
           res.redirect(reason.redirect);
@@ -230,8 +203,8 @@ if (config.apiPort) {
     if (err) {
       console.error(err);
     }
-    console.info('----\n==> 🌎  API is running on port ' + config.apiPort);
-    console.info('==> 💻  Send requests to http://localhost:' + config.apiPort);
+    console.info('----\n==> 🌎  API is running on port %s', config.apiPort);
+    console.info('==> 💻  Send requests to http://%s:%s', config.apiHost, config.apiPort);
   });
 
   io.on('connection', (socket) => {
@@ -255,7 +228,6 @@ if (config.apiPort) {
     });
   });
   io.listen(runnable);
-
 } else {
   console.error('==>     ERROR: No PORT environment variable has been specified');
 }

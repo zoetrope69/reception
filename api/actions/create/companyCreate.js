@@ -2,14 +2,11 @@ import db from '../../db';
 
 export default function companyCreate(req) {
   return new Promise((resolve, reject) => {
-
     const inputData = req.body.company;
 
     if (!req.user || typeof req.user === 'undefined') { // if no user at all
-
       reject('No user');
       return;
-
     }
 
     if (!inputData) {
@@ -42,7 +39,6 @@ export default function companyCreate(req) {
       }
 
       if (req.user.role === 'admin') {
-
         const company = {
           resource: 'company',
           location: inputData.location,
@@ -66,15 +62,10 @@ export default function companyCreate(req) {
 
             resolve(`Nice. ${company.name}, has been created! With ${person.firstName} as their main contact!`);
           });
-
         });
-
       } else {
         reject('You don\'t have permission to create a company');
       }
-
     });
-
-
   });
 }

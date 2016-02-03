@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import * as peopleActions from 'redux/modules/people';
 import { load as loadPeople } from 'redux/modules/people';
@@ -33,7 +33,6 @@ export default class AdminPeople extends Component {
   }
 
   render() {
-
     const { createError, error, loaded, loading, message, user } = this.props;
     let { people } = this.props;
 
@@ -49,7 +48,7 @@ export default class AdminPeople extends Component {
       <div className="page-title">
       <div className="container">
 
-        <DocumentMeta title="People | Innovation Space Reception App"/>
+        <Helmet title="People | Innovation Space Reception App"/>
         <h1><Icon name="users" /> People</h1>
 
         <div className="buttons">
@@ -86,7 +85,6 @@ export default class AdminPeople extends Component {
 
     </div>
     );
-
   }
 
 }

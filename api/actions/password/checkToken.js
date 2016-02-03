@@ -2,7 +2,6 @@ import db from '../../db';
 
 export default function checkToken(req) {
   return new Promise((resolve, reject) => {
-
     const token = req.body.token;
 
     if (!token) {
@@ -19,8 +18,6 @@ export default function checkToken(req) {
       }
 
       return resolve(token);
-
     });
-
   });
 }

@@ -9,7 +9,6 @@ export default class Company extends Component {
   }
 
   render() {
-
     const { admin, company } = this.props;
 
     const path = (admin ? 'company' : 'front/company');

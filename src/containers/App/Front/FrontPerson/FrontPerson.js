@@ -43,7 +43,6 @@ export default class FrontPeople extends Component {
   }
 
   render() {
-
     const { error, loaded, loading, notifying, people, params } = this.props;
     const person = people.find(personItem => personItem._id === params.person);
 
@@ -122,7 +121,6 @@ export default class FrontPeople extends Component {
       </div>
       </main>
     );
-
   }
 
 }

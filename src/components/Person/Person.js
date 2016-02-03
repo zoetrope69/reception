@@ -10,14 +10,12 @@ export default class Person extends Component {
   }
 
   render() {
-
     const { admin, person, preview } = this.props;
 
     let companyNode;
     let labelNode;
 
     if (person && typeof person.company !== 'undefined') {
-
       companyNode = (
         <div className="person__company">
             <div className="person__position">
@@ -31,7 +29,6 @@ export default class Person extends Component {
             )}
         </div>
       );
-
     }
 
     if (person.type === 'Staff') {

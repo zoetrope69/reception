@@ -2,7 +2,6 @@ import db from '../../db';
 
 export default function checkEmail(req) {
   return new Promise((resolve, reject) => {
-
     const email = req.body.email;
 
     if (!email) {
@@ -19,8 +18,6 @@ export default function checkEmail(req) {
       }
 
       return resolve(email);
-
     });
-
   });
 }

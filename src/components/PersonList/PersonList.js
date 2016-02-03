@@ -35,7 +35,6 @@ export default class PersonList extends Component {
       })}
       </ul>
     );
-
   }
 
 }

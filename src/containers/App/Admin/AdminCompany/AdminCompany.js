@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import * as companiesActions from 'redux/modules/companies';
 import { load as loadCompanies } from 'redux/modules/companies';
@@ -31,7 +31,6 @@ export default class AdminCompany extends Component {
   }
 
   render() {
-
     const { companies, error, loaded, loading, params } = this.props;
 
     const company = companies.find(companiesItem => companiesItem._id === params.company);
@@ -42,7 +41,7 @@ export default class AdminCompany extends Component {
       <div className="page-title">
       <div className="container">
 
-        <DocumentMeta title="Company | Innovation Space Reception App"/>
+        <Helmet title="Company | Innovation Space Reception App"/>
 
         <h1><Icon name="briefcase" /> Company</h1>
 

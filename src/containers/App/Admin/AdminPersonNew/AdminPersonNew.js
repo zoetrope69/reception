@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import * as createActions from 'redux/modules/createPeople';
@@ -34,7 +34,6 @@ export default class AdminPersonNew extends Component {
   }
 
   render() {
-
     const { error } = this.props;
 
     return (
@@ -42,7 +41,7 @@ export default class AdminPersonNew extends Component {
 
       <div className="page-title">
       <div className="container">
-        <DocumentMeta title="Create New Person | Innovation Space Reception App" />
+        <Helmet title="Create New Person | Innovation Space Reception App" />
         <h1><Icon name="plus-circle" /> Create New Person</h1>
       </div>
       </div>

@@ -16,7 +16,6 @@ const dbOptions = {
 // if theres a username and password for the server add this to the database options
 if (typeof config.env.db.admin.username !== 'undefined' &&
     typeof config.env.db.admin.password !== 'undefined') {
-
   dbOptions.auth = {
     username: config.env.db.admin.username,
     password: config.env.db.admin.password
@@ -26,29 +25,22 @@ if (typeof config.env.db.admin.username !== 'undefined' &&
 const db = new(cradle.Connection)(dbOptions).database('reception');
 
 db.exists((err, exists) => {
-
   if (err) {
-
     console.log('==> 📦  Database error', err);
-
   } else if (exists) {
-
     console.log('==> 📦  Database: http://localhost:5984/_utils', '');
 
     /* destroy the database while testing
     console.log('   ... Destroying database');
     db.destroy();
     */
-
   } else {
-
     console.log('==> 📦  Database does not exist...' );
     console.log('   ... Creating database: http://localhost:5984/_utils');
 
     db.create();
 
     db.save(buildings, (buildingsErr, res) => {
-
       if (buildingsErr) {
         console.log('   ... Error saving buildings: ', buildingsErr);
       }
@@ -56,7 +48,6 @@ db.exists((err, exists) => {
       if (res) {
         console.log('   ... Saved buildings');
       }
-
     });
 
     db.save('_design/buildings', {
@@ -72,7 +63,6 @@ db.exists((err, exists) => {
     });
 
     db.save(companies, (companiesErr, res) => {
-
       if (companiesErr) {
         console.log('   ... Error saving companies: ', companiesErr);
       }
@@ -80,7 +70,6 @@ db.exists((err, exists) => {
       if (res) {
         console.log('   ... Saved companies');
       }
-
     });
 
     db.save('_design/companies', {
@@ -96,7 +85,6 @@ db.exists((err, exists) => {
     });
 
     db.save(people, (peopleErr, res) => {
-
       if (peopleErr) {
         console.log('   ... Error saving people: ', peopleErr);
       }
@@ -104,7 +92,6 @@ db.exists((err, exists) => {
       if (res) {
         console.log('   ... Saved people');
       }
-
     });
 
     db.save('_design/people', {
@@ -156,7 +143,6 @@ db.exists((err, exists) => {
     });
 
     db.save(events, (eventsErr, res) => {
-
       if (eventsErr) {
         console.log('   ... Error saving events: ', eventsErr);
       }
@@ -164,7 +150,6 @@ db.exists((err, exists) => {
       if (res) {
         console.log('   ... Saved events');
       }
-
     });
 
     db.save('_design/events', {
@@ -178,9 +163,7 @@ db.exists((err, exists) => {
       }
 
     });
-
   }
-
 });
 
 module.exports = db;

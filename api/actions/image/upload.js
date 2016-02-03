@@ -17,7 +17,6 @@ function decodeBase64Image(dataString) {
 
 export default function upload(req) {
   return new Promise((resolve, reject) => {
-
     const { user, image } = req.body;
 
     if (!image) {
@@ -29,7 +28,6 @@ export default function upload(req) {
     }
 
     if (req.user._id === user) {
-
       const imageBuffer = decodeBase64Image(image);
       console.log('imageBuffer', imageBuffer);
 
@@ -48,12 +46,9 @@ export default function upload(req) {
 
           resolve(imagePath);
         });
-
       });
-
     } else {
       reject('You don\'t have permission to update this user');
     }
-
   });
 }

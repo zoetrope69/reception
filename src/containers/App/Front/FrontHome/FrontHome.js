@@ -5,7 +5,6 @@ import { Icon } from 'components';
 export default class FrontInstructionHome extends Component {
 
   render() {
-
     const innovationSpace = true;
     const logoImage = require('./logo.png');
 
@@ -23,7 +22,6 @@ export default class FrontInstructionHome extends Component {
       </div>
       </main>
     );
-
   }
 
 }

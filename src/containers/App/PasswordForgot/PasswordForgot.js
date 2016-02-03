@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import * as passwordActions from 'redux/modules/passwords';
 import { Icon } from 'components';
 
@@ -42,14 +42,13 @@ export default class PasswordForgot extends Component {
   }
 
   render() {
-
     const { error, generating, sent } = this.props;
 
     return (
       <main className="page page--password">
       <div className="container">
 
-        <DocumentMeta title="Forgot Password | Innovation Space"/>
+        <Helmet title="Forgot Password | Innovation Space"/>
 
         <h1>Reset password</h1>
 

@@ -1,4 +1,4 @@
-require('babel-core/polyfill');
+require('babel/polyfill');
 
 const environment = {
   development: {
@@ -10,28 +10,29 @@ const environment = {
 }[process.env.NODE_ENV || 'development'];
 
 const configOptions = {
+  host: process.env.HOST || 'localhost',
   port: process.env.PORT,
+  apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
     title: 'Innovation Space Reception App',
     description: 'A reception app for the Innovation Space',
-    meta: {
-      charSet: 'utf-8',
-      property: {
-        'og:site_name': 'Innovation Space Reception App',
-        'og:image': '',
-        'og:locale': 'en_US',
-        'og:title': 'Innovation Space Reception App',
-        'og:description': 'A reception app for the Innovation Space',
-        'twitter:card': 'summary',
-        'twitter:site': '@innovatepompey',
-        'twitter:creator': '@innovatepompey',
-        'twitter:title': 'Innovation Space Reception App',
-        'twitter:description': 'A reception app for the Innovation Space',
-        'twitter:image': '',
-        'twitter:image:width': '200',
-        'twitter:image:height': '200'
-      }
+    head: {
+      titleTemplate: 'React Redux Example: %s',
+      meta: [
+        {name: 'description', content: 'A reception app for the Innovation Space'},
+        {charset: 'utf-8'},
+        {property: 'og:site_name', content: 'Innovation Space Reception App'},
+        {property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg'},
+        {property: 'og:locale', content: 'en_GB'},
+        {property: 'og:title', content: 'Innovation Space Reception App'},
+        {property: 'og:description', content: 'A reception app for the Innovation Space'},
+        {property: 'og:card', content: 'summary'},
+        {property: 'og:site', content: '@innovatepompey'},
+        {property: 'og:creator', content: '@innovatepompey'},
+        {property: 'og:image:width', content: '200'},
+        {property: 'og:image:height', content: '200'}
+      ]
     }
   }
 };

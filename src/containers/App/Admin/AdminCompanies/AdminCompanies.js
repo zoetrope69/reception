@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { load as loadCompanies } from 'redux/modules/companies';
@@ -30,7 +30,6 @@ export default class AdminCompanies extends Component {
   }
 
   render() {
-
     const { companies, createError, error, loaded, loading, message, user } = this.props;
 
     return (
@@ -39,7 +38,7 @@ export default class AdminCompanies extends Component {
       <div className="page-title">
       <div className="container">
 
-        <DocumentMeta title="Companies | Innovation Space Reception App"/>
+        <Helmet title="Companies | Innovation Space Reception App"/>
 
         <h1><Icon name="briefcase" /> Companies</h1>
 
@@ -77,7 +76,6 @@ export default class AdminCompanies extends Component {
 
     </div>
     );
-
   }
 
 }

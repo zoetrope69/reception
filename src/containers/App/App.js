@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import config from '../../config';
@@ -39,10 +39,9 @@ export default class App extends Component {
   }
 
   render() {
-
     return (
       <div className="app app--innovation-space">
-        <DocumentMeta {...config.app}/>
+        <Helmet {...config.app}/>
 
         <div className="app__content">
           {this.props.children}

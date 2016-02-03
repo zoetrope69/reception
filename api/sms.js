@@ -5,21 +5,15 @@ const client = new twilio.RestClient(config.env.twilio.id,
                                      config.env.twilio.token);
 
 export default function sendSMS(text, number, callback) {
-
   client.messages.create({
-
     to: number,
     from: config.env.twilio.number,
     body: text
-
   }, (error, message) => {
-
     if (error) {
       return callback(error.message, null);
     }
 
     return callback(null, message);
-
   });
-
 }

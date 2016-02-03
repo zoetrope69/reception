@@ -19,7 +19,6 @@ export default class FrontCompany extends Component {
   }
 
   render() {
-
     const { companies, loaded, loading, params } = this.props;
     let { people } = this.props;
 
@@ -58,7 +57,6 @@ export default class FrontCompany extends Component {
       </div>
       </main>
     );
-
   }
 
 }

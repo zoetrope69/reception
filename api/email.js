@@ -2,7 +2,6 @@ import config from '../src/config';
 const mandrill = require('node-mandrill')(config.env.mandrill.key);
 
 export default function sendEmail(subject, text, email, name, callback) {
-
   mandrill('/messages/send', {
     message: {
       to: [{ email, name }],
@@ -12,7 +11,6 @@ export default function sendEmail(subject, text, email, name, callback) {
       text
     }
   }, (err, responses) => {
-
     const response = responses[0];
 
     if (err) {
@@ -24,7 +22,5 @@ export default function sendEmail(subject, text, email, name, callback) {
     }
 
     return callback(null, response);
-
   });
-
 }

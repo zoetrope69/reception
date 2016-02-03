@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { logout } from 'redux/modules/auth';
 import * as passwordActions from 'redux/modules/passwords';
 import { checkPasswordToken } from 'redux/modules/passwords';
@@ -50,7 +50,6 @@ export default class PasswordReset extends Component {
     const passwordConfirm = this.refs.passwordConfirm.value;
 
     resetPassword(token, password, passwordConfirm, invite);
-
   }
 
   renderHelpText(message) {
@@ -60,7 +59,6 @@ export default class PasswordReset extends Component {
   }
 
   render() {
-
     const { isValidToken, error, generateError, resetting, successful, location } = this.props;
     let invite = false;
 
@@ -72,7 +70,7 @@ export default class PasswordReset extends Component {
       <main className="page page--password">
       <div className="container">
 
-        <DocumentMeta title={(invite ? 'Create password' : 'Reset Password' ) + ' | Innovation Space'} />
+        <Helmet title={(invite ? 'Create password' : 'Reset Password' ) + ' | Innovation Space'} />
 
         {successful && (
         <form>

@@ -5,7 +5,6 @@ import { Icon } from 'components';
 export default class FrontMenu extends Component {
 
   render() {
-
     return (
       <main className="page page--home">
       <div className="container">
@@ -36,7 +35,6 @@ export default class FrontMenu extends Component {
       </div>
       </main>
     );
-
   }
 
 }

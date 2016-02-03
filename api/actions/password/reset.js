@@ -9,20 +9,17 @@ const cryptPassword = (password, callback) => {
     }
 
     bcrypt.hash(password, salt, (hashErr, hash) => {
-
       if (hashErr) {
         return callback(err);
       }
 
       return callback(err, hash);
     });
-
   });
 };
 
 export default function reset(req) {
   return new Promise((resolve, reject) => {
-
     const token = req.body.token;
     const password = req.body.password;
     const passwordConfirm = req.body.passwordConfirm;
@@ -37,7 +34,6 @@ export default function reset(req) {
     }
 
     db.view('people/byToken', { key: token }, (err, data) => {
-
       if (err) {
         return reject(err);
       }
@@ -105,12 +101,8 @@ export default function reset(req) {
 
             return resolve(emailToSend);
           });
-
         });
-
       });
-
     });
-
   });
 }

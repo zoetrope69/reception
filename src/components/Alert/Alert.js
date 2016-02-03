@@ -8,7 +8,6 @@ export default class Alert extends Component {
   }
 
   render() {
-
     const { message, type = 'info' } = this.props;
 
     const icons = {

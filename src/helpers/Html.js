@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 
 // remove 300ms delays on tap
 // TODO: Remove when this is supported in React 1.0
@@ -27,12 +27,17 @@ export default class Html extends Component {
   render() {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
+    const head = Helmet.rewind();
 
 
     return (
       <html lang="en-us">
         <head>
-          {DocumentMeta.renderAsReact()}
+          {head.base.toComponent()}
+          {head.title.toComponent()}
+          {head.meta.toComponent()}
+          {head.link.toComponent()}
+          {head.script.toComponent()}
 
           <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -51,6 +56,7 @@ export default class Html extends Component {
           <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 
           {/* styles (will be present only in production with webpack extract text plugin)
+
           {Object.keys(assets.styles).map((style, key) =>
             <link href={assets.styles[style]} key={key} media="screen, projection"
                   rel="stylesheet" type="text/css" charSet="UTF-8"/>

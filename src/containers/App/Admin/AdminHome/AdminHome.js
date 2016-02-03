@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { logout } from 'redux/modules/auth';
 import { Icon } from 'components';
@@ -19,7 +19,6 @@ export default class Admin extends Component {
   }
 
   render() {
-
     const { user } = this.props;
 
     return (
@@ -27,7 +26,7 @@ export default class Admin extends Component {
 
       <div className="page-title">
       <div className="container">
-        <DocumentMeta title="Home | Innovation Space Reception App"/>
+        <Helmet title="Home | Innovation Space Reception App"/>
         <h1><Icon name="home" /> Home</h1>
       </div>
       </div>
@@ -57,7 +56,6 @@ export default class Admin extends Component {
 
     </div>
     );
-
   }
 
 }

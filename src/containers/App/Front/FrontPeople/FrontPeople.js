@@ -16,7 +16,6 @@ export default class FrontPeople extends Component {
   }
 
   render() {
-
     const { loaded, loading, people } = this.props;
 
     return (
@@ -43,7 +42,6 @@ export default class FrontPeople extends Component {
       </div>
       </main>
     );
-
   }
 
 }

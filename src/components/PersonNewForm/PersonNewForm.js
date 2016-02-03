@@ -43,7 +43,6 @@ export default class personNewForm extends Component {
   }
 
   render() {
-
     const { companies, fields: { firstName, lastName, email, company },
             handleSubmit, loaded, loading, pristine, invalid, resetForm, user } = this.props;
 

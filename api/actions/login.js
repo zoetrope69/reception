@@ -1,11 +1,8 @@
 import passport from 'passport';
 
 export default function login(req) {
-
   return new Promise((resolve, reject) => {
-
     passport.authenticate('local', (err, user) => {
-
       if (err) {
         return reject(err);
       }
@@ -26,10 +23,7 @@ export default function login(req) {
         delete user.token;
 
         return resolve(user);
-
       });
-
     })(req);
-
   });
 }

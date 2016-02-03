@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import {connect} from 'react-redux';
 import { Alert, Icon } from 'components';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import * as authActions from 'redux/modules/auth';
 
 @connect(
@@ -30,7 +30,6 @@ export default class Login extends Component {
     const password = this.refs.password;
 
     login(email.value, password.value);
-
   }
 
   renderHelpText(message) {
@@ -40,7 +39,6 @@ export default class Login extends Component {
   }
 
   render() {
-
     const { error, logout, passwordSuccessful, user } = this.props;
     const logoImage = require('./logo.png');
 
@@ -50,7 +48,7 @@ export default class Login extends Component {
 
       <div className="page page--sign-in">
 
-        <DocumentMeta title="Sign-in | Innovation Space - Reception App"/>
+        <Helmet title="Sign-in | Innovation Space - Reception App"/>
 
 
         <img style={{ margin: '0 auto', display: 'block', width: '50%' }} src={logoImage} alt="Logo" />

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import DocumentMeta from 'react-document-meta';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import * as passwordActions from 'redux/modules/passwords';
 import * as peopleActions from 'redux/modules/people';
@@ -46,7 +46,6 @@ export default class AdminPerson extends Component {
   }
 
   render() {
-
     const { error, generating, loaded, loading, params, people, sent, user } = this.props;
 
     let person = null;
@@ -59,8 +58,7 @@ export default class AdminPerson extends Component {
       if (!person) {
         return <NotFound />;
       }
-
-    }else if (user && typeof user._id !== 'undefined') { // otherwise check the session
+    } else if (user && typeof user._id !== 'undefined') { // otherwise check the session
       person = people.find(peopleItem => peopleItem._id === user._id);
       profile = true;
     }
@@ -71,7 +69,7 @@ export default class AdminPerson extends Component {
       <div className="page-title">
       <div className="container">
 
-        <DocumentMeta title={(param ? 'Edit Person' : 'Profile') + ' | Innovation Space Reception App'} />
+        <Helmet title={(param ? 'Edit Person' : 'Profile') + ' | Innovation Space Reception App'} />
 
         <h1><Icon name="user" /> {param ? 'Edit Person' : 'Profile'}</h1>
 

@@ -3,7 +3,6 @@ import { Icon } from 'components';
 
 export default class Loader extends Component {
   render() {
-
     const style = {
       margin: '.5em 0',
 

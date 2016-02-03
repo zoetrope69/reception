@@ -19,7 +19,6 @@ export default class FrontInstructionReception extends Component {
   };
 
   componentDidMount() {
-
     // after 3 seconds the message should have been sent
     this.sendingTimer = setTimeout(() => {
       this.setState({ sending: false });
@@ -29,7 +28,6 @@ export default class FrontInstructionReception extends Component {
     this.timeoutTimer = setTimeout(() => {
       this.props.pushState(null, '/front'); // redirect to homepage
     }, 13000);
-
   }
 
   componentWillUnmount() {
@@ -38,7 +36,6 @@ export default class FrontInstructionReception extends Component {
   }
 
   render() {
-
     const { sending } = this.state;
 
     return (

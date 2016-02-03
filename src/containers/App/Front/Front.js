@@ -13,7 +13,6 @@ export default class Front extends Component {
   }
 
   render() {
-
     return (
     <div className="front">
 
@@ -23,7 +22,6 @@ export default class Front extends Component {
 
     </div>
     );
-
   }
 
 }

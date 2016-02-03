@@ -8,7 +8,6 @@ export default class Icon extends Component {
   }
 
   render() {
-
     const { large, name, spin } = this.props;
 
     let className = ` icon icon--${name} `;

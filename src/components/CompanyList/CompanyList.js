@@ -29,7 +29,6 @@ export default class CompanyList extends Component {
       })}
       </ul>
     );
-
   }
 
 }

@@ -5,9 +5,7 @@ function sanitizeData(data) {
 
   // if this is an array of objects map the data out
   if (json instanceof Array) {
-
     json = json.map((dataItem) => {
-
       // remove passwords
       if (typeof dataItem.password !== 'undefined') {
         delete dataItem.password;
@@ -20,7 +18,6 @@ function sanitizeData(data) {
 
       return dataItem;
     });
-
   }
 
   return json;
@@ -28,7 +25,6 @@ function sanitizeData(data) {
 
 export default function load() {
   return new Promise((resolve, reject) => {
-
     db.view('people/byId', (peopleErr, peopleData) => {
       if (peopleErr) {
         reject(peopleErr);
@@ -44,10 +40,7 @@ export default function load() {
         const companies = sanitizeData(companiesData);
 
         resolve({ people, companies });
-
       });
-
     });
-
   });
 }
