@@ -48,7 +48,7 @@ export default class FrontPeople extends Component {
 
     let labelNode;
 
-    if (person.type === 'Staff') {
+    if (person && person.type === 'Staff') {
       labelNode = (<span className="label">Staff</span>);
     }
 
