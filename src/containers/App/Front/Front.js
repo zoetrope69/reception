@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { isLoaded } from 'redux/modules/front';
 import { load as loadFront } from 'redux/modules/front';
 
 export default class Front extends Component {
@@ -8,7 +9,9 @@ export default class Front extends Component {
 
   static fetchData(getState, dispatch) {
     const promises = [];
-    promises.push(dispatch(loadFront()));
+    if (!isLoaded(getState())) {
+      promises.push(dispatch(loadFront()));
+    }
     return Promise.all(promises);
   }
 
