@@ -5,6 +5,7 @@ machine:
   services:
     - couchdb
   environment:
+    CONTINUOUS_INTEGRATION: true
     DATABASE_URL: http://127.0.0.1:5984/_utils/
 
 dependencies:
