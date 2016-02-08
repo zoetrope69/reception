@@ -19,7 +19,7 @@ export default class ImageForm extends Component {
   static propTypes = {
     uploading: PropTypes.bool,
     uploaded: PropTypes.bool,
-    error: PropTypes.object,
+    error: PropTypes.string,
     user: PropTypes.object,
     upload: PropTypes.func,
     initialImage: PropTypes.string
