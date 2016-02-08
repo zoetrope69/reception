@@ -1,3 +1,4 @@
+const LOAD = 'reception/passwords/LOAD';
 const CHECK_TOKEN = 'reception/passwords/CHECK_TOKEN';
 const CHECK_TOKEN_SUCCESS = 'reception/passwords/CHECK_TOKEN_SUCCESS';
 const CHECK_TOKEN_FAIL = 'reception/passwords/CHECK_TOKEN_FAIL';
@@ -21,6 +22,11 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case LOAD:
+      return {
+        ...state,
+        ...initialState
+      };
     case CHECK_TOKEN:
       return {
         ...state,
@@ -85,6 +91,12 @@ export default function reducer(state = initialState, action = {}) {
 
 export function isLoaded(globalState) {
   return globalState.passwords && globalState.passwords.loaded;
+}
+
+export function load() {
+  return {
+    type: LOAD
+  };
 }
 
 export function checkPasswordToken(token) {

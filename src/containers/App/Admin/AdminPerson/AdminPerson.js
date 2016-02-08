@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import * as passwordActions from 'redux/modules/passwords';
+import { load as loadPasswords } from 'redux/modules/passwords';
 import * as peopleActions from 'redux/modules/people';
 import { load as loadPeople } from 'redux/modules/people';
 import { initializeWithKey } from 'redux-form';
@@ -35,6 +36,7 @@ export default class AdminPerson extends Component {
   }
 
   static fetchDataDeferred(getState, dispatch) {
+    dispatch(loadPasswords());
     return dispatch(loadPeople());
   }
 
