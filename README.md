@@ -44,4 +44,10 @@ npm run start
 
 ## Deployment
 
-On the server we'll use PM2. Install that then run: `pm2 start "/usr/local/bin/npm" --name "RECEPTION" -- start`
+```
+npm run build
+git add -f webpack-stats.json
+git add -f static/dist/*
+```
+
+`pm2 start ecosystem.json`
