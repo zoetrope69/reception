@@ -33,23 +33,56 @@ export default class FrontCompany extends Component {
       }
     });
 
+    console.log(company);
+
     return (
-      <main className="page page--people">
+      <main className="page page--company">
       <div className="container">
 
         <div className="top-nav">
           <Link className="back-button" to="/front/companies">
             <Icon name="chevron-left" /> Back
           </Link>
-          <p className="instruction">Members</p>
+          <p className="instruction">Company</p>
         </div>
 
         {!loading && loaded && (
-          people ? (
+        <div>
+
+          <div style={{ overflow: 'hidden' }}>
+            <h1 className="page--company__name">{company.name}</h1>
+            {company.image && (
+            <div className="page--company__logo">
+              <img src={`/images/company/${company.image}`} />
+            </div>
+            )}
+          </div>
+
+          {company.location && (
+          <div className="page--company__location">
+            <Icon name="location" /> We're on {company.location}!
+          </div>
+          )}
+
+          {company.email && (
+          <div className="page--company__email">
+            <Icon name="envelope" /> {company.email}
+          </div>
+          )}
+
+          {company.website && (
+          <div className="page--company__website">
+            <Icon name="earth" /> {company.website}
+          </div>
+          )}
+
+          <h2 className="page--company__members-title">Members of {company.name}</h2>
+          {people ? (
             <PersonList people={people} />
           ) : (
             <p>No people</p>
-          )
+          )}
+        </div>
         )}
 
         {loading && <Loader />}

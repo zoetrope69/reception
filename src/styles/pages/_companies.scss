@@ -8,3 +8,42 @@
   color: #aaa;
   font-weight: 500;
 }
+
+.page--company{}
+
+.page--company__name {
+  float: left;
+  margin: 0;
+  width: 70%;
+
+  font-size: 3em;
+  font-weight: 600;
+}
+
+.page--company__logo {
+  float: left;
+  width: 30%;
+}
+
+.page--company__logo img {
+  float: right;
+  max-width: 100%;
+}
+
+.page--company__location,
+.page--company__email,
+.page--company__website {
+  margin: .75em 0;
+  padding-right: 1em;
+
+  font-size: 1.5em;
+  color: #9C9C9C;
+}
+
+.page--company__members-title {
+  margin: 2.5em 0 .5em;
+
+  font-size: 2em;
+  font-weight: 400;
+  color: #464646;
+}
