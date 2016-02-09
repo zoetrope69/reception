@@ -2,8 +2,8 @@
 
 A reception app for the University of Portsmouth's shared offices
 
-[![Build status](https://circleci.com/gh/zaccolley/reception.png?circle-token=0eb7cb5607a5c387ddf39eac62692a5b1c0e715a)](https://circleci.com/gh/zaccolley/reception)
-![Deployment status](https://rose.deploybot.com/badge/13023223960556/61685.svg)
+[![Circle CI](https://circleci.com/gh/zaccolley/reception.svg?style=svg&circle-token=eeff0d11841c26954c40fadb97d64d0376558f99)](https://circleci.com/gh/zaccolley/reception)
+[![Deployment status](https://rose.deploybot.com/badge/13023223960556/61685.svg)](https://rose.deploybot.com/)
 
 ---
 
