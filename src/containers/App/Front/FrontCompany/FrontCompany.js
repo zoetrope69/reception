@@ -27,7 +27,7 @@ export default class FrontCompany extends Component {
     people = people.filter(newPerson => {
       for (let count = 0; count < company.people.length; count++) {
         const personId = company.people[count];
-        if (personId === newPerson._id) {
+        if (newPerson.visibility && personId === newPerson._id) {
           return newPerson;
         }
       }
@@ -76,11 +76,11 @@ export default class FrontCompany extends Component {
           </div>
           )}
 
-          <h2 className="page--company__members-title">Members of {company.name}</h2>
-          {people ? (
+          {people && people.length > 0 && (
+          <div>
+            <h2 className="page--company__members-title">Members of {company.name}</h2>
             <PersonList people={people} />
-          ) : (
-            <p>No people</p>
+          </div>
           )}
         </div>
         )}
