@@ -1,0 +1,7 @@
+ignore:
+  'npm:hawk:20160119':
+    - 'twilio > request > hawk':
+        reason: 'No known upgrade, low severity'
+        expires: '2016-03-19T11:51:24.305Z'
+patch: {}
+version: v1
