@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Icon } from 'components';
+import { load as loadFront } from 'redux/modules/front';
 
 export default class FrontInstructionHome extends Component {
+
+  static fetchData(getState, dispatch) {
+    return dispatch(loadFront());
+  }
 
   render() {
     const innovationSpace = true;
