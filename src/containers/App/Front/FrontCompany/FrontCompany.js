@@ -58,12 +58,6 @@ export default class FrontCompany extends Component {
             )}
           </div>
 
-          {company.location && (
-          <div className="page--company__location">
-            <Icon name="location" /> We're on {company.location}!
-          </div>
-          )}
-
           {company.email && (
           <div className="page--company__email">
             <Icon name="envelope" /> {company.email}
