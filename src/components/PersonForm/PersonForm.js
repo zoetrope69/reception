@@ -53,10 +53,10 @@ export default class PersonForm extends Component {
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <p>This will toggle whether you're publically shown on the iPad in the reception.</p>
-          <label htmlFor="visibility" className="control checkbox">
+          <label style={{ color: '#E26A46' }} htmlFor="visibility" className="control checkbox">
             <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
-            <Icon name="eye" /> Public
+            <Icon name="tablet" /> Make yourself public on the iPad!
           </label>
           {visibility.error && visibility.touched && this.renderHelpText(visibility.error)}
         </div>
