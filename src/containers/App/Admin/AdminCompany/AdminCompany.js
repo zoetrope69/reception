@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as companiesActions from 'redux/modules/companies';
 import { load as loadCompanies } from 'redux/modules/companies';
 import { initializeWithKey } from 'redux-form';
-import { Alert, Icon, Loader, CompanyForm } from 'components';
+import { Alert, Icon, Loader, CompanyForm, ImageForm } from 'components';
 
 @connect(
   state => ({
@@ -55,7 +55,10 @@ export default class AdminCompany extends Component {
 
         {!loading && loaded && (
           company ? (
+          <div>
+            <ImageForm initialImage={company.image} id={company._id} type="company" />
             <CompanyForm formKey={String(company._id)} key={String(company._id)} initialValues={company} />
+          </div>
           ) : (
           <div>
             <h1>Oops! No company</h1>

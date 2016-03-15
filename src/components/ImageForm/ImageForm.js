@@ -7,7 +7,6 @@ import { Icon } from 'components';
 
 @connect(
   state => ({
-    user: state.auth.user,
     uploading: state.image.uploading,
     uploaded: state.image.uploaded,
     error: state.image.error
@@ -17,12 +16,13 @@ import { Icon } from 'components';
 export default class ImageForm extends Component {
 
   static propTypes = {
-    uploading: PropTypes.bool,
-    uploaded: PropTypes.bool,
     error: PropTypes.string,
-    user: PropTypes.object,
+    id: PropTypes.string,
+    initialImage: PropTypes.string,
+    type: PropTypes.string,
     upload: PropTypes.func,
-    initialImage: PropTypes.string
+    uploaded: PropTypes.bool,
+    uploading: PropTypes.bool
   };
 
   constructor(props) {
@@ -78,18 +78,21 @@ export default class ImageForm extends Component {
   }
 
   handleSubmit(event) {
+    console.log(event);
     event.preventDefault();
 
-    const { user } = this.props;
+    const { id, type } = this.props;
 
     const image = this.refs.avatar.getImage();
 
-    this.props.upload({ user: user._id, image });
+    this.props.upload({ id, type, image });
   }
 
   render() {
-    const { error, initialImage, uploading } = this.props;
+    const { type, error, initialImage, uploading } = this.props;
     const { editing, file, scale } = this.state;
+
+    const defaultImage = (type === 'company' ? '' : '/images/person/default.png');
 
     return (
       <form onSubmit={::this.handleSubmit} encType="multipart/form-data">
@@ -97,8 +100,8 @@ export default class ImageForm extends Component {
         <h3 className="input-header">Display picture</h3>
 
         <div style={{ display: 'block', overflow: 'hidden' }}>
-          <span className="person__image">
-            <img src={initialImage ? initialImage : '/images/person/default.png'} />
+          <span className={type === 'company' ? 'company__image' : 'person__image' }>
+            <img src={initialImage ? initialImage : defaultImage} />
           </span>
 
           {error && <div style={{ color: 'red' }}>{error}</div>}
@@ -106,13 +109,15 @@ export default class ImageForm extends Component {
           {editing ? (
             <button className="button button--warning"
                     onClick={::this.handleReset}
-                    disabled={uploading}>
+                    disabled={uploading}
+                    type="button">
               <Icon name="cross-circle" /> Cancel new image
             </button>
           ) : (
             <button className="button button--success"
                     onClick={::this.toggleEditing}
-                    disabled={uploading}>
+                    disabled={uploading}
+                    type="button">
               <Icon name="upload" /> Upload new image
             </button>
           )}
@@ -132,12 +137,12 @@ export default class ImageForm extends Component {
           <AvatarEditor
             ref="avatar"
             className="avatar"
-            style={{ background: 'white', borderRadius: '5px', margin: '1em 0' }}
-            image={file.length > 0 ? file : '/images/person/default.png'}
-            width={150}
-            height={150}
+            style={{ borderRadius: '5px', margin: '1em 0' }}
+            image={file.length > 0 ? file : ''}
+            width={type === 'company' ? 300 : 150}
+            height={type === 'company' ? 100 : 150}
             border={10}
-            borderRadius={150}
+            borderRadius={type === 'company' ? 0 : 150}
             color={[0, 0, 0, 0.6]}
             scale={scale}
             />
@@ -152,18 +157,18 @@ export default class ImageForm extends Component {
                 name="scale"
                 type="range"
                 onChange={::this.handleScale}
-                min="1"
+                min={type === 'company' ? 0 : 1}
                 max="2"
                 step="0.01"
-                defaultValue="1"
+                defaultValue={scale}
                 />
             </div>
           )}
 
           <button
                   className="button button--success"
-                  onClick={::this.handleSubmit}
-                  disabled={file.length <= 0 || uploading}>
+                  disabled={file.length <= 0 || uploading}
+                  type="submit">
             <Icon name={uploading ? 'sync' : 'checkmark-circle'} spin={uploading} /> {uploading ? 'Uploading' : 'Upload'}
           </button>
           {error && <div className="text-danger">{error}</div>}

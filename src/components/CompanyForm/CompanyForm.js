@@ -44,6 +44,8 @@ export default class SettingCompanyForm extends Component {
     return (
       <div className={submitting ? 'saving' : ''}>
 
+        <h3 className="input-header">Main details</h3>
+
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <label htmlFor="visibility" className="control checkbox">
