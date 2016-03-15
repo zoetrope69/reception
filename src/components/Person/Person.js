@@ -39,7 +39,7 @@ export default class Person extends Component {
       <Link to={'/person/' + person._id} className="person person--admin">
 
         <span className="person__image">
-          <img src={person.image ? person.image : '/images/person/default.png'}
+          <img src={person.image ? person.image : '/default-person.png'}
                 alt={`Picture of ${person.firstName} ${person.lastName}`} />
         </span>
 

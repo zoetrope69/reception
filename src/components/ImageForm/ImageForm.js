@@ -92,7 +92,7 @@ export default class ImageForm extends Component {
     const { type, error, initialImage, uploading } = this.props;
     const { editing, file, scale } = this.state;
 
-    const defaultImage = (type === 'company' ? '' : '/images/person/default.png');
+    const defaultImage = (type === 'company' ? '' : '/default-person.png');
 
     return (
       <form onSubmit={::this.handleSubmit} encType="multipart/form-data">
