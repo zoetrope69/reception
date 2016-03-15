@@ -48,10 +48,10 @@ export default class SettingCompanyForm extends Component {
 
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
-          <label htmlFor="visibility" className="control checkbox">
+          <label style={{ color: '#E26A46' }} htmlFor="visibility" className="control checkbox">
             <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
-            <Icon name="eye" /> Public
+            <Icon name="tablet" /> Make your company public on the iPad!
           </label>
           {visibility.error && visibility.touched && this.renderHelpText(visibility.error)}
         </div>
