@@ -406,7 +406,7 @@ body {
   color: #494949; }
 
 .page p a {
-  color: #E26A46;
+  color: #203B51;
   font-weight: 400; }
 
 .admin footer {
@@ -507,7 +507,7 @@ body {
   background: linear-gradient(to right, grey, gray); }
 
 .app--innovation-space .admin header {
-  background: linear-gradient(to right, #E26A46, #e29e46); }
+  background: linear-gradient(to right, #203B51, #202b51); }
 
 .app--cell-block .admin header {
   background: linear-gradient(to right, #467FE2, #464be2); }
@@ -542,7 +542,7 @@ body {
   width: 25%;
   padding: 1.5em 1em;
   text-align: center;
-  color: #f7d5ca;
+  color: #e2ecf4;
   background: rgba(255, 255, 255, 0);
   transition: background .25s; }
   @media (max-width: 700px) {
@@ -550,7 +550,7 @@ body {
       width: 50%; } }
 
 .admin header nav .nav-link:hover {
-  color: #fef8f6; }
+  color: #75a3c8; }
 
 .admin header nav .nav-link--active,
 .admin header nav .nav-link--active:hover {
@@ -605,7 +605,7 @@ body {
   text-align: center;
   border: 0;
   border-radius: 5px;
-  background: linear-gradient(to right, #E26A46, #e98e72);
+  background: linear-gradient(to right, #203B51, #2e5676);
   cursor: pointer;
   transition: opacity .25s, transform .25s, background .25s; }
 
@@ -630,7 +630,7 @@ body {
 
 .button.active {
   color: white;
-  background: linear-gradient(to right, #E26A46, #e98e72); }
+  background: linear-gradient(to right, #203B51, #2e5676); }
 
 .button:hover {
   transform: scale(1.001);
@@ -647,7 +647,7 @@ body {
   margin: 1em;
   display: flex;
   font-size: 1.25em;
-  color: #E26A46;
+  color: #203B51;
   border: 1px solid;
   border-radius: 5px; }
 
@@ -758,7 +758,7 @@ body {
 .events__title {
   text-align: center;
   font-weight: 400;
-  color: #E26A46; }
+  color: #203B51; }
 
 .event {
   position: relative;
@@ -928,12 +928,12 @@ body {
 /* Checked state */
 .control input:checked ~ .control-indicator {
   color: #fff;
-  background-color: #E26A46; }
+  background-color: #203B51; }
 
 /* Active */
 .control input:active ~ .control-indicator {
   color: #fff;
-  background-color: #ec9f88; }
+  background-color: #366388; }
 
 /* Disabled */
 .control input:disabled ~ .control-indicator,
@@ -1015,12 +1015,12 @@ body {
 */
 /* Focus */
 .select select:focus {
-  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #E26A46; }
+  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #203B51; }
 
 /* Active/open */
 .select select:active {
   color: #fff;
-  background-color: #E26A46; }
+  background-color: #203B51; }
 
 /* Hide the arrow in IE10 and up */
 .select select::-ms-expand {
@@ -1117,7 +1117,7 @@ body {
 
 /* Focus */
 .file input:focus ~ .file-custom {
-  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #E26A46; }
+  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.2rem #203B51; }
 
 /*
  * Progress
@@ -1134,14 +1134,14 @@ body {
   /* Remove Firefox and Opera border */
   border: 0;
   /* IE10 uses `color` to set the bar background-color */
-  color: #E26A46; }
+  color: #203B51; }
 
 .progress[value]::-webkit-progress-bar {
   background-color: #eee;
   border-radius: .2rem; }
 
 .progress[value]::-webkit-progress-value {
-  background-color: #E26A46;
+  background-color: #203B51;
   border-top-left-radius: .2rem;
   border-bottom-left-radius: .2rem; }
 
@@ -1156,7 +1156,7 @@ body {
     border-radius: .2rem; }
 
   .progress[value]::-moz-progress-bar {
-    background-color: #E26A46;
+    background-color: #203B51;
     border-top-left-radius: .2rem;
     border-bottom-left-radius: .2rem; }
 
@@ -1174,7 +1174,7 @@ body {
     height: 1rem;
     text-indent: -999rem;
     /* Simulate hiding of value as in native `<progress>` */
-    background-color: #E26A46;
+    background-color: #203B51;
     border-top-left-radius: .2rem;
     border-bottom-left-radius: .2rem; }
 
@@ -1210,7 +1210,7 @@ form {
   /* clearfix */ }
 
 form a {
-  color: #E26A46;
+  color: #203B51;
   font-weight: bolder; }
 
 form ul,
@@ -1642,7 +1642,7 @@ form li {
 .page-title {
   overflow: hidden;
   /* clearfix */
-  background: linear-gradient(to right, #e98e72, #e9b572); }
+  background: linear-gradient(to right, #2e5676, #2e3e76); }
 
 .page-title h1 {
   float: left;
@@ -1651,7 +1651,7 @@ form li {
   padding: .5em .25em;
   font-size: 1.75em;
   font-weight: 300;
-  color: #fef8f6; }
+  color: white; }
 
 .page-title .buttons {
   float: left;
@@ -1661,7 +1661,7 @@ form li {
 .page-title .buttons .button {
   margin-left: .5em;
   float: right;
-  color: #e9b572;
+  color: #2e3e76;
   background: white; }
 
 .page-title .buttons .button--success {
@@ -1728,7 +1728,7 @@ form li {
   padding: .75em 1em;
   margin: 0 auto;
   font-size: 2em;
-  color: #E26A46;
+  color: #203B51;
   background: rgba(255, 255, 255, 0.95); }
 
 .page--front .button .icon {
@@ -1779,9 +1779,9 @@ form li {
   color: #6DBB3C; }
 
 .app--cell-block .page--front {
-  background-image: radial-gradient(farthest-corner at 100% 100%, rgba(226, 106, 70, 0.95) 50%, rgba(226, 158, 70, 0.95) 100%), url("/backgrounds/cellblock.jpg"); }
+  background-image: radial-gradient(farthest-corner at 100% 100%, rgba(32, 59, 81, 0.95) 50%, rgba(32, 43, 81, 0.95) 100%), url("/backgrounds/cellblock.jpg"); }
 
 .app--innovation-space .page--front {
-  background-image: radial-gradient(farthest-corner at 100% 100%, rgba(226, 106, 70, 0.95) 50%, rgba(226, 158, 70, 0.95) 100%), url("/backgrounds/reception.jpg"); }
+  background-image: radial-gradient(farthest-corner at 100% 100%, rgba(32, 59, 81, 0.95) 50%, rgba(32, 43, 81, 0.95) 100%), url("/backgrounds/reception.jpg"); }
 
 /*# sourceMappingURL=main.css.map */
