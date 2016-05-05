@@ -3,6 +3,7 @@ import { routerStateReducer as router } from 'redux-router';
 
 import { reducer as form } from 'redux-form';
 import auth from './auth';
+import call from './call';
 import companies from './companies';
 import createCompanies from './createCompanies';
 import createPeople from './createPeople';
@@ -14,6 +15,7 @@ import people from './people';
 
 export default combineReducers({
   auth,
+  call,
   companies,
   createCompanies,
   createPeople,

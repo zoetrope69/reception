@@ -11,6 +11,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import bcrypt from 'bcrypt';
 import db from './db';
+import twilio from 'twilio';
 
 const pretty = new PrettyError();
 const app = express();
@@ -166,6 +167,28 @@ passport.use(new LocalStrategy((username, password, done) => {
 app.use(passport.initialize());
 // use passport.session() middleware, to support persistent login sessions
 app.use(passport.session());
+
+// handle /voice for twilio requests
+app.post('/voice', (req, res) => {
+  if (!twilio.validateExpressRequest(req, config.env.twilio.token)) {
+    res.status(403).send('You are not Twilio.');
+  }
+
+  const number = req.body.number;
+
+  const response = new twilio.TwimlResponse()
+    .dial({ callerId: config.env.twilio.id }, (node) => {
+      // check if a real number
+      if (/^[\d\+\-\(\) ]+$/.test(number)) {
+        node.number(number);
+      } else {
+        node.client(number);
+      }
+    });
+
+  res.header('Content-Type', 'text/xml');
+  res.send(response.toString()); // send back the TwiML
+});
 
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);

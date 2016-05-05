@@ -16,7 +16,7 @@ import { Icon } from 'components';
 @reduxForm({
   form: 'person',
   fields: ['_id', '_rev', 'visibility', 'type', 'firstName', 'lastName',
-          'email', 'phone', 'notificationSms', 'notificationEmail'],
+          'email', 'phone', 'notificationCall', 'notificationSms', 'notificationEmail'],
   validate: personValidation
 })
 export default class PersonForm extends Component {
@@ -42,7 +42,7 @@ export default class PersonForm extends Component {
   }
 
   render() {
-    const { fields: { visibility, type, firstName, lastName, email, phone, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
+    const { fields: { visibility, type, firstName, lastName, email, phone, notificationCall, notificationSms, notificationEmail }, formKey, handleSubmit, invalid,
       resetForm, profile, pristine, save, submitting, saveError: { [formKey]: saveError }, user, values } = this.props;
 
     return (
@@ -53,7 +53,7 @@ export default class PersonForm extends Component {
         <div className={'input-wrapper' + (visibility.error && visibility.touched ? ' has-error' : '')}>
           <label htmlFor="visibility">Visibility</label>
           <p>This will toggle whether you're publically shown on the iPad in the reception.</p>
-          <label style={{ color: '#E26A46' }} htmlFor="visibility" className="control checkbox">
+          <label style={{ color: '#203B51' }} htmlFor="visibility" className="control checkbox">
             <input id="visibility" name="visibility" type="checkbox" {...visibility} />
             <span className="control-indicator"></span>
             <Icon name="tablet" /> Make yourself public on the iPad!
@@ -105,6 +105,15 @@ export default class PersonForm extends Component {
 
               <p>Choose how you'd like to be notified, or not at all!</p>
               <p>On the iPad in the reception your visitors will get a button to notify. This automatically sends you a message via the options below!</p>
+
+                <div className={'input-wrapper input-wrapper--control' + (notificationCall.error && notificationCall.touched ? ' has-error' : '')}>
+                    <label htmlFor="notify-call" className="control checkbox">
+                        <input type="checkbox" id="notify-call" {...notificationCall} disabled={!phone.value} />
+                        <span className="control-indicator"></span>
+                        <Icon name="phone-handset" /> Call {phone.value && ('to ' + phone.value)} {!phone.value && <small>(Need a valid phone number)</small>}
+                    </label>
+                    {notificationCall.error && notificationCall.touched && this.renderHelpText(notificationCall.error)}
+                </div>
 
               <div className={'input-wrapper input-wrapper--control' + (notificationSms.error && notificationSms.touched ? ' has-error' : '')}>
                   <label htmlFor="notify-sms" className="control checkbox">

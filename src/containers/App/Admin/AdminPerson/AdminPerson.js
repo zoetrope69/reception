@@ -142,7 +142,7 @@ export default class AdminPerson extends Component {
       {!loading && loaded && (
         person ? (
           <div>
-            {profile && <ImageForm initialImage={person.image} />}
+            {profile && <ImageForm initialImage={person.image} id={person._id} type="person" />}
             <PersonForm formKey={String(person._id)} key={String(person._id)} initialValues={person} profile={profile} />
           </div>
         ) : (
