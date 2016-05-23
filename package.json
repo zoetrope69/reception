@@ -34,7 +34,7 @@
     "start-dev-api": "better-npm-run start-dev-api",
     "watch-client": "better-npm-run watch-client",
     "dev": "concurrent --kill-others \"npm run watch-client\" \"npm run start-dev\" \"npm run start-dev-api\"",
-    "test": "karma start",
+    "test": "snyk test && karma start",
     "test-node": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register",
     "test-node-watch": "./node_modules/mocha/bin/mocha $(find api -name '*-test.js') --compilers js:babel-core/register --watch"
   },
@@ -122,6 +122,7 @@
     "scroll-behavior": "^0.3.0",
     "serialize-javascript": "^1.1.2",
     "serve-favicon": "^2.3.0",
+    "snyk": "^1.10.0",
     "socket.io": "^1.3.7",
     "socket.io-client": "^1.3.7",
     "superagent": "^1.4.0",
