@@ -50,7 +50,7 @@
 .admin header .logo{
   float: left;
   width: 20%;
-  
+
   @media (max-width: $break-small){
     width: 100%;
   }
@@ -83,7 +83,7 @@
   padding: 1.5em 1em;
 
   text-align: center;
-  color: lighten($colour-brand, 30%);
+  color: lighten($colour-brand, 70%);
   background: rgba($colour-bg, 0);
 
   transition: background .25s;

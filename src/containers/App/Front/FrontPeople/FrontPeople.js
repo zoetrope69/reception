@@ -10,7 +10,7 @@ import { Icon, Loader, PersonList } from 'components';
 }))
 export default class FrontPeople extends Component {
   static propTypes = {
-    people: PropTypes.array.isRequired,
+    people: PropTypes.array,
     loaded: PropTypes.bool,
     loading: PropTypes.bool
   }

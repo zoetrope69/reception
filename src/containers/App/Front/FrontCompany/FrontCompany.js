@@ -53,16 +53,10 @@ export default class FrontCompany extends Component {
             <h1 className="page--company__name">{company.name}</h1>
             {company.image && (
             <div className="page--company__logo">
-              <img src={`/images/company/${company.image}`} />
+              <img src={`${company.image}`} />
             </div>
             )}
           </div>
-
-          {company.location && (
-          <div className="page--company__location">
-            <Icon name="location" /> We're on {company.location}!
-          </div>
-          )}
 
           {company.email && (
           <div className="page--company__email">

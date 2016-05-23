@@ -32,7 +32,7 @@ export default class Company extends Component {
 
         {company.image && (
         <div className="company__logo">
-          <img src={`/images/company/${company.image}`} alt={`${company.name}'s logo`} />
+          <img src={company.image} alt={`${company.name}'s logo`} />
         </div>
         )}
 

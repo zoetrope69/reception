@@ -11,3 +11,5 @@ export login from './login';
 export logout from './logout';
 
 export notify from './notify';
+
+export generateTwilioCallToken from './generateTwilioCallToken';

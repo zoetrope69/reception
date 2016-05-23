@@ -10,12 +10,12 @@ export default function sendEmail(subject, text, email, name, callback) {
       subject,
       text
     }
-  }, (err, responses) => {
-    const response = responses[0];
-
-    if (err) {
-      return callback(JSON.stringify(err), null);
+  }, (error, responses) => {
+    if (error) {
+      return callback(JSON.stringify(error), null);
     }
+
+    const response = responses[0];
 
     if (response.status === 'rejected') {
       return callback(response.reject_reason, null);
