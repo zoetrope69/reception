@@ -38,7 +38,7 @@ export default class Front extends Component {
   initiateTwilio() {
     const { generateToken, connected, disconnected, loaded } = this.props;
     console.log('initTwilio');
-    this.loadScript('//static.twilio.com/libs/twiliojs/1.2/twilio.min.js')
+    this.loadScript('//static.twilio.com/libs/twiliojs/1.3/twilio.min.js')
       .then(() => {
         console.log('Twilio was loaded');
         generateToken().then((result) => {
