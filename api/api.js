@@ -171,7 +171,7 @@ app.use(passport.session());
 // handle /voice for twilio requests
 app.post('/voice', (req, res) => {
   if (!twilio.validateExpressRequest(req, config.env.twilio.token)) {
-    res.status(403).send('You are not Twilio.');
+    return res.status(403).send('You are not Twilio.');
   }
 
   const number = req.body.number;
