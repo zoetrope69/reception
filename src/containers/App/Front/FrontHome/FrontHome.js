@@ -3,7 +3,19 @@ import { Link } from 'react-router';
 import { Icon } from 'components';
 import { load as loadFront } from 'redux/modules/front';
 
-export default class FrontInstructionHome extends Component {
+export default class FrontHome extends Component {
+
+  componentDidMount() {
+    // add fixed scroll to page
+    document.body.classList.add('body--no-scroll');
+    console.log('mount');
+  }
+
+  componentWillUnmount() {
+    // remove fixed scroll to page
+    document.body.classList.remove('body--no-scroll');
+    console.log('unmount');
+  }
 
   static fetchData(getState, dispatch) {
     return dispatch(loadFront());

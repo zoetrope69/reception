@@ -1,5 +1,9 @@
 // _all.scss
 
+.body--no-scroll {
+  position: fixed;
+}
+
 .container{
   max-width: $break-large;
   margin: 0 auto;
