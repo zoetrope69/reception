@@ -1,20 +1,22 @@
 require('babel/polyfill');
 
 // Webpack config for development
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
-var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
-var assetsPath = path.resolve(__dirname, '../static/dist');
-var host = (process.env.HOST || 'localhost');
-var port = parseInt(process.env.PORT) + 1 || 3001;
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const assetsPath = path.resolve(__dirname, '../static/dist');
+// const host = (process.env.HOST || 'localhost');
+const host = (process.env.HOST || '148.197.141.231');
+const port = parseInt(process.env.PORT, 10) + 1 || 3001;
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
+const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
-var babelrc = fs.readFileSync('./.babelrc');
-var babelrcObject = {};
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const babelrc = fs.readFileSync('./.babelrc');
+const babelrcObject = {};
 
 try {
   babelrcObject = JSON.parse(babelrc);
@@ -23,8 +25,8 @@ try {
   console.error(err);
 }
 
-var babelrcObjectDevelopment = babelrcObject.env && babelrcObject.env.development || {};
-var babelLoaderQuery = Object.assign({}, babelrcObject, babelrcObjectDevelopment);
+const babelrcObjectDevelopment = babelrcObject.env && babelrcObject.env.development || {};
+const babelLoaderQuery = Object.assign({}, babelrcObject, babelrcObjectDevelopment);
 delete babelLoaderQuery.env;
 
 babelLoaderQuery.plugins = babelLoaderQuery.plugins || [];
@@ -51,7 +53,8 @@ module.exports = {
   entry: {
     'main': [
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
-      './src/client.js'
+      './src/client.js',
+      './src/styles/main.scss'
     ]
   },
   output: {
@@ -64,13 +67,12 @@ module.exports = {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel?' + JSON.stringify(babelLoaderQuery), 'eslint-loader']},
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
-      { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
+      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
       { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
     ]
   },
@@ -83,6 +85,7 @@ module.exports = {
     extensions: ['', '.json', '.js', '.jsx']
   },
   plugins: [
+    new ExtractTextPlugin('[name]-[chunkhash].css'),
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
     new webpack.IgnorePlugin(/webpack-stats\.json$/),
