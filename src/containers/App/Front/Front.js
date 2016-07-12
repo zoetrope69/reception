@@ -22,7 +22,6 @@ export default class Front extends Component {
   };
 
   componentDidMount() {
-    console.log('ok');
     this.initiateTwilio = this.initiateTwilio.bind(this);
     this.initiateTwilio();
   }
