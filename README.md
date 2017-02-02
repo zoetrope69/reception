@@ -1,5 +1,7 @@
 # University of Portsmouth Reception App
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/zaccolley/reception.svg?token=4b6288a1f2d3894a7645f063a18a248fabffb1218fbd742cea00a146f2aee6fb)](https://greenkeeper.io/)
+
 A reception app for the University of Portsmouth's shared offices
 
 [![Build status](https://circleci.com/gh/zaccolley/reception.png?circle-token=0eb7cb5607a5c387ddf39eac62692a5b1c0e715a)](https://circleci.com/gh/zaccolley/reception)
